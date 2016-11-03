@@ -26,3 +26,6 @@ G:\devoirs\WpfApplication1\WpfApplication1\obj\Debug\MainWindow.baml
 G:\devoirs\WpfApplication1\WpfApplication1\obj\Debug\WpfApplication1.g.resources
 G:\devoirs\WpfApplication1\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
 G:\devoirs\WpfApplication1\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
+E:\Users\Charles\Documents\GitHub\ift232Monopoly\bin\Debug\WpfApplication1.exe.config
+E:\Users\Charles\Documents\GitHub\ift232Monopoly\obj\Debug\WpfApplication1.exe
+E:\Users\Charles\Documents\GitHub\ift232Monopoly\obj\Debug\WpfApplication1.pdb

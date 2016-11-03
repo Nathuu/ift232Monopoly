@@ -27,7 +27,7 @@ namespace WpfApplication1
         //private long hypotheque;
 
         //ce que le joueur possede
-        //   private List<CarreauPropriete> propriete; //a reregarder en équipe
+        //   private List<CarreauPropriete> propriete; //a regarder en équipe
 
 
 
