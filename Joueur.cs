@@ -31,6 +31,7 @@ namespace WpfApplication1
 
 
 
+        //TEST POUR GITHUB ALEXANDRETESTESTEST
 
 
         public Joueur(String nom, String imagePiece)//une piece construite va toujours avoir la meme argent et meme position de depart
