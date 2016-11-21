@@ -24,13 +24,13 @@ namespace WpfApplication1
         public Plateau(Canvas canvas)
         {
             this.canvas = canvas;
-            for (int i = 0; i < nbCarreaux; i++)
-            {
-                // SW!!! Ajouter autres types de carreaux ici dans des clauses elseif
-                if (indicesProprietes.Contains(i)) arrayCarreaux[i] = new CarreauPropriete(this, i);
-                else arrayCarreaux[i] = new CarreauPrison(this, i);
-            }
-            dessiner();
+            //for (int i = 0; i < nbCarreaux; i++)
+            //{
+            //    // SW!!! Ajouter autres types de carreaux ici dans des clauses elseif
+            //    if (indicesProprietes.Contains(i)) arrayCarreaux[i] = new CarreauPropriete(this, i);
+            //    else arrayCarreaux[i] = new CarreauPrison(this, i);
+            //}
+            //dessiner();
         }
 
         private void dessiner()

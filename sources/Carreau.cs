@@ -31,20 +31,6 @@ namespace WpfApplication1
             else { }
         }
         public abstract void dessiner();
-        /*{
-            // Contour du rectangle
-            Rectangle rect = new Rectangle
-            {
-                Stroke = Brushes.Black,
-                StrokeThickness = 2,
-                Width = this.getLargeur(),
-                Height = this.getHauteur(),
-                Fill = Brushes.Red
-            };
-            Canvas.SetLeft(rect, this.getPosition().X);
-            Canvas.SetTop(rect, this.getPosition().Y);
-            this.canvas.Children.Add(rect);
-        }*/
 
         public int getLargeur()
         {

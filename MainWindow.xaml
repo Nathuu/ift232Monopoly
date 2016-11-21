@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="MainWindow" Height="768" Width="768">
+    <Window.Background>
+        <ImageBrush ImageSource="ressources/board.jpg"/>
+    </Window.Background>
     <Grid Margin="0,0,-33,-14">
+        
         <Canvas x:Name="canvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Background="Transparent">
             <Image Name="img" Grid.Row="500" Grid.Column="400" Width="300" Height="100" Margin="200,300,0,0" Loaded="Image_Loaded"/>
         </Canvas>
