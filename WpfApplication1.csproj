@@ -63,17 +63,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Carreau.cs" />
-    <Compile Include="CarreauPrison.cs" />
-    <Compile Include="CarreauPropriete.cs" />
-    <Compile Include="Joueur.cs" />
+    <Compile Include="sources\Carreau.cs" />
+    <Compile Include="sources\CarreauPrison.cs" />
+    <Compile Include="sources\CarreauPropriete.cs" />
+    <Compile Include="sources\Joueur.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plateau.cs" />
+    <Compile Include="sources\Plateau.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ressources\board.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
