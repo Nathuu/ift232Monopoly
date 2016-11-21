@@ -67,6 +67,16 @@ namespace WpfApplication1
             return canvas;
         }
 
+        public Carreau[] getArrayCarreaux()
+        {
+            return arrayCarreaux;
+        }
+
+        public int getNbCarreaux()
+        {
+            return nbCarreaux;
+        }
+
         /// <summary>
         /// getteur afin que le langage soit comprehensible de tous
         /// </summary>

@@ -38,18 +38,11 @@ namespace WpfApplication1
         {
             InitializeComponent();
             plateauPrincipal = Plateau.getInstance();
+            // Création du joueur vert
+            Joueur vert = new Joueur("Vert", pionVert);
         }
         private void Image_Loaded(object sender, RoutedEventArgs e)
         {
-            /*BitmapImage b = new BitmapImage();
-            b.BeginInit();
-            b.UriSource = new Uri("logo.png");
-            b.EndInit();
-
-            // ... Get Image reference from sender.
-            var image = sender as Image;
-            // ... Assign Source.
-            image.Source = b;*/
         }
     }
 }

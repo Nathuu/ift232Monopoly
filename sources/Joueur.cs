@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace WpfApplication1
 {
@@ -10,53 +14,56 @@ namespace WpfApplication1
     {
 
         private String nom;
-        private String imagePiece; // le jpg de la piece  va etre change
+        private Image image;
         private long argent;
-        public long Argent
-        {
-            get { return argent; }
-            set { argent = value; }
-        }
         private int position;
-        public int Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-        //hypotheque?
-        //private long hypotheque;
-
-        //ce que le joueur possede
-        //   private List<CarreauPropriete> propriete; //a reregarder en équipe
-
-
-        public Joueur(String nom, String imagePiece)//une piece construite va toujours avoir la meme argent et meme position de depart
+        public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.nom = nom;
-            this.imagePiece = imagePiece;
-            argent = 500;
-            position = 0;
+            this.image = image;
+            this.argent = 500;
+            this.setPosition(0);
+            this.Init();
         }
 
-        // on implente l'interface des des graphiques? 
-        public int LanceDeuxDes()// le jouer lance les dés
+        public void Init()
         {
-            Random random = new Random();
-            int des = random.Next(1, 12); // va retourner entre 1 et 12 
-            return des;
+            this.image.Width = 40;
+            this.image.Height = 40;
         }
-        public int LanceUnDes()// le jouer lance les dés
+        public int getPosition()
+        {
+            return position;
+        }
+        public void setPosition(int nouvPosition)
+        {
+            position = nouvPosition;
+            // SW!!! CALCUL QUI FAIT LE LIEN ENTRE L'INDICE D'UNE CASE ET SA POSITION EN PIXELS SUR LE PLATEAU
+            this.image.Margin = new Thickness(0, 0, 0, 0);
+        }
+        public void SeDeplacer(int deplacement)
+        {
+            int nouvPosition = (getPosition() + deplacement) % Plateau.Instance.getNbCarreaux();
+            setPosition(nouvPosition);
+        }
+
+        //ce que le joueur possede
+        //   private List<CarreauPropriete> propriete; //a regarder en équipe
+
+
+        // on implente l'interface des des graphiques? 
+        public int LanceDeuxDes()// le joueur lance les dés
+        {
+            return LanceUnDes() + LanceUnDes();
+        }
+        public int LanceUnDes()// un dé est lancé
         {
             Random random = new Random();
             int des = random.Next(1, 6); // va retourner entre 1 et 12 
             return des;
         }
 
-
-        //va bouger le joueur sur le plateau
-        public void Bouger() { }
-
-        // va appeller LanceDes,Bouger, 
+        // Début du tour du joueur : va appeller LanceDes,Bouger,...
         public void Jouer() { }
 
         /**************************************************************************
@@ -71,10 +78,10 @@ namespace WpfApplication1
             return true;
         }
         /**************************************************************************
-     * valeur d'entree : ce que le joueur doit payer
-     * valeur Sortie : nouvelle argent de joueur
-     * fait la transaction entre deux joueurs
-     ************************************************************************/
+         * valeur d'entree : ce que le joueur doit payer
+         * valeur Sortie : nouvelle argent de joueur
+         * fait la transaction entre deux joueurs
+         ************************************************************************/
         public long Payer(long aPayer)
         {
 
@@ -99,18 +106,5 @@ namespace WpfApplication1
             return true;
         }   // 
         */
-
-
-        public bool EstFaillite()
-        {
-
-            if (argent < 0)
-                return true;
-            return false;
-        }
-
-
-
     }
-
 }
