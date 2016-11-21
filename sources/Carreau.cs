@@ -32,6 +32,7 @@ namespace WpfApplication1
         }
         public abstract void dessiner();
 
+
         public int getLargeur()
         {
             return this.largeur;

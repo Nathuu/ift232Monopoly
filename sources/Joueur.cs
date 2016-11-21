@@ -30,10 +30,6 @@ namespace WpfApplication1
         //   private List<CarreauPropriete> propriete; //a reregarder en équipe
 
 
-
-        //TEST POUR GITHUB ALEXANDRETESTESTEST
-
-
         public Joueur(String nom, String imagePiece)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.nom = nom;

@@ -37,7 +37,7 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
-            plateauPrincipal = new Plateau(canvas);
+            plateauPrincipal = Plateau.getInstance();
         }
         private void Image_Loaded(object sender, RoutedEventArgs e)
         {
