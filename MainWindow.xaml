@@ -42,10 +42,10 @@
         <!--<Canvas x:Name="canvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Background="Transparent">
             --><!--<Image Name="pionVert" Source="ressources/vert.jpg" Grid.Row="3" Grid.Column="3" Width="100" Height="100" Margin="100,100,0,0"/>--><!--
             <Image Name="img" Grid.Row="500" Grid.Column="400" Width="300" Height="100" Margin="200,300,0,0" Loaded="Image_Loaded"/>
-        </Canvas>-->
+        </Canvas>Plateau.Instance.JoueurCourant.Position.Colonne-->
         <Image 
-            Grid.Column="{Binding Path=Plateau.Instance.JoueurCourant.Position.Colonne}"
-            Grid.Row="2"
+            Grid.Column="0"
+            Grid.Row="0"
             Name="pionImageVert" Width="20" Height="20" Margin="35,0,0,0"
             Source="ressources/vert.jpg">
         </Image>

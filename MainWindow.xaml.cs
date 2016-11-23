@@ -26,6 +26,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             this.DataContext = this;
+
             // Création des joueurs 
             Plateau.Instance.Joueurs.Add(new Joueur("Vert", pionImageVert));
             Plateau.Instance.Joueurs.Add(new Joueur("Rouge", pionImageRouge));
