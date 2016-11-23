@@ -3,9 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace WpfApplication1.sources
 {
-    abstract class Carreau
+   public abstract class Carreau
     {
         protected Plateau plateau; // plateau auquel appartient le carreau
         protected Canvas canvas;

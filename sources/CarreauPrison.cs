@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace WpfApplication1.sources
 {
     class CarreauPrison : Carreau
     {

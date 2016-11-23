@@ -8,15 +8,21 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace WpfApplication1.sources
 {
-    class Plateau
+    public class Plateau
     {
         private static Plateau instance;
 
-        private Plateau() { }
+        public List<Joueur> Joueurs { get; set; }
+        public Joueur JoueurCourant { get; set; }
 
-        public static Plateau Instance
+        private Plateau()
+        {
+            Joueurs = new List<Joueur>();
+        }
+
+        public  static Plateau Instance
         {
             get
             {
@@ -26,7 +32,6 @@ namespace WpfApplication1
                 }
                 return instance;
             }
-
          }
         
         private Canvas canvas = new Canvas();
@@ -35,6 +40,16 @@ namespace WpfApplication1
         private int largeur = 660;
         private const int nbCarreaux = 40;
         private Carreau[] arrayCarreaux = new Carreau[nbCarreaux];
+
+        //Redefini le joueur courant.
+        public void FinTour()
+        {
+            JoueurCourant.AFiniSonTour = true;
+            int i = Joueurs.FindIndex(x => x == JoueurCourant);
+            JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
+            JoueurCourant.JouerSonTour();
+        }
+
         private static int[] indicesProprietes = { 1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
         private static int[] indicesPrison = { 10 };
 
@@ -76,19 +91,5 @@ namespace WpfApplication1
         {
             return nbCarreaux;
         }
-
-        /// <summary>
-        /// getteur afin que le langage soit comprehensible de tous
-        /// </summary>
-        /// <returns></returns>
-        public static Plateau getInstance()
-        {
-            if (instance == null)
-            {
-                instance = new Plateau();
-            }
-            return instance;
-        }
-
     }
 }

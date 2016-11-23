@@ -12,37 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApplication1.sources;
 
 namespace WpfApplication1
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Plateau plateauPrincipal;
-
-        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void Canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
         public MainWindow()
         {
             InitializeComponent();
-            plateauPrincipal = Plateau.getInstance();
-            // Création du joueur vert
-            Joueur vert = new Joueur("Vert", pionVert);
+            this.DataContext = this;
+            // Création des joueurs 
+            Plateau.Instance.Joueurs.Add(new Joueur("Vert", pionImageVert));
+            Plateau.Instance.Joueurs.Add(new Joueur("Rouge", pionImageRouge));
+            Plateau.Instance.Joueurs.Add(new Joueur("Bleu", pionImageBleu));
+            Plateau.Instance.Joueurs.Add(new Joueur("Jaune", pionImageJaune));
+            Plateau.Instance.JoueurCourant = Plateau.Instance.Joueurs.First();
         }
-        private void Image_Loaded(object sender, RoutedEventArgs e)
+        private void btnFinTour_Click(object sender, RoutedEventArgs e)
         {
+            Plateau.Instance.FinTour();
         }
     }
 }

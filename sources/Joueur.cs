@@ -8,21 +8,21 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace WpfApplication1
+namespace WpfApplication1.sources
 {
-    class Joueur
+    public class Joueur
     {
-
         private String nom;
         private Image image;
         private long argent;
-        private int position;
+        public Position PositionJoueur { get; set; }
+        public bool AFiniSonTour { get; set; }
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.nom = nom;
             this.image = image;
             this.argent = 500;
-            this.setPosition(0);
+            this.PositionJoueur = new Position();
             this.Init();
         }
 
@@ -31,21 +31,25 @@ namespace WpfApplication1
             this.image.Width = 40;
             this.image.Height = 40;
         }
-        public int getPosition()
-        {
-            return position;
-        }
-        public void setPosition(int nouvPosition)
-        {
-            position = nouvPosition;
-            // SW!!! CALCUL QUI FAIT LE LIEN ENTRE L'INDICE D'UNE CASE ET SA POSITION EN PIXELS SUR LE PLATEAU
-            this.image.Margin = new Thickness(0, 0, 0, 0);
-        }
-        public void SeDeplacer(int deplacement)
-        {
-            int nouvPosition = (getPosition() + deplacement) % Plateau.Instance.getNbCarreaux();
-            setPosition(nouvPosition);
-        }
+        
+        // Voir la propriete PositionJoueur
+        //public Position getPosition()
+        //{
+        //    return PositionJoueur;
+        //}
+        //public void setPosition(int nouvPosition)
+        //{
+        //    PositionJoueur = nouvPosition;
+        //    // SW!!! CALCUL QUI FAIT LE LIEN ENTRE L'INDICE D'UNE CASE ET SA POSITION EN PIXELS SUR LE PLATEAU
+        //    this.image.Margin = new Thickness(0, 0, 0, 0);
+        //}
+
+        // Voir methode Avancer(int)
+        //public void SeDeplacer(int deplacement)
+        //{
+        //    int nouvPosition = (getPosition() + deplacement) % Plateau.Instance.getNbCarreaux();
+        //    setPosition(nouvPosition);
+        //}
 
         //ce que le joueur possede
         //   private List<CarreauPropriete> propriete; //a regarder en équipe
@@ -64,7 +68,20 @@ namespace WpfApplication1
         }
 
         // Début du tour du joueur : va appeller LanceDes,Bouger,...
-        public void Jouer() { }
+        public void JouerSonTour() {
+            AFiniSonTour = false;
+            //while (!AFiniSonTour)
+            {
+                MessageBox.Show("Joueur " + nom + " va brasser un de.");
+                Avancer(LanceUnDes());
+            }
+
+        }
+
+        private void Avancer(int nbCases)
+        {
+            PositionJoueur.Colonne += nbCases;
+        }
 
         /**************************************************************************
         * valeur d'entree : ce que le joueur doit payer
