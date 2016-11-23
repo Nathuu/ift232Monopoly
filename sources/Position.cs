@@ -11,5 +11,10 @@ namespace WpfApplication1.sources
     {
         public int Rangee { get; set; }
         public int Colonne { get; set; }
+        public Position(int Rangee, int Colonne)
+        {
+            this.Colonne = Colonne;
+            this.Rangee = Rangee;
+        }
     }
 }

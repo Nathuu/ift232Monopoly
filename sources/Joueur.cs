@@ -15,34 +15,30 @@ namespace WpfApplication1.sources
         private String nom;
         private Image image;
         private long argent;
-        public Position PositionJoueur { get; set; }
+        public int positionCarreau; // Un int de 0 à nbCases-1
+        public Position position { get; set; } // un objet de type Position
         public bool AFiniSonTour { get; set; }
+
+        
+        private List<CarreauPropriete> proprietes;
+
+
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.nom = nom;
             this.image = image;
             this.argent = 500;
-            this.PositionJoueur = new Position();
+            this.positionCarreau = 0;
+            this.position = new Position(0,0);
             this.Init();
         }
 
         public void Init()
         {
-            this.image.Width = 40;
-            this.image.Height = 40;
+            this.image.Width = 20;
+            this.image.Height = 20;
         }
         
-        // Voir la propriete PositionJoueur
-        //public Position getPosition()
-        //{
-        //    return PositionJoueur;
-        //}
-        //public void setPosition(int nouvPosition)
-        //{
-        //    PositionJoueur = nouvPosition;
-        //    // SW!!! CALCUL QUI FAIT LE LIEN ENTRE L'INDICE D'UNE CASE ET SA POSITION EN PIXELS SUR LE PLATEAU
-        //    this.image.Margin = new Thickness(0, 0, 0, 0);
-        //}
 
         // Voir methode Avancer(int)
         //public void SeDeplacer(int deplacement)
@@ -73,14 +69,20 @@ namespace WpfApplication1.sources
             //while (!AFiniSonTour)
             {
                 MessageBox.Show("Joueur " + nom + " va brasser un de.");
-                Avancer(LanceUnDes());
+                int coupDe = LanceDeuxDes();
+                MessageBox.Show("Joueur " + nom + " avance de "+coupDe+" cases");
+                Avancer(coupDe);
             }
 
         }
 
         private void Avancer(int nbCases)
         {
-            PositionJoueur.Colonne += nbCases;
+            this.positionCarreau = (this.positionCarreau + nbCases) % Plateau.Instance.getNbCarreaux();
+            this.position = Carreau.conversionInt2Position(this.positionCarreau);
+            Grid.SetRow(this.image, this.position.Rangee);
+            Grid.SetColumn(this.image, this.position.Colonne);
+            action();
         }
 
         /**************************************************************************
@@ -111,6 +113,45 @@ namespace WpfApplication1.sources
             argent += deposer;
             return argent; // on retourne le nouveau argent
         }
+
+        /**************************************************************************
+         * valeur d'entree : 
+         * valeur Sortie : Boolean : True: action effectuée
+                                     False: Action à déterminer
+         * détermine l'action à effectuer selon la case et la situation du joueur
+         ************************************************************************/
+        public bool action()
+        {
+            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
+            MessageBox.Show(caseActuelle.getLargeur() + "");
+            if (caseActuelle.estPropriete())
+            {
+                CarreauPropriete proprieteActuelle = (CarreauPropriete)caseActuelle;
+                if (proprieteActuelle.estLibre())
+                {
+                    if (PeutPayer(proprieteActuelle.getPrix()))
+                    {
+                        Payer(proprieteActuelle.getPrix());
+                        proprietes.Add(proprieteActuelle);
+                        return true;
+                    }
+                    else
+                    {
+                        //NE se passe rien (pour l'instant), manque hypotheque... autre moyen pour payer
+                        return false;
+                    }
+                }
+                else
+                {
+                    //Payer qqun (loyer)
+                    return false;
+                }
+
+            }*/
+            //Autres actions à déterminer
+            return false;
+        }
+
 
         //Ne pas tenier compte
         /**************************************************************************

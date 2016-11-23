@@ -45,5 +45,45 @@ namespace WpfApplication1.sources
         {
             return this.position;
         }
+        public static Position conversionInt2Position(int positionCarreau)
+        {
+            Position position;
+            if (positionCarreau >= 0 && positionCarreau < 10) position = new Position(0, positionCarreau);
+            else if (positionCarreau >= 10 && positionCarreau < 21) position = new Position(positionCarreau - 10, 10);
+            else if (positionCarreau >= 21 && positionCarreau < 30) position = new Position(10, 30 - positionCarreau);
+            else if (positionCarreau >= 30 && positionCarreau < 40) position = new Position(40 - positionCarreau, 0);
+            else position = null;
+
+            return position;
+        }
+
+        /**************************************************************************
+  * valeur d'entree : 
+  * valeur Sortie : Boolean: True: C'est une propriété
+                             False: Ce n'est pas une propriété
+  * Vérifie si c'est une propriété
+
+  **Appelé par achat pour savoir si la propriété peut être acheté
+  ************************************************************************/
+        public bool estPropriete()
+        {
+            foreach (int j in carreauxBruns)
+            {
+                if (j == indice) return true;
+            }
+            foreach (int j in carreauxRouges)
+            {
+                if (j == indice) return true;
+            }
+            foreach (int j in carreauxVerts)
+            {
+                if (j == indice) return true;
+            }
+            foreach (int j in carreauxBleus)
+            {
+                if (j == indice) return true;
+            }
+            return false;
+        }
     }
 }

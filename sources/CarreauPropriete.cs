@@ -33,5 +33,16 @@ namespace WpfApplication1.sources
             Canvas.SetTop(rect, this.getPosition().Y);
             plateau.getCanvas().Children.Add(rect);
         }
+
+        public long getPrix()
+        {
+            return prixAchat;
+        }
+
+        public bool estLibre()
+        {
+            return (proprietaire == null);
+        }
+
     }
 }
