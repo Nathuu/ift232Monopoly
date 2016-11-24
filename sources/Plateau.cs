@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace WpfApplication1.sources
 {
@@ -48,6 +49,37 @@ namespace WpfApplication1.sources
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
+        }
+
+        public void sauvegarderPartie()
+        {
+            StreamWriter fichierSauvegarde = new StreamWriter("sauvegardePartie.txt");
+            
+            //on sauvegarde:
+            //Postions de tous les joueurs
+            //tous leurs propriété, argents, nom autrement dit tout ce qu'un jouer a
+            
+            foreach(Joueur j in Joueurs)
+            {
+                //IL FAUT REPLACE LES IMAGES DES JOUEURS (POSITION) !!!! JN && SARA
+               fichierSauvegarde.WriteLine(j.getNom());
+               fichierSauvegarde.WriteLine(j.getPosition().getColonne());
+               fichierSauvegarde.WriteLine(j.getPosition().getRangee()); 
+               fichierSauvegarde.WriteLine(j.getArgent());
+            }
+
+            fichierSauvegarde.Close();
+        }
+        public void restaurerPartie()
+        {
+            StreamReader fichierSauvegarde = new StreamReader("sauvegardePartie.txt");
+            foreach (Joueur j in Joueurs)
+            {
+                j.setNom(fichierSauvegarde.ReadLine());
+                j.setPosition(Int32.Parse(fichierSauvegarde.ReadLine()), Int32.Parse(fichierSauvegarde.ReadLine()));
+                j.setArgent(Int64.Parse(fichierSauvegarde.ReadLine()));
+            }
+            fichierSauvegarde.Close();
         }
 
         private static int[] indicesProprietes = { 1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};

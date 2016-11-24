@@ -16,5 +16,12 @@ namespace WpfApplication1.sources
             this.Colonne = Colonne;
             this.Rangee = Rangee;
         }
+
+        public int getRangee() { return Rangee; }
+        public void setRangee(int rangee) { this.Rangee = rangee; }
+        public int getColonne() { return Colonne; }
+        public void setColonne(int colonne) { this.Colonne = colonne; }
+
+
     }
 }

@@ -12,7 +12,7 @@ namespace WpfApplication1.sources
 {
     public class Joueur
     {
-        private String nom;
+        private String nom { get ; set; } 
         private Image image;
         private long argent;
         public int positionCarreau; // Un int de 0 à nbCases-1
@@ -38,7 +38,17 @@ namespace WpfApplication1.sources
             this.image.Width = 20;
             this.image.Height = 20;
         }
-        
+        public string getNom() { return nom; }
+        public void setNom(String nom) { this.nom = nom; }
+        public Position getPosition() { return position; }
+        public void setPosition(int rangee, int colonne) { this.position.setRangee(rangee); this.position.setColonne(colonne); }
+        public long getArgent() { return argent; }
+        public void setArgent(long argent) { this.argent = argent; }
+
+
+
+
+
 
         // Voir methode Avancer(int)
         //public void SeDeplacer(int deplacement)
@@ -76,6 +86,7 @@ namespace WpfApplication1.sources
 
         }
 
+      
         private void Avancer(int nbCases)
         {
             this.positionCarreau = (this.positionCarreau + nbCases) % Plateau.Instance.getNbCarreaux();

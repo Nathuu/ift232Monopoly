@@ -38,5 +38,15 @@ namespace WpfApplication1
         {
             Plateau.Instance.FinTour();
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Plateau.Instance.sauvegarderPartie();
+        }
+
+        private void btnRestaurer_Click(object sender, RoutedEventArgs e)
+        {
+            Plateau.Instance.restaurerPartie(); // il faudrait demander le nom du fichier le mettre en parametre !!!JN & SARA!!!
+        }
     }
 }

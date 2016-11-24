@@ -49,12 +49,18 @@
             Name="pionImageVert" Width="20" Height="20" Margin="35,0,0,0"
             Source="ressources/vert.jpg">
         </Image>
-        <Image Grid.Column="0" Grid.Row="0" Name="pionImageRouge" Source="ressources/vert.jpg" Width="20" Height="20" Margin="0,0,10,0"/>
-        <Image Grid.Column="0" Grid.Row="0"  Name="pionImageBleu" Source="ressources/vert.jpg" Width="20" Height="20" Margin="0,50,10,0"/>
-        <Image Grid.Column="0" Grid.Row="0"  Name="pionImageJaune" Source="ressources/vert.jpg" Width="20" Height="20" Margin="35,50,0,0"/>
+        <Image Grid.Column="0" Grid.Row="0" Name="pionImageRouge" Source="ressources/rouge.jpg" Width="20" Height="20" Margin="0,0,10,0"/>
+        <Image Grid.Column="0" Grid.Row="0"  Name="pionImageBleu" Source="ressources/bleu.jpg" Width="20" Height="20" Margin="0,50,10,0"/>
+        <Image Grid.Column="0" Grid.Row="0"  Name="pionImageJaune" Source="ressources/jaune.jpg" Width="20" Height="20" Margin="35,50,0,0"/>
 
         <StackPanel Grid.Row="9" Grid.Column="5">
             <Button Name="btnFinTour" Content="Fin de tour" Height="40" Click="btnFinTour_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="3">
+            <Button Name="btnSave" Content="Sauvegarder" Height="40" Click="btnSave_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="1">
+            <Button Name="btnRestor" Content="Restaurer" Height="40" Click="btnRestaurer_Click"/>
         </StackPanel>
     </Grid>
 </Window>
