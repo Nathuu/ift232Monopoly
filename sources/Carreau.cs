@@ -65,25 +65,11 @@ namespace WpfApplication1.sources
 
   **Appelé par achat pour savoir si la propriété peut être acheté
   ************************************************************************/
-        public bool estPropriete()
+
+
+        public bool estCarreauPayant()
         {
-            foreach (int j in carreauxBruns)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxRouges)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxVerts)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxBleus)
-            {
-                if (j == indice) return true;
-            }
-            return false;
+            return this is CarreauPayant;
         }
     }
 }

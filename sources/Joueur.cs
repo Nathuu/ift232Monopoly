@@ -19,6 +19,8 @@ namespace WpfApplication1.sources
         public string Nom { get; set; }
         public int PositionCarreau { get; set; }
 
+        //Joueur n'a pas de propriétés?
+
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.Nom = nom;
@@ -65,7 +67,7 @@ namespace WpfApplication1.sources
             this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
             Grid.SetRow(this.Image, this.Position.rangee + 1);
             Grid.SetColumn(this.Image, this.Position.colonne + 1);
-            action();
+            actionSurCase();
         }
 
         /**************************************************************************
@@ -83,6 +85,7 @@ namespace WpfApplication1.sources
          * valeur d'entree : ce que le joueur doit payer
          * valeur Sortie : nouvelle argent de joueur
          * fait la transaction entre deux joueurs
+         Cete fonction ne prend pas encore en compte les Avoirs du joueurs(maison, terrain)
          ************************************************************************/
         public long Payer(long aPayer)
         {
@@ -103,8 +106,41 @@ namespace WpfApplication1.sources
                                      False: Action à déterminer
          * détermine l'action à effectuer selon la case et la situation du joueur
          ************************************************************************/
-        public bool action()
+        public bool actionSurCase()
         {
+            Carreau caseActuelle = getCarreauActuel(PositionCarreau);
+            if (caseActuelle.estCarreauPayant())
+            {
+                CarreauPayant casePayante = (CarreauPayant)caseActuelle;
+                if (casePayante.estCarreauAchetable())
+                {
+                    CarreauAchetable caseAchetable = (CarreauAchetable)casePayante;
+                    if (caseAchetable.estPossede())
+                    {
+                        payerDroitPassage();
+                        return false;
+                    }
+                    else
+                    {
+                        Payer(caseAchetable.getPrixAchat());
+                        caseAchetable.setProprietaire(this);
+                        return true;
+                    }
+                }
+                else
+                {
+                    //Autres actions à déterminer
+                    return false;
+                }
+            }
+            //Autres actions à déterminer
+            else
+            {
+                return false;
+            }
+
+            /* Ancienne implantation de la fonction, avant le reusinage ci-haut
+
             /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
             MessageBox.Show(caseActuelle.getLargeur() + "");
             if (caseActuelle.estPropriete())
@@ -127,12 +163,52 @@ namespace WpfApplication1.sources
                 else
                 {
                     //Payer qqun (loyer)
+                    //payerDroitPassage();
                     return false;
                 }
 
             }*/
-            //Autres actions à déterminer
-            return false;
+        }
+
+        /// <summary>
+        /// Cette fonction sert a payer le droit de passage sur une propriété qui n'est pas la sienne
+        /// Si le joueur n'a pas assez de tunes pour payer le propriétaire, il fait faillite
+        /// </summary>
+        public void payerDroitPassage()
+        {
+            CarreauAchetable carreauActuel = (CarreauAchetable)getCarreauActuel(PositionCarreau);
+            Joueur carreauProprietaire = carreauActuel.getProprietaire();
+            long droitPassage = carreauActuel.getPrixPassage();
+
+            // Faire une fct qui valide si le joueur est propriétaire de la case sur laquel i est
+            //enlever ce if de la fonction, ya pas d,affaire la
+            if (this != carreauProprietaire)
+            {
+                if (PeutPayer(droitPassage))
+                {
+                    Payer(droitPassage);
+                    carreauProprietaire.Depot(droitPassage);
+                }
+                else
+                {
+                    faitFaillite();
+                }
+            }
+        }
+
+        private void faitFaillite()
+        {
+            Console.Write("Tu vas rotter du sang enculé!\n");
+        }
+
+        /// <summary>
+        /// Doit aller chercher le propriétaire de la case sur laquel le joueur se trouve
+        /// </summary>
+        /// <param name="positionCarreau"></param>
+        /// <returns></returns>
+        private Carreau getCarreauActuel(int positionCarreau)
+        {
+            throw new NotImplementedException();
         }
 
 

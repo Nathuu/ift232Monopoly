@@ -1,14 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace WpfApplication1.sources
 {
-    class CarreauPropriete:Carreau
+    /// <summary>
+    /// Carreau qui sont des carreau achetables, mais plus spécifiquement des propriété de style couleurs. ils ont une différente facon d'utiliser le prixPassage
+    /// </summary>
+    class CarreauPropriete:CarreauAchetable
     {
-        private int prixAchat;
-        private Joueur proprietaire;
+        protected int prixAchat;
         private Brush couleur = Brushes.Gray;
 
         public CarreauPropriete(Plateau plateau, int indice):base(plateau, indice)
@@ -34,16 +37,20 @@ namespace WpfApplication1.sources
             plateau.getCanvas().Children.Add(rect);
         }
 
-        public long getPrix()
+        public override long getPrixAchat()
         {
             return prixAchat;
         }
 
-        public bool estLibre()
+
+        /// <summary>
+        /// Retourne le prix de passage de la propriété + le modif de maison ou Hotel
+        /// </summary>
+        /// <returns></returns>
+        public override long getPrixPassage()
         {
-            return (proprietaire == null);
+            long prixPassage = (prixAchat/10); // est incomplète (voir la carte trello)
+            return prixPassage;
         }
-
-
     }
 }
