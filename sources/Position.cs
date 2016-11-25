@@ -16,8 +16,5 @@ namespace WpfApplication1.sources
             this.colonne = colonne;
             this.rangee = rangee;
         }
-
-
-
     }
 }

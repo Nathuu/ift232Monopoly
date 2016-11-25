@@ -42,7 +42,6 @@ namespace WpfApplication1
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.sauvegarderPartie();
-            menuItemRestore.IsEnabled = true;
         }
 
         private void btnRestaurer_Click(object sender, RoutedEventArgs e)

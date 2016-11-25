@@ -11,24 +11,25 @@ namespace WpfApplication1.sources
 {
     class CarreauPrison : Carreau
     {
-        public CarreauPrison(Plateau plateau, int indice):base(plateau, indice)
+        public CarreauPrison(int postionCarreau) :base(postionCarreau)
         {
 
         }
 
-        public override void dessiner()
-        {
-            // Contour du rectangle
-            Rectangle rect = new Rectangle
-            {
-                Stroke = Brushes.Black,
-                StrokeThickness = 2,
-                Width = this.getLargeur(),
-                Height = this.getHauteur()
-            };
-            Canvas.SetLeft(rect, this.getPosition().X);
-            Canvas.SetTop(rect, this.getPosition().Y);
-            plateau.getCanvas().Children.Add(rect);
-        }
+        //Dessine pu a lecran
+        //public override void dessiner()
+        //{
+        //    // Contour du rectangle
+        //    Rectangle rect = new Rectangle
+        //    {
+        //        Stroke = Brushes.Black,
+        //        StrokeThickness = 2,
+        //        Width = this.getLargeur(),
+        //        Height = this.getHauteur()
+        //    };
+        //    Canvas.SetLeft(rect, this.getPosition().X);
+        //    Canvas.SetTop(rect, this.getPosition().Y);
+        //    plateau.getCanvas().Children.Add(rect);
+        //}
     }
 }

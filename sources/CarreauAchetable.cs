@@ -13,7 +13,7 @@ namespace WpfApplication1.sources
     {
         protected Joueur proprietaire;
 
-        public CarreauAchetable(Plateau plateau, int indice):base(plateau, indice) { }
+        public CarreauAchetable(int position) :base(position) { }
 
         public abstract long getPrixAchat();
 
@@ -30,27 +30,6 @@ namespace WpfApplication1.sources
         public bool estPossede()
         {
             return (proprietaire == null);
-        }
-
-        public bool estPropriete()
-        {
-            foreach (int j in carreauxBruns)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxRouges)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxVerts)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxBleus)
-            {
-                if (j == indice) return true;
-            }
-            return false;
         }
     }
 }

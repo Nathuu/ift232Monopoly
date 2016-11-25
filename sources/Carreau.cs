@@ -1,50 +1,39 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace WpfApplication1.sources
 {
-   public abstract class Carreau
+   public abstract class Carreau 
     {
-        protected Plateau plateau; // plateau auquel appartient le carreau
-        protected Canvas canvas;
-        private int hauteur = 60;
-        private int largeur = 60;
-        protected int indice; // position dans le tableau arrayCarreaux de la classe Plateau
-        private Point position; // coordonnées X,Y du coin supérieur gauche du carreau
+        //Transformation de vos vielle variable par des propriete pour permettre un peu plus d'integrer et eviter davoir des fonctions get et set inutile
+        //protected Canvas canvas;
+        //private int hauteur = 60; //Suppression de hauteur et largeur. Inutile
+        //private int largeur = 60;
+        //protected int indice; // position dans la liste de la classe Plateau
+        //protected Plateau plateau; // plateau auquel appartient le carreau
+        public Point position { get; private set; }
+        public int postionCarreau { get; private set; }
 
-        protected static int[] carreauxBruns = {1,3};
-        protected static int[] carreauxRouges = { 21, 23, 24 };
-        protected static int[] carreauxVerts = { 31,32,34 };
-        protected static int[] carreauxBleus = { 37,39 };
+        protected List<int>  carreauxBruns =  new List<int>() {1,3}; //Remplacement des tableaux par des listes. Plus faciles d'utilisation par apres
+        protected List<int> carreauxRouges = new List<int>() { 21, 23, 24 };
+        protected List<int> carreauxVerts = new List<int>() { 31,32,34 };
+        protected List<int> carreauxBleus = new List<int>() { 37,39 };
 
-        public Carreau(Plateau plateau, int indice)
+        //public Carreau(Plateau plateau, int indice)
+        public Carreau(int postionCarreau)
         {
-            this.plateau = plateau;
-            this.canvas = plateau.getCanvas();
-            this.indice = indice;
-            if      (this.indice >= 0 && this.indice < 10) this.position = new Point(this.indice * getLargeur() + plateau.getDecalage().X, plateau.getDecalage().Y);
-            else if (this.indice >= 10 && this.indice < 21) this.position = new Point(10*60 + plateau.getDecalage().X, (this.indice - 10) * getHauteur() + plateau.getDecalage().Y);
-            else if (this.indice >= 21 && this.indice < 30) this.position = new Point((30 - this.indice) * getLargeur() + plateau.getDecalage().X, 10*60 + plateau.getDecalage().Y);
-            else if (this.indice >= 30 && this.indice < 40) this.position = new Point(plateau.getDecalage().X, (40 - this.indice) * getHauteur() + plateau.getDecalage().Y);
-            else { }
+            this.postionCarreau = postionCarreau;
         }
-        public abstract void dessiner();
+        //if      (this.indice >= 0 && this.indice < 10) this.position = new Point(this.indice * getLargeur() + plateau.getDecalage().X, plateau.getDecalage().Y);
+        //else if (this.indice >= 10 && this.indice < 21) this.position = new Point(10*60 + plateau.getDecalage().X, (this.indice - 10) * getHauteur() + plateau.getDecalage().Y);
+        //else if (this.indice >= 21 && this.indice < 30) this.position = new Point((30 - this.indice) * getLargeur() + plateau.getDecalage().X, 10*60 + plateau.getDecalage().Y);
+        //else if (this.indice >= 30 && this.indice < 40) this.position = new Point(plateau.getDecalage().X, (40 - this.indice) * getHauteur() + plateau.getDecalage().Y);
+        //else { }
+        //public abstract void dessiner(); //Utilisation d'une image comme tableaux de jeux dessiner est inutile dans ce cas.
 
-
-        public int getLargeur()
-        {
-            return this.largeur;
-        }
-        public int getHauteur()
-        {
-            return this.hauteur;
-        }
-        public Point getPosition()
-        {
-            return this.position;
-        }
         public static Position conversionInt2Position(int positionCarreau)
         {
             Position position;
@@ -58,24 +47,17 @@ namespace WpfApplication1.sources
         }
 
         /**************************************************************************
-  * valeur d'entree : 
-  * valeur Sortie : Boolean: True: C'est une propriété
-                             False: Ce n'est pas une propriété
-  * Vérifie si c'est une propriété
+          * valeur d'entree : 
+          * valeur Sortie : Boolean: True: C'est une propriété
+                                     False: Ce n'est pas une propriété
+          * Vérifie si c'est une propriété
 
-  **Appelé par achat pour savoir si la propriété peut être acheté
-  ************************************************************************/
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
+          **Appelé par achat pour savoir si la propriété peut être acheté
+         ************************************************************************/
         public bool estCarreauPayant()
         {
-            return this is CarreauPayant;
-=======
+            return this is CarreauPayant; //Peut-etre faire dautre chose ici 
+        }
         public bool estPropriete(int positionCarreau)
         {
             bool estProp = false;
@@ -84,49 +66,6 @@ namespace WpfApplication1.sources
             if (!estProp) estProp = carreauxVerts.Exists(x => x == positionCarreau);
             if (!estProp) estProp = carreauxBleus.Exists(x => x == positionCarreau);
             return estProp;
->>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
-=======
-        public bool estPropriete()
-        {
-=======
-        public bool estPropriete()
-        {
->>>>>>> parent of cc90394... Voir trello
-=======
-        public bool estPropriete()
-        {
->>>>>>> parent of cc90394... Voir trello
-=======
-        public bool estPropriete()
-        {
->>>>>>> parent of cc90394... Voir trello
-            foreach (int j in carreauxBruns)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxRouges)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxVerts)
-            {
-                if (j == indice) return true;
-            }
-            foreach (int j in carreauxBleus)
-            {
-                if (j == indice) return true;
-            }
-            return false;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of cc90394... Voir trello
-=======
->>>>>>> parent of cc90394... Voir trello
-=======
->>>>>>> parent of cc90394... Voir trello
-=======
->>>>>>> parent of cc90394... Voir trello
         }
     }
 }

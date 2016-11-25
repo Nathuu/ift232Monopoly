@@ -13,27 +13,14 @@ namespace WpfApplication1.sources
 {
     public class Joueur
     {
-        public Image Image { get; set; }
-        public long Argent { get; set; }
-        public Position Position { get; set; } // un objet de type Position
-        public string Nom { get; set; }
+        public Image Image { get; private set; }
+        public long Argent { get;  set; }
+        public Position Position { get; private set; } // un objet de type Position
+        public string Nom { get;  set; }
+        public List<CarreauPropriete> Proprietes { get; private set; }
         public int PositionCarreau { get; set; }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //public List<CarreauPropriete> Proprietes { get; private set; }
 
-        //Joueur n'a pas de propriétés?
-=======
->>>>>>> parent of cc90394... Voir trello
-=======
->>>>>>> parent of cc90394... Voir trello
-=======
->>>>>>> parent of cc90394... Voir trello
-=======
->>>>>>> parent of cc90394... Voir trello
-
+        //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.Nom = nom;
@@ -76,11 +63,11 @@ namespace WpfApplication1.sources
 
         public void Avancer(int nbCases)
         {
-            this.PositionCarreau = (this.PositionCarreau + nbCases) % Plateau.Instance.getNbCarreaux();
+            this.PositionCarreau = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
             this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
             Grid.SetRow(this.Image, this.Position.rangee + 1);
             Grid.SetColumn(this.Image, this.Position.colonne + 1);
-            actionSurCase();
+            //actionSurCase(); décommenter lorsque cela va marche.
         }
 
         /**************************************************************************
@@ -121,10 +108,6 @@ namespace WpfApplication1.sources
          ************************************************************************/
         public bool actionSurCase()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             Carreau caseActuelle = getCarreauActuel(PositionCarreau);
             if (caseActuelle.estCarreauPayant())
             {
@@ -155,65 +138,7 @@ namespace WpfApplication1.sources
             {
                 return false;
             }
-
-            /* Ancienne implantation de la fonction, avant le reusinage ci-haut
-
-            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
-            MessageBox.Show(caseActuelle.getLargeur() + "");
-            if (caseActuelle.estPropriete())
-            Carreau carreauActuelle = new Carreau(PositionCarreau);
-            if (carreauActuelle.estPropriete(PositionCarreau))
-=======
-            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
-            MessageBox.Show(caseActuelle.getLargeur() + "");
-            if (caseActuelle.estPropriete())
->>>>>>> parent of cc90394... Voir trello
-=======
-            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
-            MessageBox.Show(caseActuelle.getLargeur() + "");
-            if (caseActuelle.estPropriete())
->>>>>>> parent of cc90394... Voir trello
-=======
-            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
-            MessageBox.Show(caseActuelle.getLargeur() + "");
-            if (caseActuelle.estPropriete())
->>>>>>> parent of cc90394... Voir trello
-=======
-            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
-            MessageBox.Show(caseActuelle.getLargeur() + "");
-            if (caseActuelle.estPropriete())
->>>>>>> parent of cc90394... Voir trello
-            {
-                CarreauPropriete proprieteActuelle = (CarreauPropriete)caseActuelle;
-                if (proprieteActuelle.estLibre())
-                {
-                    if (PeutPayer(proprieteActuelle.getPrix()))
-                    {
-                        Payer(proprieteActuelle.getPrix());
-                        proprietes.Add(proprieteActuelle);
-                        return true;
-                    }
-                    else
-                    {
-                        //NE se passe rien (pour l'instant), manque hypotheque... autre moyen pour payer
-                        return false;
-                    }
-                }
-                else
-                {
-                    //Payer qqun (loyer)
-                    //payerDroitPassage();
-                    return false;
-                }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            }*/
         }
-
         /// <summary>
         /// Cette fonction sert a payer le droit de passage sur une propriété qui n'est pas la sienne
         /// Si le joueur n'a pas assez de tunes pour payer le propriétaire, il fait faillite
@@ -245,45 +170,9 @@ namespace WpfApplication1.sources
             Console.Write("Tu vas rotter du sang enculé!\n");
         }
 
-        /// <summary>
-        /// Doit aller chercher le propriétaire de la case sur laquel le joueur se trouve
-        /// </summary>
-        /// <param name="positionCarreau"></param>
-        /// <returns></returns>
-        private Carreau getCarreauActuel(int positionCarreau)
+        private CarreauAchetable getCarreauActuel(int PositionCarreau) //Modifier ce code Fanny et/ou Bernard
         {
-            throw new NotImplementedException();
-=======
-            }
-=======
-            }*/
->>>>>>> parent of cc90394... Voir trello
-=======
-            }*/
->>>>>>> parent of cc90394... Voir trello
-=======
-            }*/
->>>>>>> parent of cc90394... Voir trello
-=======
-            }*/
->>>>>>> parent of cc90394... Voir trello
-            //Autres actions à déterminer
-            return false;
->>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
+            return null;
         }
-
-
-        //Ne pas tenier compte
-        /**************************************************************************
-         * valeur d'entree : quelle joueur doit payer this.joueur
-         * valeur Sortie : vrai si la transaction a ete effectué
-         * fait la transaction entre deux joueurs
-         ************************************************************************/
-        /*public bool Transaction(Joueur joueur) // this.joueur paie le Joueur joueur //
-        {
-            return true;
-        }   // 
-        */
     }
-
 }

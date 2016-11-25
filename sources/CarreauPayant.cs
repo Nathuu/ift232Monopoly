@@ -11,7 +11,7 @@ namespace WpfApplication1.sources
     /// </summary>
     abstract class CarreauPayant:Carreau
     {
-        public CarreauPayant(Plateau plateau, int indice):base(plateau, indice) { }
+        public CarreauPayant(int position) :base(position) { }
 
         public abstract long getPrixPassage();
 
