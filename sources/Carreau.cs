@@ -69,6 +69,7 @@ namespace WpfApplication1.sources
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
         public bool estCarreauPayant()
@@ -87,6 +88,10 @@ namespace WpfApplication1.sources
 =======
         public bool estPropriete()
         {
+=======
+        public bool estPropriete()
+        {
+>>>>>>> parent of cc90394... Voir trello
 =======
         public bool estPropriete()
         {
@@ -114,6 +119,9 @@ namespace WpfApplication1.sources
             return false;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of cc90394... Voir trello
+=======
 >>>>>>> parent of cc90394... Voir trello
 =======
 >>>>>>> parent of cc90394... Voir trello

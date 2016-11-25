@@ -21,9 +21,12 @@ namespace WpfApplication1.sources
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         //public List<CarreauPropriete> Proprietes { get; private set; }
 
         //Joueur n'a pas de propriétés?
+=======
+>>>>>>> parent of cc90394... Voir trello
 =======
 >>>>>>> parent of cc90394... Voir trello
 =======
@@ -121,6 +124,7 @@ namespace WpfApplication1.sources
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             Carreau caseActuelle = getCarreauActuel(PositionCarreau);
             if (caseActuelle.estCarreauPayant())
             {
@@ -174,6 +178,11 @@ namespace WpfApplication1.sources
             MessageBox.Show(caseActuelle.getLargeur() + "");
             if (caseActuelle.estPropriete())
 >>>>>>> parent of cc90394... Voir trello
+=======
+            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
+            MessageBox.Show(caseActuelle.getLargeur() + "");
+            if (caseActuelle.estPropriete())
+>>>>>>> parent of cc90394... Voir trello
             {
                 CarreauPropriete proprieteActuelle = (CarreauPropriete)caseActuelle;
                 if (proprieteActuelle.estLibre())
@@ -197,6 +206,7 @@ namespace WpfApplication1.sources
                     return false;
                 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -245,6 +255,9 @@ namespace WpfApplication1.sources
             throw new NotImplementedException();
 =======
             }
+=======
+            }*/
+>>>>>>> parent of cc90394... Voir trello
 =======
             }*/
 >>>>>>> parent of cc90394... Voir trello
