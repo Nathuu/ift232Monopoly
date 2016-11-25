@@ -14,6 +14,7 @@ namespace WpfApplication1.sources
     public class Plateau
     {
         private static Plateau instance;
+
         public List<Joueur> Joueurs { get; set; }
         public Joueur JoueurCourant { get; set; }
 
@@ -34,6 +35,13 @@ namespace WpfApplication1.sources
                 return instance;
             }
         }
+      
+        private Canvas canvas = new Canvas();
+        private Point decalage = new Point(30, 30);
+        private int hauteur = 660;
+        private int largeur = 660;
+        private const int nbCarreaux = 40;
+        private Carreau[] arrayCarreaux = new Carreau[nbCarreaux];
 
         //Redefini le joueur courant.
         public void FinTour()
@@ -45,9 +53,7 @@ namespace WpfApplication1.sources
 
         public void sauvegarderPartie()
         {
-            SauvegardeFichier saveWindow = new SauvegardeFichier();
-            saveWindow.ShowDialog();
-            StreamWriter fichierSauvegarde = new StreamWriter(saveWindow.FileName);
+            StreamWriter fichierSauvegarde = new StreamWriter("sauvegardePartie.txt");
             //on sauvegarde:
             //Postions de tous les joueurs
             //tous leurs propriété, argents, nom autrement dit tout ce qu'un jouer a
@@ -60,19 +66,9 @@ namespace WpfApplication1.sources
             fichierSauvegarde.Close();
         }
         public void restaurerPartie()
-        {
-            List<string> fichierRestaurationDisponible = new List<string>();
-            DirectoryInfo dinfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            FileInfo[] Files = dinfo.GetFiles("*.txt");
-            foreach (FileInfo file in Files)
-            {
-                fichierRestaurationDisponible.Add(file.Name);
-            }
+        {        
 
-            RestaureFichier restoreWindow = new RestaureFichier(fichierRestaurationDisponible);
-            restoreWindow.ShowDialog();
-                   
-            StreamReader fichierSauvegarde = new StreamReader(restoreWindow.FileName);
+            StreamReader fichierSauvegarde = new StreamReader("sauvegardePartie.txt");
             String nomJoueurCourant = fichierSauvegarde.ReadLine();
 
             foreach (Joueur j in Joueurs)
@@ -88,6 +84,49 @@ namespace WpfApplication1.sources
 
             }            
             fichierSauvegarde.Close();
+        }
+
+        private static int[] indicesProprietes = { 1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39 };
+        private static int[] indicesPrison = { 10 };
+
+        private void dessiner()
+        {
+            // Contour du rectangle
+            Rectangle rect = new Rectangle
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = 2,
+                Width = this.largeur,
+                Height = this.hauteur
+            };
+            Canvas.SetLeft(rect, decalage.X);
+            Canvas.SetTop(rect, decalage.Y);
+            canvas.Children.Add(rect);
+            // Cases
+            foreach (Carreau carreau in arrayCarreaux)
+            {
+                carreau.dessiner();
+            }
+        }
+
+        public Point getDecalage()
+        {
+            return decalage;
+        }
+
+        public Canvas getCanvas()
+        {
+            return canvas;
+        }
+
+        public Carreau[] getArrayCarreaux()
+        {
+            return arrayCarreaux;
+        }
+
+        public int getNbCarreaux()
+        {
+            return nbCarreaux;
         }
     }
 }

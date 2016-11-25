@@ -18,9 +18,12 @@ namespace WpfApplication1.sources
         public Position Position { get; set; } // un objet de type Position
         public string Nom { get; set; }
         public int PositionCarreau { get; set; }
+<<<<<<< HEAD
         //public List<CarreauPropriete> Proprietes { get; private set; }
 
         //Joueur n'a pas de propriétés?
+=======
+>>>>>>> parent of cc90394... Voir trello
 
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
@@ -109,6 +112,7 @@ namespace WpfApplication1.sources
          ************************************************************************/
         public bool actionSurCase()
         {
+<<<<<<< HEAD
             Carreau caseActuelle = getCarreauActuel(PositionCarreau);
             if (caseActuelle.estCarreauPayant())
             {
@@ -147,14 +151,19 @@ namespace WpfApplication1.sources
             if (caseActuelle.estPropriete())
             Carreau carreauActuelle = new Carreau(PositionCarreau);
             if (carreauActuelle.estPropriete(PositionCarreau))
+=======
+            /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
+            MessageBox.Show(caseActuelle.getLargeur() + "");
+            if (caseActuelle.estPropriete())
+>>>>>>> parent of cc90394... Voir trello
             {
-                CarreauPropriete proprieteActuelle = new CarreauPropriete(PositionCarreau);
+                CarreauPropriete proprieteActuelle = (CarreauPropriete)caseActuelle;
                 if (proprieteActuelle.estLibre())
                 {
-                    if (PeutPayer(proprieteActuelle.PrixAchat))
+                    if (PeutPayer(proprieteActuelle.getPrix()))
                     {
-                        Payer(proprieteActuelle.PrixAchat);
-                        Proprietes.Add(proprieteActuelle);
+                        Payer(proprieteActuelle.getPrix());
+                        proprietes.Add(proprieteActuelle);
                         return true;
                     }
                     else
@@ -165,12 +174,12 @@ namespace WpfApplication1.sources
                 }
                 else
                 {
-                    proprieteActuelle.PayerLoyer();
                     //Payer qqun (loyer)
                     //payerDroitPassage();
                     return false;
                 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             }*/
         }
@@ -216,6 +225,9 @@ namespace WpfApplication1.sources
             throw new NotImplementedException();
 =======
             }
+=======
+            }*/
+>>>>>>> parent of cc90394... Voir trello
             //Autres actions à déterminer
             return false;
 >>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387

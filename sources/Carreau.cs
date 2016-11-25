@@ -1,25 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace WpfApplication1.sources
 {
-    public class Carreau
+   public abstract class Carreau
     {
-        public Point position { get; private set; } // coordonnées X,Y du coin supérieur gauche du carreau
-        public int postionCarreau{ get; private set;}
+        protected Plateau plateau; // plateau auquel appartient le carreau
+        protected Canvas canvas;
+        private int hauteur = 60;
+        private int largeur = 60;
+        protected int indice; // position dans le tableau arrayCarreaux de la classe Plateau
+        private Point position; // coordonnées X,Y du coin supérieur gauche du carreau
 
-        protected  List<int> carreauxBruns = new List<int>() { 1, 3 };
-        protected  List<int> carreauxRouges = new List<int>() { 21, 23, 24 };
-        protected  List<int> carreauxVerts = new List<int>() { 31, 32, 34 };
-        protected  List<int> carreauxBleus = new List<int>() { 37, 39 };
+        protected static int[] carreauxBruns = {1,3};
+        protected static int[] carreauxRouges = { 21, 23, 24 };
+        protected static int[] carreauxVerts = { 31,32,34 };
+        protected static int[] carreauxBleus = { 37,39 };
 
-        public Carreau(int postionCarreau)
+        public Carreau(Plateau plateau, int indice)
         {
-            this.postionCarreau = postionCarreau;
+            this.plateau = plateau;
+            this.canvas = plateau.getCanvas();
+            this.indice = indice;
+            if      (this.indice >= 0 && this.indice < 10) this.position = new Point(this.indice * getLargeur() + plateau.getDecalage().X, plateau.getDecalage().Y);
+            else if (this.indice >= 10 && this.indice < 21) this.position = new Point(10*60 + plateau.getDecalage().X, (this.indice - 10) * getHauteur() + plateau.getDecalage().Y);
+            else if (this.indice >= 21 && this.indice < 30) this.position = new Point((30 - this.indice) * getLargeur() + plateau.getDecalage().X, 10*60 + plateau.getDecalage().Y);
+            else if (this.indice >= 30 && this.indice < 40) this.position = new Point(plateau.getDecalage().X, (40 - this.indice) * getHauteur() + plateau.getDecalage().Y);
+            else { }
+        }
+        public abstract void dessiner();
+
+
+        public int getLargeur()
+        {
+            return this.largeur;
+        }
+        public int getHauteur()
+        {
+            return this.hauteur;
+        }
+        public Point getPosition()
+        {
+            return this.position;
         }
         public static Position conversionInt2Position(int positionCarreau)
         {
@@ -42,6 +66,7 @@ namespace WpfApplication1.sources
   **Appelé par achat pour savoir si la propriété peut être acheté
   ************************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
         public bool estCarreauPayant()
@@ -57,6 +82,27 @@ namespace WpfApplication1.sources
             if (!estProp) estProp = carreauxBleus.Exists(x => x == positionCarreau);
             return estProp;
 >>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
+=======
+        public bool estPropriete()
+        {
+            foreach (int j in carreauxBruns)
+            {
+                if (j == indice) return true;
+            }
+            foreach (int j in carreauxRouges)
+            {
+                if (j == indice) return true;
+            }
+            foreach (int j in carreauxVerts)
+            {
+                if (j == indice) return true;
+            }
+            foreach (int j in carreauxBleus)
+            {
+                if (j == indice) return true;
+            }
+            return false;
+>>>>>>> parent of cc90394... Voir trello
         }
     }
 }

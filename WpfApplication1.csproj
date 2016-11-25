@@ -58,8 +58,11 @@
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="sources\CarreauAchetable.cs" />
     <Compile Include="sources\CarreauPayant.cs" />
+=======
+>>>>>>> parent of cc90394... Voir trello
     <Compile Include="sources\Position.cs" />
     <Page Include="InformationJoueur.xaml">
       <SubType>Designer</SubType>
@@ -121,6 +124,7 @@
     <Resource Include="ressources\jaune.jpg" />
     <Resource Include="ressources\rouge.jpg" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="ressources\carteCommunaute.xml" />
     <Resource Include="ressources\cartesChances.xml" />
@@ -130,6 +134,8 @@
     <Resource Include="ressources\propriete.xml" />
     <Resource Include="ressources\services.xml" />
   </ItemGroup>
+=======
+>>>>>>> parent of cc90394... Voir trello
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
