@@ -7,6 +7,7 @@ namespace WpfApplication1.sources
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /// <summary>
     /// Carreau qui sont des carreau achetables, mais plus spécifiquement des propriété de style couleurs. ils ont une différente facon d'utiliser le prixPassage
     /// </summary>
@@ -21,6 +22,13 @@ namespace WpfApplication1.sources
         public int Loyer { get; private set; }
         public Joueur Proprietaire { get; set; }
 >>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
+=======
+    class CarreauPropriete:Carreau
+    {
+        private int prixAchat;
+        private Joueur proprietaire;
+        private Brush couleur = Brushes.Gray;
+>>>>>>> parent of cc90394... Voir trello
 =======
     class CarreauPropriete:Carreau
     {
@@ -54,6 +62,7 @@ namespace WpfApplication1.sources
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public override long getPrixAchat()
 =======
         public bool estLibre()
@@ -61,10 +70,14 @@ namespace WpfApplication1.sources
 =======
         public long getPrix()
 >>>>>>> parent of cc90394... Voir trello
+=======
+        public long getPrix()
+>>>>>>> parent of cc90394... Voir trello
         {
             return prixAchat;
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -81,6 +94,11 @@ namespace WpfApplication1.sources
         {
             Plateau.Instance.JoueurCourant.Argent -= Loyer;
 >>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
+=======
+        public bool estLibre()
+        {
+            return (proprietaire == null);
+>>>>>>> parent of cc90394... Voir trello
 =======
         public bool estLibre()
         {

@@ -59,8 +59,11 @@
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
     </Compile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="sources\CarreauAchetable.cs" />
     <Compile Include="sources\CarreauPayant.cs" />
+=======
+>>>>>>> parent of cc90394... Voir trello
 =======
 >>>>>>> parent of cc90394... Voir trello
     <Compile Include="sources\Position.cs" />
@@ -125,6 +128,7 @@
     <Resource Include="ressources\rouge.jpg" />
   </ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="ressources\carteCommunaute.xml" />
     <Resource Include="ressources\cartesChances.xml" />
@@ -134,6 +138,8 @@
     <Resource Include="ressources\propriete.xml" />
     <Resource Include="ressources\services.xml" />
   </ItemGroup>
+=======
+>>>>>>> parent of cc90394... Voir trello
 =======
 >>>>>>> parent of cc90394... Voir trello
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
