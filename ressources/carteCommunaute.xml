@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<carte>
-	Avance à Go
-</carte>
-<carte>
-	Erreur bancaire en votre faveur - Collect 200 $
-</carte>
-<carte>
-	Frais de médecin - Payer 50 $
-</carte>
-<carte>
-	De la vente de stock vous obtenez 50 $
-</carte>
-<carte>
-	Sortez de prison gratuitement - Cette carte peut être conservée jusqu'à ce qu'elle soit nécessaire ou vendue
-</carte>
-<carte>
-	Aller à la prison - Aller directement à la prison - Ne pas passer Go - Ne pas recueillir 200 $
-</carte>
-<carte>
-	Grand Opera Night - Recueillir 50 $ de chaque joueur pour les sièges d'ouverture la nuit
-</carte>
-<carte>
-	Le Fonds des fêtes mûrit - Recevez 100 $
-</carte>
-<carte>
-	Remboursement d'impôt - Recouvrez 20 $
-</carte>
-<carte>
-	C'est votre anniversaire - Collectez 10 $ de chaque joueur
-</carte>
-<carte>
-	L'assurance-vie arrive à échéance - Recueillir 100 $
-</carte>
-<carte>
-	Payer des frais d'hospitalisation de 100 $
-</carte>
-<carte>
-	Payez des frais de scolarité de 150 $
-</carte>
-<carte>
-	Recevoir des frais de consultation de 25 $
-</carte>
-<carte>
-	Vous êtes évalué pour les réparations de rue - 40 $ par maison - 115 $ par hôtel
-</carte>
-<carte>
-	Vous avez remporté le deuxième prix d'un concours de beauté - Recueillir 10 $
-</carte>
-<carte>
-	Vous héritez de 100 $
-</carte>
+<carteCommunaute>
+  <carte>
+	  Avance à Go
+  </carte>
+  <carte>
+	  Erreur bancaire en votre faveur - Collect 200 $
+  </carte>
+  <carte>
+	  Frais de médecin - Payer 50 $
+  </carte>
+  <carte>
+	  De la vente de stock vous obtenez 50 $
+  </carte>
+  <carte>
+	  Sortez de prison gratuitement - Cette carte peut être conservée jusqu'à ce qu'elle soit nécessaire ou vendue
+  </carte>
+  <carte>
+	  Aller à la prison - Aller directement à la prison - Ne pas passer Go - Ne pas recueillir 200 $
+  </carte>
+  <carte>
+	  Grand Opera Night - Recueillir 50 $ de chaque joueur pour les sièges d'ouverture la nuit
+  </carte>
+  <carte>
+	  Le Fonds des fêtes mûrit - Recevez 100 $
+  </carte>
+  <carte>
+	  Remboursement d'impôt - Recouvrez 20 $
+  </carte>
+  <carte>
+	  C'est votre anniversaire - Collectez 10 $ de chaque joueur
+  </carte>
+  <carte>
+	  L'assurance-vie arrive à échéance - Recueillir 100 $
+  </carte>
+  <carte>
+	  Payer des frais d'hospitalisation de 100 $
+  </carte>
+  <carte>
+	  Payez des frais de scolarité de 150 $
+  </carte>
+  <carte>
+	  Recevoir des frais de consultation de 25 $
+  </carte>
+  <carte>
+	  Vous êtes évalué pour les réparations de rue - 40 $ par maison - 115 $ par hôtel
+  </carte>
+  <carte>
+	  Vous avez remporté le deuxième prix d'un concours de beauté - Recueillir 10 $
+  </carte>
+  <carte>
+	  Vous héritez de 100 $
+  </carte>
+</carteCommunaute>
