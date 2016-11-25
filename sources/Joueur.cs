@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +13,18 @@ namespace WpfApplication1.sources
 {
     public class Joueur
     {
-        private String nom { get ; set; } 
+        public String nom { get; set; }
         private Image image;
-        private long argent;
+        public Image Image
+        {
+            get { return image; }
+        }
+        public long argent { get; set; }
         public int positionCarreau; // Un int de 0 à nbCases-1
         public Position position { get; set; } // un objet de type Position
         public bool AFiniSonTour { get; set; }
 
-        
+
         private List<CarreauPropriete> proprietes;
 
 
@@ -29,7 +34,7 @@ namespace WpfApplication1.sources
             this.image = image;
             this.argent = 500;
             this.positionCarreau = 0;
-            this.position = new Position(0,0);
+            this.position = new Position(0, 0);
             this.Init();
         }
 
@@ -38,13 +43,7 @@ namespace WpfApplication1.sources
             this.image.Width = 20;
             this.image.Height = 20;
         }
-        public string getNom() { return nom; }
-        public void setNom(String nom) { this.nom = nom; }
-        public Position getPosition() { return position; }
-        public void setPosition(int rangee, int colonne) { this.position.setRangee(rangee); this.position.setColonne(colonne); }
-        public long getArgent() { return argent; }
-        public void setArgent(long argent) { this.argent = argent; }
-
+        public Image getImage() { return image; }
 
 
 
@@ -73,26 +72,36 @@ namespace WpfApplication1.sources
             return des;
         }
 
+        internal void Sauvegarder(StreamWriter fichierSauvegarde)
+        {
+            fichierSauvegarde.WriteLine(nom);
+            fichierSauvegarde.WriteLine(position.colonne);
+            fichierSauvegarde.WriteLine(position.rangee);
+            fichierSauvegarde.WriteLine(argent);
+            fichierSauvegarde.WriteLine(positionCarreau);
+        }
+
         // Début du tour du joueur : va appeller LanceDes,Bouger,...
-        public void JouerSonTour() {
+        public void JouerSonTour()
+        {
             AFiniSonTour = false;
             //while (!AFiniSonTour)
             {
                 MessageBox.Show("Joueur " + nom + " va brasser un de.");
                 int coupDe = LanceDeuxDes();
-                MessageBox.Show("Joueur " + nom + " avance de "+coupDe+" cases");
+                MessageBox.Show("Joueur " + nom + " avance de " + coupDe + " cases");
                 Avancer(coupDe);
             }
 
         }
 
-      
-        private void Avancer(int nbCases)
+
+        public void Avancer(int nbCases)
         {
             this.positionCarreau = (this.positionCarreau + nbCases) % Plateau.Instance.getNbCarreaux();
             this.position = Carreau.conversionInt2Position(this.positionCarreau);
-            Grid.SetRow(this.image, this.position.Rangee);
-            Grid.SetColumn(this.image, this.position.Colonne);
+            Grid.SetRow(this.image, this.position.rangee);
+            Grid.SetColumn(this.image, this.position.colonne);
             action();
         }
 
@@ -176,4 +185,5 @@ namespace WpfApplication1.sources
         }   // 
         */
     }
+
 }

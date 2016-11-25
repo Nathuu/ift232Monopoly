@@ -21,9 +21,10 @@ namespace WpfApplication1.sources
         private Plateau()
         {
             Joueurs = new List<Joueur>();
+            JoueurCourant = null;
         }
 
-        public  static Plateau Instance
+        public static Plateau Instance
         {
             get
             {
@@ -33,10 +34,10 @@ namespace WpfApplication1.sources
                 }
                 return instance;
             }
-         }
-        
+        }
+      
         private Canvas canvas = new Canvas();
-        private Point decalage = new Point(30,30);
+        private Point decalage = new Point(30, 30);
         private int hauteur = 660;
         private int largeur = 660;
         private const int nbCarreaux = 40;
@@ -54,35 +55,40 @@ namespace WpfApplication1.sources
         public void sauvegarderPartie()
         {
             StreamWriter fichierSauvegarde = new StreamWriter("sauvegardePartie.txt");
-            
+
             //on sauvegarde:
             //Postions de tous les joueurs
             //tous leurs propriété, argents, nom autrement dit tout ce qu'un jouer a
-            
-            foreach(Joueur j in Joueurs)
-            {
-                //IL FAUT REPLACE LES IMAGES DES JOUEURS (POSITION) !!!! JN && SARA
-               fichierSauvegarde.WriteLine(j.getNom());
-               fichierSauvegarde.WriteLine(j.getPosition().getColonne());
-               fichierSauvegarde.WriteLine(j.getPosition().getRangee()); 
-               fichierSauvegarde.WriteLine(j.getArgent());
-            }
 
+            fichierSauvegarde.WriteLine(JoueurCourant.nom);
+            foreach (Joueur j in Joueurs)
+            {
+                j.Sauvegarder(fichierSauvegarde);
+            }
             fichierSauvegarde.Close();
         }
         public void restaurerPartie()
-        {
+        {        
+
             StreamReader fichierSauvegarde = new StreamReader("sauvegardePartie.txt");
+            String nomJoueurCourant = fichierSauvegarde.ReadLine();
+
             foreach (Joueur j in Joueurs)
             {
-                j.setNom(fichierSauvegarde.ReadLine());
-                j.setPosition(Int32.Parse(fichierSauvegarde.ReadLine()), Int32.Parse(fichierSauvegarde.ReadLine()));
-                j.setArgent(Int64.Parse(fichierSauvegarde.ReadLine()));
-            }
+                j.nom = fichierSauvegarde.ReadLine();
+                j.position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
+                j.position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
+                j.argent = Int64.Parse(fichierSauvegarde.ReadLine());
+                j.positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+                j.Avancer(0);
+                if (j.nom == nomJoueurCourant)
+                    JoueurCourant = j;
+
+            }            
             fichierSauvegarde.Close();
         }
 
-        private static int[] indicesProprietes = { 1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
+        private static int[] indicesProprietes = { 1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39 };
         private static int[] indicesPrison = { 10 };
 
         private void dessiner()
@@ -99,7 +105,8 @@ namespace WpfApplication1.sources
             Canvas.SetTop(rect, decalage.Y);
             canvas.Children.Add(rect);
             // Cases
-            foreach(Carreau carreau in arrayCarreaux) {
+            foreach (Carreau carreau in arrayCarreaux)
+            {
                 carreau.dessiner();
             }
         }

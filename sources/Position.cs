@@ -9,18 +9,14 @@ namespace WpfApplication1.sources
 {
     public class Position 
     {
-        public int Rangee { get; set; }
-        public int Colonne { get; set; }
-        public Position(int Rangee, int Colonne)
+        public int rangee { get; set; }
+        public int colonne { get; set; }
+        public Position(int rangee, int colonne)
         {
-            this.Colonne = Colonne;
-            this.Rangee = Rangee;
+            this.colonne = colonne;
+            this.rangee = rangee;
         }
 
-        public int getRangee() { return Rangee; }
-        public void setRangee(int rangee) { this.Rangee = rangee; }
-        public int getColonne() { return Colonne; }
-        public void setColonne(int colonne) { this.Colonne = colonne; }
 
 
     }
