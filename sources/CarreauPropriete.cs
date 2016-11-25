@@ -1,49 +1,31 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace WpfApplication1.sources
 {
-    class CarreauPropriete:Carreau
+   public class CarreauPropriete
     {
-        private int prixAchat;
-        private Joueur proprietaire;
-        private Brush couleur = Brushes.Gray;
+        public int PrixAchat { get; private set; }
+        public int Loyer { get; private set; }
+        public Joueur Proprietaire { get; set; }
 
-        public CarreauPropriete(Plateau plateau, int indice):base(plateau, indice)
+        public CarreauPropriete(int postionCarreau) 
         {
-            if (carreauxBruns.Contains(this.indice)) this.couleur = Brushes.Brown;
-            else if (carreauxRouges.Contains(this.indice)) this.couleur = Brushes.Red;
-            else if (carreauxVerts.Contains(this.indice)) this.couleur = Brushes.Green;
-            else if (carreauxBleus.Contains(this.indice)) this.couleur = Brushes.Blue;
-        }
-        public override void dessiner()
-        {
-            // Contour du rectangle
-            Rectangle rect = new Rectangle
-            {
-                Stroke = Brushes.Black,
-                StrokeThickness = 2,
-                Width = this.getLargeur(),
-                Height = this.getHauteur(),
-                Fill = couleur
-            };
-            Canvas.SetLeft(rect, this.getPosition().X);
-            Canvas.SetTop(rect, this.getPosition().Y);
-            plateau.getCanvas().Children.Add(rect);
-        }
-
-        public long getPrix()
-        {
-            return prixAchat;
+            PrixAchat = 50;
+            Loyer = 5;
         }
 
         public bool estLibre()
         {
-            return (proprietaire == null);
+            return (Proprietaire == null);
         }
 
-
+        internal void PayerLoyer()
+        {
+            Plateau.Instance.JoueurCourant.Argent -= Loyer;
+        }
     }
 }
