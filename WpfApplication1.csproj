@@ -58,12 +58,6 @@
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RestaureFichier.xaml.cs">
-      <DependentUpon>RestaureFichier.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SauvegardeFichier.xaml.cs">
-      <DependentUpon>SauvegardeFichier.xaml</DependentUpon>
-    </Compile>
     <Compile Include="sources\Position.cs" />
     <Page Include="InformationJoueur.xaml">
       <SubType>Designer</SubType>
@@ -85,14 +79,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RestaureFichier.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SauvegardeFichier.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="sources\Plateau.cs" />
@@ -133,7 +119,10 @@
     <Resource Include="ressources\jaune.jpg" />
     <Resource Include="ressources\rouge.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ressources\carteCommunaute.xml" />
+    <Resource Include="ressources\cartesChances.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
