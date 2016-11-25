@@ -13,54 +13,23 @@ namespace WpfApplication1.sources
 {
     public class Joueur
     {
-        public String nom { get; set; }
-        private Image image;
-        public Image Image
-        {
-            get { return image; }
-        }
-        public long argent { get; set; }
-        public int positionCarreau; // Un int de 0 à nbCases-1
-        public Position position { get; set; } // un objet de type Position
-        public bool AFiniSonTour { get; set; }
-
-
-        private List<CarreauPropriete> proprietes;
-
+        public Image Image { get; set; }
+        public long Argent { get; set; }
+        public Position Position { get; set; } // un objet de type Position
+        public string Nom { get; set; }
+        public int PositionCarreau { get; set; }
 
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
-            this.nom = nom;
-            this.image = image;
-            this.argent = 500;
-            this.positionCarreau = 0;
-            this.position = new Position(0, 0);
-            this.Init();
+            this.Nom = nom;
+            this.Image = image;
+            this.Argent = 500;
+            this.PositionCarreau = 0;
+            this.Position = new Position(1, 1);
+            this.Image.Width = 20;
+            this.Image.Height = 20;
         }
 
-        public void Init()
-        {
-            this.image.Width = 20;
-            this.image.Height = 20;
-        }
-        public Image getImage() { return image; }
-
-
-
-
-
-        // Voir methode Avancer(int)
-        //public void SeDeplacer(int deplacement)
-        //{
-        //    int nouvPosition = (getPosition() + deplacement) % Plateau.Instance.getNbCarreaux();
-        //    setPosition(nouvPosition);
-        //}
-
-        //ce que le joueur possede
-        //   private List<CarreauPropriete> propriete; //a regarder en équipe
-
-
-        // on implente l'interface des des graphiques? 
         public int LanceDeuxDes()// le joueur lance les dés
         {
             return LanceUnDes() + LanceUnDes();
@@ -68,40 +37,34 @@ namespace WpfApplication1.sources
         public int LanceUnDes()// un dé est lancé
         {
             Random random = new Random();
-            int des = random.Next(1, 6); // va retourner entre 1 et 12 
+            int des = random.Next(1, 6); // va retourner entre 1 et 6 
             return des;
         }
 
         internal void Sauvegarder(StreamWriter fichierSauvegarde)
         {
-            fichierSauvegarde.WriteLine(nom);
-            fichierSauvegarde.WriteLine(position.colonne);
-            fichierSauvegarde.WriteLine(position.rangee);
-            fichierSauvegarde.WriteLine(argent);
-            fichierSauvegarde.WriteLine(positionCarreau);
+            fichierSauvegarde.WriteLine(Nom);
+            fichierSauvegarde.WriteLine(Position.colonne);
+            fichierSauvegarde.WriteLine(Position.rangee);
+            fichierSauvegarde.WriteLine(Argent);
+            fichierSauvegarde.WriteLine(PositionCarreau);
         }
 
         // Début du tour du joueur : va appeller LanceDes,Bouger,...
         public void JouerSonTour()
         {
-            AFiniSonTour = false;
-            //while (!AFiniSonTour)
-            {
-                MessageBox.Show("Joueur " + nom + " va brasser un de.");
-                int coupDe = LanceDeuxDes();
-                MessageBox.Show("Joueur " + nom + " avance de " + coupDe + " cases");
-                Avancer(coupDe);
-            }
-
+            int coupDe = LanceDeuxDes();
+            MessageBox.Show("Joueur " + Nom + " avance de " + coupDe + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            Avancer(coupDe);
         }
 
 
         public void Avancer(int nbCases)
         {
-            this.positionCarreau = (this.positionCarreau + nbCases) % Plateau.Instance.getNbCarreaux();
-            this.position = Carreau.conversionInt2Position(this.positionCarreau);
-            Grid.SetRow(this.image, this.position.rangee);
-            Grid.SetColumn(this.image, this.position.colonne);
+            this.PositionCarreau = (this.PositionCarreau + nbCases) % Plateau.Instance.getNbCarreaux();
+            this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
+            Grid.SetRow(this.Image, this.Position.rangee + 1);
+            Grid.SetColumn(this.Image, this.Position.colonne + 1);
             action();
         }
 
@@ -112,7 +75,7 @@ namespace WpfApplication1.sources
         ************************************************************************/
         public bool PeutPayer(long aPayer)//on regarde si le joueur peut payer tel montant
         {
-            if (argent - aPayer < 0)
+            if (Argent - aPayer < 0)
                 return false;
             return true;
         }
@@ -124,14 +87,14 @@ namespace WpfApplication1.sources
         public long Payer(long aPayer)
         {
 
-            argent -= aPayer;
-            return argent; // return l'argent  que le jouer a ;
+            Argent -= aPayer;
+            return Argent; // return l'argent  que le jouer a ;
         }
         public long Depot(long deposer)
         {
 
-            argent += deposer;
-            return argent; // on retourne le nouveau argent
+            Argent += deposer;
+            return Argent; // on retourne le nouveau argent
         }
 
         /**************************************************************************

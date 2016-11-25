@@ -46,7 +46,6 @@ namespace WpfApplication1.sources
         //Redefini le joueur courant.
         public void FinTour()
         {
-            JoueurCourant.AFiniSonTour = true;
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
@@ -55,12 +54,11 @@ namespace WpfApplication1.sources
         public void sauvegarderPartie()
         {
             StreamWriter fichierSauvegarde = new StreamWriter("sauvegardePartie.txt");
-
             //on sauvegarde:
             //Postions de tous les joueurs
             //tous leurs propriété, argents, nom autrement dit tout ce qu'un jouer a
 
-            fichierSauvegarde.WriteLine(JoueurCourant.nom);
+            fichierSauvegarde.WriteLine(JoueurCourant.Nom);
             foreach (Joueur j in Joueurs)
             {
                 j.Sauvegarder(fichierSauvegarde);
@@ -75,13 +73,13 @@ namespace WpfApplication1.sources
 
             foreach (Joueur j in Joueurs)
             {
-                j.nom = fichierSauvegarde.ReadLine();
-                j.position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
-                j.position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
-                j.argent = Int64.Parse(fichierSauvegarde.ReadLine());
-                j.positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+                j.Nom = fichierSauvegarde.ReadLine();
+                j.Position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
+                j.Position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
+                j.Argent = Int64.Parse(fichierSauvegarde.ReadLine());
+                j.PositionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
                 j.Avancer(0);
-                if (j.nom == nomJoueurCourant)
+                if (j.Nom == nomJoueurCourant)
                     JoueurCourant = j;
 
             }            

@@ -6,61 +6,62 @@
         xmlns:local="clr-namespace:WpfApplication1"
         xmlns:src="clr-namespace:WpfApplication1.sources"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="768">
-    <Window.Background>
-        <ImageBrush ImageSource="ressources/board.jpg"/>
-    </Window.Background>
+        Title="MainWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <!--Autant de ligne que de case-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="95" />
-            <RowDefinition Height="59" />
+            <RowDefinition Height= "24" />
+            <RowDefinition Height="109" />
             <RowDefinition Height="60" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="62" />
+            <RowDefinition Height="57" />
             <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
             <RowDefinition Height="59" />
-            <RowDefinition Height="59" />
-            <RowDefinition Height="59" />
-            <RowDefinition Height="59" />
-            <RowDefinition Height="59" />
-            <RowDefinition Height="95" />
+            <RowDefinition Height="119" />
+            <RowDefinition Height="0" />
         </Grid.RowDefinitions>
         <!--Autant de colonne que de case-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="97" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="93" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="60" />
             <ColumnDefinition Width="61" />
-            <ColumnDefinition Width="61" />
-            <ColumnDefinition Width="61" />
-            <ColumnDefinition Width="61" />
-            <ColumnDefinition Width="62" />
-            <ColumnDefinition Width="64" />
-            <ColumnDefinition Width="62" />
-            <ColumnDefinition Width="62" />
-            <ColumnDefinition Width="61" />
-            <ColumnDefinition Width="95" />
+            <ColumnDefinition Width="59" />
+            <ColumnDefinition Width="57" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="93" />
+            <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
-        <!--<Canvas x:Name="canvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Background="Transparent">
-            --><!--<Image Name="pionVert" Source="ressources/vert.jpg" Grid.Row="3" Grid.Column="3" Width="100" Height="100" Margin="100,100,0,0"/>--><!--
-            <Image Name="img" Grid.Row="500" Grid.Column="400" Width="300" Height="100" Margin="200,300,0,0" Loaded="Image_Loaded"/>
-        </Canvas>Plateau.Instance.JoueurCourant.Position.Colonne-->
-        <Image 
-            Grid.Column="0"
-            Grid.Row="0"
-            Name="pionImageVert" Width="20" Height="20" Margin="35,0,0,0"
-            Source="ressources/vert.jpg">
-        </Image>
-        <Image Grid.Column="0" Grid.Row="0" Name="pionImageRouge" Source="ressources/rouge.jpg" Width="20" Height="20" Margin="0,0,10,0"/>
-        <Image Grid.Column="0" Grid.Row="0"  Name="pionImageBleu" Source="ressources/bleu.jpg" Width="20" Height="20" Margin="0,50,10,0"/>
-        <Image Grid.Column="0" Grid.Row="0"  Name="pionImageJaune" Source="ressources/jaune.jpg" Width="20" Height="20" Margin="35,50,0,0"/>
+        <!--Si vous voulez rajouter des object dans le visuel.-->
+        <!--Veuillez les rajouter à la row 13 et + ex : (Grid.Row = "13") -->
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12">
+            <MenuItem Name="menuItemFichier" Header="Fichier" Click="menuItemFichier_Click">
+                <MenuItem Name="menuItemSave" Header="Sauvegarder" Click="btnSave_Click"/>
+                <MenuItem Name="menuItemRestore" Header="Restaurer"  Click="btnRestaurer_Click" IsEnabled="False"/>
+            </MenuItem>
+            <MenuItem Name="menuItemStatistique" Header="Statistique" >
+                <MenuItem Name="menuItemJoueurRouge" Header="Joueur Rouge"  Click="menuItemJoueurRouge_Click"/>
+                <MenuItem Name="menuItemJoueurVert" Header="Joueur Vert"   Click="menuItemJoueurVert_Click" />
+                <MenuItem Name="menuItemJoueurBleu" Header="Joueur Bleu"   Click="menuItemJoueurBleu_Click"  />
+                <MenuItem Name="menuItemJoueurJaune" Header="Joueur Jaune"  Click="menuItemJoueurJaune_Click"/>
+            </MenuItem>
+        </Menu>
+        <Image Margin="0,0,0,10" Source="ressources/board.jpg" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11" Grid.RowSpan="11"/>
+        <Image Grid.Column="1" Grid.Row="1" Name="pionImageVert"  Source="ressources/vert.jpg" Width="30" Height="30"/>
+        <Image Grid.Column="1" Grid.Row="1" Name="pionImageRouge" Source="ressources/rouge.jpg" Width="30" Height="30"/>
+        <Image Grid.Column="1" Grid.Row="1"  Name="pionImageBleu" Source="ressources/bleu.jpg"  Width="30" Height="30"/>
+        <Image Grid.Column="1" Grid.Row="1"  Name="pionImageJaune" Source="ressources/jaune.jpg" Width="30" Height="30"/>
 
-        <StackPanel Grid.Row="9" Grid.Column="5">
-            <Button Name="btnFinTour" Content="Fin de tour" Height="40" Click="btnFinTour_Click"/>
-        </StackPanel>
-        <StackPanel Grid.Row="9" Grid.Column="3">
-            <Button Name="btnSave" Content="Sauvegarder" Height="40" Click="btnSave_Click"/>
-        </StackPanel>
-        <StackPanel Grid.Row="9" Grid.Column="1">
-            <Button Name="btnRestor" Content="Restaurer" Height="40" Click="btnRestaurer_Click"/>
+        <StackPanel Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="2" >
+            <Button Name="btnFinTour" Content="Fin de tour" Click="btnFinTour_Click"/>
         </StackPanel>
     </Grid>
 </Window>
