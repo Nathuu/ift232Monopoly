@@ -68,6 +68,7 @@ namespace WpfApplication1.sources
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
         public bool estCarreauPayant()
@@ -90,6 +91,10 @@ namespace WpfApplication1.sources
         public bool estPropriete()
         {
 >>>>>>> parent of cc90394... Voir trello
+=======
+        public bool estPropriete()
+        {
+>>>>>>> parent of cc90394... Voir trello
             foreach (int j in carreauxBruns)
             {
                 if (j == indice) return true;
@@ -108,6 +113,9 @@ namespace WpfApplication1.sources
             }
             return false;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of cc90394... Voir trello
+=======
 >>>>>>> parent of cc90394... Voir trello
 =======
 >>>>>>> parent of cc90394... Voir trello
