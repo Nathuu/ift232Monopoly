@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Service>
+	<Titre>
+		<Nom>Electric Company</Nom>
+		<Position>2</Position>
+		<Prix>150</Prix>
+	</Titre>
+
+	<Titre>
+		<Nom>Water Works</Nom>
+		<Position>2</Position>
+		<Prix>150</Prix>
+	</Titre>
+</Service>

@@ -18,6 +18,7 @@ namespace WpfApplication1.sources
         public Position Position { get; set; } // un objet de type Position
         public string Nom { get; set; }
         public int PositionCarreau { get; set; }
+        public List<CarreauPropriete> Proprietes { get; private set; }
 
         //Joueur n'a pas de propriétés?
 
@@ -108,6 +109,7 @@ namespace WpfApplication1.sources
          ************************************************************************/
         public bool actionSurCase()
         {
+<<<<<<< HEAD
             Carreau caseActuelle = getCarreauActuel(PositionCarreau);
             if (caseActuelle.estCarreauPayant())
             {
@@ -144,14 +146,18 @@ namespace WpfApplication1.sources
             /*Carreau caseActuelle = Plateau.Instance.getArrayCarreaux()[positionCarreau];
             MessageBox.Show(caseActuelle.getLargeur() + "");
             if (caseActuelle.estPropriete())
+=======
+            Carreau carreauActuelle = new Carreau(PositionCarreau);
+            if (carreauActuelle.estPropriete(PositionCarreau))
+>>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
             {
-                CarreauPropriete proprieteActuelle = (CarreauPropriete)caseActuelle;
+                CarreauPropriete proprieteActuelle = new CarreauPropriete(PositionCarreau);
                 if (proprieteActuelle.estLibre())
                 {
-                    if (PeutPayer(proprieteActuelle.getPrix()))
+                    if (PeutPayer(proprieteActuelle.PrixAchat))
                     {
-                        Payer(proprieteActuelle.getPrix());
-                        proprietes.Add(proprieteActuelle);
+                        Payer(proprieteActuelle.PrixAchat);
+                        Proprietes.Add(proprieteActuelle);
                         return true;
                     }
                     else
@@ -162,11 +168,13 @@ namespace WpfApplication1.sources
                 }
                 else
                 {
+                    proprieteActuelle.PayerLoyer();
                     //Payer qqun (loyer)
                     //payerDroitPassage();
                     return false;
                 }
 
+<<<<<<< HEAD
             }*/
         }
 
@@ -209,6 +217,11 @@ namespace WpfApplication1.sources
         private Carreau getCarreauActuel(int positionCarreau)
         {
             throw new NotImplementedException();
+=======
+            }
+            //Autres actions à déterminer
+            return false;
+>>>>>>> a362fbf21d7e6ad4351923fc412a821628d28387
         }
 
 

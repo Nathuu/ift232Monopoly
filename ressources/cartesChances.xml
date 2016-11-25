@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<carteChance>
+  <carte>
+	  Avancez à Go (percevez 200 $)	
+  </carte>
+  <carte>
+	  Avancez à l'avenue Illinois. - Si vous passez Go, percevez 200 $
+  </carte>
+  <carte>
+	  Avancez à St. Charles Place - Si vous passez Go, percevez 200 $
+  </carte>
+  <carte>
+	  Avancez le jeton à l'utilitaire le plus proche. Si vous êtes non propriétaire, vous pouvez l'acheter auprès de la Banque. Si possédé, lancer les dés et payer le propriétaire un total de dix fois le montant jeté.
+  </carte>
+  <carte>
+	  Avancez le jeton au Chemin de fer le plus proche et payez le propriétaire deux fois de la location à laquelle il / elle a droit. Si Railroad n'est pas propriétaire, vous pouvez l'acheter auprès de la Banque.
+  </carte>
+  <carte>
+	  Avancez le jeton au Chemin de fer le plus proche et payez le propriétaire deux fois de la location à laquelle il / elle a droit. Si Railroad n'est pas propriétaire, vous pouvez l'acheter auprès de la Banque.
+  </carte>
+  <carte>
+	  La Banque vous verse un dividende de 50 $
+  </carte>
+  <carte>
+	  Sortez de la prison gratuite - Cette carte peut être conservée jusqu'à ce qu'elle soit nécessaire, ou échangée ou vendue {Cette carte peut être conservée jusqu'à ce qu'elle soit nécessaire ou vendue - Sortez de la prison gratuitement}
+  </carte>
+  <carte>
+	  Reculez 3 Espaces
+  </carte>
+  <carte>
+	  Aller à la prison - Aller directement à la prison - Ne pas passer Go, ne pas recueillir 200 $
+  </carte>
+  <carte>
+	  Faites des réparations générales sur tous vos biens - Pour chaque maison, payer 25 $ - Pour chaque hôtel 100 $
+  </carte>
+  <carte>
+	  Payer une taxe pauvre de 15 $
+  </carte>
+  <carte>
+	  Faites un voyage à Reading Railroad {Prenez un tour sur la lecture} - Si vous passez Go, de recueillir 200 $
+  </carte>
+  <carte>
+	  Promenez-vous sur la promenade - Jeton d'avance à Boardwalk {Board Walk dans les deux phrases}
+  </carte>
+  <carte>
+	  Vous avez été élu président du conseil d'administration - verser à chaque joueur 50 $
+  </carte>
+  <carte>
+	  Votre prêt hypothécaire et prêt à rembourser mature - recoltez 150 $
+  </carte>
+  <carte>
+	  Vous avez remporté un concours de mots croisés - Collectez 100 $
+  </carte>
+</carteChance>
