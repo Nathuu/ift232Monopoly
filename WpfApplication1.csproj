@@ -58,6 +58,8 @@
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="sources\CarreauAchetable.cs" />
+    <Compile Include="sources\CarreauPayant.cs" />
     <Compile Include="sources\Position.cs" />
     <Page Include="InformationJoueur.xaml">
       <SubType>Designer</SubType>
