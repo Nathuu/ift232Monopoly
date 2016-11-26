@@ -19,6 +19,7 @@ namespace WpfApplication1.sources
         public string Nom { get;  set; }
         public List<CarreauPropriete> Proprietes { get; private set; }
         public int PositionCarreau { get; set; }
+        public int NbCartesSortirPrison; // Il y a deux cartes de ce type
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
@@ -30,6 +31,7 @@ namespace WpfApplication1.sources
             this.Position = new Position(1, 1);
             this.Image.Width = 20;
             this.Image.Height = 20;
+            this.NbCartesSortirPrison = 0;
         }
 
         public int LanceDeuxDes()// le joueur lance les dés
@@ -129,14 +131,32 @@ namespace WpfApplication1.sources
                         return true;
                     }
                 }
-                else
+                else // les deux cases taxes. 
                 {
                     //Autres actions à déterminer
                     return false;
                 }
             }
+            else if (caseActuelle.estCarreauAction())
+            {
+                CarreauAction caseAction = (CarreauAction)caseActuelle;
+                if (caseAction.estCarreauCarte())
+                {
+                    CarreauCarte caseCarte = (CarreauCarte)caseAction;
+                    Carte cartePigee = caseCarte.Piger();
+                    // Effectuer l'action de la carte
+                  
+                }
+                else if (caseAction.estCarreauVaEnPrison())
+                {
+                    
+                }
+
+                return true;
+ 
+            }
             //Autres actions à déterminer
-            else
+            else 
             {
                 return false;
             }
@@ -173,7 +193,6 @@ namespace WpfApplication1.sources
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns>
         /// retourne un carreau selon la position du jouer.

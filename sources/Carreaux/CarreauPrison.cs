@@ -9,7 +9,7 @@ using System.Windows.Shapes;
 
 namespace WpfApplication1.sources
 {
-    class CarreauPrison : Carreau
+    class CarreauPrison : CarreauAction
     {
         public CarreauPrison(int postionCarreau) :base(postionCarreau)
         {

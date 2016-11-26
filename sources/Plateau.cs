@@ -17,6 +17,8 @@ namespace WpfApplication1.sources
         public List<Joueur> Joueurs { get; set; }
         public Joueur JoueurCourant { get; set; }
         public int NombreCarreauxMaximal { get; private set; }
+        public PaquetDeCarte PaquetCarteChance { get; set; }
+        public PaquetDeCarte PaquetCarteCommunaute { get; set; }
 
         private List<Carreau> Cases;
 
@@ -26,6 +28,8 @@ namespace WpfApplication1.sources
             JoueurCourant = null;
             NombreCarreauxMaximal = 40;
             Cases = new List<Carreau>();
+            PaquetCarteChance = new PaquetDeCarte(/*fichier xml CartesChance*/);
+            PaquetCarteCommunaute = new PaquetDeCarte(/*fichier xml CartesCommunaute*/);
         }
 
         public static Plateau Instance
@@ -103,9 +107,9 @@ namespace WpfApplication1.sources
             }
             fichierSauvegarde.Close();
         }
+        
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="position"></param>
         /// <returns>

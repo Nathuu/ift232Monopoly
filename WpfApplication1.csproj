@@ -64,8 +64,17 @@
     <Compile Include="SauvegardeFichier.xaml.cs">
       <DependentUpon>SauvegardeFichier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="sources\CarreauAchetable.cs" />
-    <Compile Include="sources\CarreauPayant.cs" />
+    <Compile Include="sources\Carreaux\Payant\CarreauAchetable.cs" />
+    <Compile Include="sources\Carreaux\Action\CarreauAction.cs" />
+    <Compile Include="sources\Carreaux\Action\CarreauCarte.cs" />
+    <Compile Include="sources\Carreaux\Action\CarreauCarteChance.cs" />
+    <Compile Include="sources\Carreaux\Action\CarreauCarteCommunaute.cs" />
+    <Compile Include="sources\Carreaux\Payant\CarreauPayant.cs" />
+    <Compile Include="sources\Carreaux\Action\CarreauVaPrison.cs" />
+    <Compile Include="sources\Cartes\Carte.cs" />
+    <Compile Include="sources\Cartes\CarteChance.cs" />
+    <Compile Include="sources\Cartes\CarteCommunaute.cs" />
+    <Compile Include="sources\PaquetDeCarte.cs" />
     <Compile Include="sources\Position.cs" />
     <Page Include="InformationJoueur.xaml">
       <SubType>Designer</SubType>
@@ -79,9 +88,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="sources\Carreau.cs" />
-    <Compile Include="sources\CarreauPrison.cs" />
-    <Compile Include="sources\CarreauPropriete.cs" />
+    <Compile Include="sources\Carreaux\Carreau.cs" />
+    <Compile Include="sources\Carreaux\CarreauPrison.cs" />
+    <Compile Include="sources\Carreaux\Payant\CarreauPropriete.cs" />
     <Compile Include="sources\Joueur.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
