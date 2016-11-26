@@ -9,7 +9,7 @@ namespace WpfApplication1.sources
     /// <summary>
     /// Carreau qui ont la fonction de faire payer une joueur lors de son arrivé sur la case
     /// </summary>
-    abstract class CarreauPayant:Carreau
+    public abstract class CarreauPayant:Carreau
     {
         public CarreauPayant(int position) :base(position) { }
 

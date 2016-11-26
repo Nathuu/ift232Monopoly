@@ -18,11 +18,14 @@ namespace WpfApplication1.sources
         public Joueur JoueurCourant { get; set; }
         public int NombreCarreauxMaximal { get; private set; }
 
+        private List<Carreau> Cases;
+
         private Plateau()
         {
             Joueurs = new List<Joueur>();
             JoueurCourant = null;
             NombreCarreauxMaximal = 40;
+            Cases = new List<Carreau>();
         }
 
         public static Plateau Instance
@@ -99,6 +102,19 @@ namespace WpfApplication1.sources
 
             }
             fichierSauvegarde.Close();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns>
+        /// Carreau qui correspond a la position
+        /// </returns>
+        public Carreau getCarreau(int indiceCarreau)
+        {
+            //indice  0 à 39
+            return Cases[indiceCarreau];
         }
     }
 }

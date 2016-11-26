@@ -52,6 +52,7 @@ namespace WpfApplication1.sources
             fichierSauvegarde.WriteLine(PositionCarreau);
         }
 
+
         // Début du tour du joueur : va appeller LanceDes,Bouger,...
         public void JouerSonTour()
         {
@@ -100,6 +101,7 @@ namespace WpfApplication1.sources
             return Argent; // on retourne le nouveau argent
         }
 
+
         /**************************************************************************
          * valeur d'entree : 
          * valeur Sortie : Boolean : True: action effectuée
@@ -108,7 +110,7 @@ namespace WpfApplication1.sources
          ************************************************************************/
         public bool actionSurCase()
         {
-            Carreau caseActuelle = getCarreauActuel(PositionCarreau);
+            Carreau caseActuelle = getCarreauActuel();
             if (caseActuelle.estCarreauPayant())
             {
                 CarreauPayant casePayante = (CarreauPayant)caseActuelle;
@@ -117,13 +119,13 @@ namespace WpfApplication1.sources
                     CarreauAchetable caseAchetable = (CarreauAchetable)casePayante;
                     if (caseAchetable.estPossede())
                     {
-                        payerDroitPassage();
-                        return false;
+                        payerDroitPassage(); // le joueur paie selon l'action.
+                        return true;
                     }
                     else
                     {
-                        Payer(caseAchetable.getPrixAchat());
-                        caseAchetable.setProprietaire(this);
+                        Payer(caseAchetable.getPrixAchat()); // le jouer peut decider d'acheter la case.
+                        caseAchetable.Proprietaire = this;
                         return true;
                     }
                 }
@@ -145,11 +147,11 @@ namespace WpfApplication1.sources
         /// </summary>
         public void payerDroitPassage()
         {
-            CarreauAchetable carreauActuel = (CarreauAchetable)getCarreauActuel(PositionCarreau);
-            Joueur carreauProprietaire = carreauActuel.getProprietaire();
+            CarreauAchetable carreauActuel = (CarreauAchetable)getCarreauActuel();
+            Joueur carreauProprietaire = carreauActuel.Proprietaire;
             long droitPassage = carreauActuel.getPrixPassage();
 
-            // Faire une fct qui valide si le joueur est propriétaire de la case sur laquel i est
+            // Faire une fct qui valide si le joueur est propriétaire de la case sur laquel il est
             //enlever ce if de la fonction, ya pas d,affaire la
             if (this != carreauProprietaire)
             {
@@ -170,9 +172,33 @@ namespace WpfApplication1.sources
             Console.Write("Tu vas rotter du sang enculé!\n");
         }
 
-        private CarreauAchetable getCarreauActuel(int PositionCarreau) //Modifier ce code Fanny et/ou Bernard
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// retourne un carreau selon la position du jouer.
+        /// </returns>
+        private Carreau getCarreauActuel() 
         {
-            return null;
+            return Plateau.Instance.getCarreau(PositionCarreau);
+        }
+
+
+        public bool estSeulProprietaireDeMemeCouleur(CarreauPropriete.Couleurs couleur)
+        {
+            int nbProprieteCouleur = 0;
+            foreach (CarreauPropriete propriete in Proprietes)
+            {
+                if (couleur == propriete.Couleur)
+                {
+                    nbProprieteCouleur++;
+                }
+            }
+            if (couleur == CarreauPropriete.Couleurs.Brun ||
+                couleur == CarreauPropriete.Couleurs.BleuFonce)
+                return nbProprieteCouleur == 2;
+            else
+                return nbProprieteCouleur == 3;
         }
     }
 }
