@@ -32,6 +32,7 @@ namespace WpfApplication1.sources
             this.Image.Width = 20;
             this.Image.Height = 20;
             this.NbCartesSortirPrison = 0;
+            this.Proprietes = new List<CarreauPropriete>();
         }
 
         public int LanceDeuxDes()// le joueur lance les dés
@@ -70,7 +71,7 @@ namespace WpfApplication1.sources
             this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
             Grid.SetRow(this.Image, this.Position.rangee + 1);
             Grid.SetColumn(this.Image, this.Position.colonne + 1);
-            //actionSurCase(); décommenter lorsque cela va marche.
+            actionSurCase();
         }
 
         /**************************************************************************
@@ -128,6 +129,7 @@ namespace WpfApplication1.sources
                     {
                         Payer(caseAchetable.getPrixAchat()); // le jouer peut decider d'acheter la case.
                         caseAchetable.Proprietaire = this;
+                        Proprietes.Add((CarreauPropriete)caseAchetable);
                         return true;
                     }
                 }

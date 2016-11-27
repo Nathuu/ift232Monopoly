@@ -29,8 +29,7 @@ namespace WpfApplication1.sources
 
         public CarreauPropriete(int positionCarreau, Couleurs Couleur) : base(positionCarreau)
         {
-            PrixAchat = 50;
-            //Loyer = 5;
+            PrixAchat = 50;      
             NombreMaison = 0;
             this.Couleur = Couleur;
         }
@@ -40,18 +39,11 @@ namespace WpfApplication1.sources
             return (Proprietaire == null);
         }
 
-        // C'est deja implemente dans la classe Joueur, ou c'est beaucoup plus a propos!
-        //internal void PayerLoyer()
-        //{
-        //    Plateau.Instance.JoueurCourant.Argent -= DroitPassage[NombreMaison];
-        //}
-
         public override long getPrixAchat()
         {
             return PrixAchat;
         }
-
-
+        
         public override long getPrixPassage()
         {
             if (NombreMaison == 0)

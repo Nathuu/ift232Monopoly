@@ -22,7 +22,7 @@ namespace WpfApplication1.sources
 
         public bool estPossede()
         {
-            return (Proprietaire == null);
+            return (Proprietaire != null);
         }
     }
 }

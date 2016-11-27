@@ -16,18 +16,30 @@ namespace WpfApplication1.sources
         private static Plateau instance;
         public List<Joueur> Joueurs { get; set; }
         public Joueur JoueurCourant { get; set; }
-        public int NombreCarreauxMaximal { get; private set; }
         public PaquetDeCarte PaquetCarteChance { get; set; }
         public PaquetDeCarte PaquetCarteCommunaute { get; set; }
+        private Carreau[] Cases;
 
-        private List<Carreau> Cases;
 
-        private Plateau()
+        protected List<int> Proprietes = new List<int>() { 1, 3, 6, 21, 23, 24 , 26, 27, 29, 31, 32, 34 , 37 ,39 };
+
+        private Canvas canvas = new Canvas();
+        private Point decalage = new Point(30, 30);
+        private int hauteur = 660;
+        private int largeur = 660;
+
+        private const Int16 nombreCarreauxMaximal = 40;
+        
+        public Int16 NombreCarreauxMaximal
         {
+            get { return nombreCarreauxMaximal; }
+        }
+        
+    private Plateau()
+        { 
             Joueurs = new List<Joueur>();
-            JoueurCourant = null;
-            NombreCarreauxMaximal = 40;
-            Cases = new List<Carreau>();
+            JoueurCourant = null;          
+            initCarreaux();
             PaquetCarteChance = new PaquetDeCarte(/*fichier xml CartesChance*/);
             PaquetCarteCommunaute = new PaquetDeCarte(/*fichier xml CartesCommunaute*/);
         }
@@ -44,13 +56,20 @@ namespace WpfApplication1.sources
             }
         }
 
-        private Canvas canvas = new Canvas();
-        private Point decalage = new Point(30, 30);
-        private int hauteur = 660;
-        private int largeur = 660;
-        private const int nbCarreaux = 40;
-        private Carreau[] arrayCarreaux = new Carreau[nbCarreaux];
+        private void initCarreaux()
+        {
+            Cases = new Carreau[nombreCarreauxMaximal];
 
+            for (int i = 0; i < nombreCarreauxMaximal; ++i)
+            {
+                Cases[i] = new CarreauConcretTest(i);                
+            }
+            foreach (int indexCase in Proprietes)
+            {
+                Cases[indexCase] = new CarreauPropriete(indexCase, CarreauPropriete.Couleurs.Brun);
+            }
+        }
+        
         //Redefini le joueur courant.
         public void FinTour()
         {
@@ -58,8 +77,7 @@ namespace WpfApplication1.sources
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
         }
-
-
+        
         //Les methodes sauvegarder partie et restorer devrais etre dans Joueurs. Puisqu'on creer nos fichier a partir de nos joueurs
         public void sauvegarderPartie()
         {

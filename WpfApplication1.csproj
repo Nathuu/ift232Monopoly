@@ -64,6 +64,7 @@
     <Compile Include="SauvegardeFichier.xaml.cs">
       <DependentUpon>SauvegardeFichier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="sources\Carreaux\CarreauConcretTest.cs" />
     <Compile Include="sources\Carreaux\Payant\CarreauAchetable.cs" />
     <Compile Include="sources\Carreaux\Action\CarreauAction.cs" />
     <Compile Include="sources\Carreaux\Action\CarreauCarte.cs" />
