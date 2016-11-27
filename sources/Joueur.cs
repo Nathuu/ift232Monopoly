@@ -18,6 +18,7 @@ namespace WpfApplication1.sources
         public Position Position { get; private set; } // un objet de type Position
         public string Nom { get;  set; }
         public List<CarreauPropriete> Proprietes { get; private set; }
+
         public int PositionCarreau { get; set; }
         public int NbCartesSortirPrison; // Il y a deux cartes de ce type
 
@@ -74,16 +75,19 @@ namespace WpfApplication1.sources
             actionSurCase();
         }
 
-        /**************************************************************************
-        * valeur d'entree : ce que le joueur doit payer
-        * valeur Sortie : bool vrai si joueur peut payer
-        * regarde si un joueur peut payer
-        ************************************************************************/
+        /// <summary>
+        /// Hypotheque les proprietes jusqu'a etre capable de payer
+        /// </summary>
+        /// <param name="aPayer"></param>
+        /// <returns>Si le joueur peut payer le montant</returns>
         public bool PeutPayer(long aPayer)//on regarde si le joueur peut payer tel montant
         {
-            if (Argent - aPayer < 0)
-                return false;
-            return true;
+            for (int index = 0; index < Proprietes.Count; ++index)
+            {
+                if (Argent > aPayer) return true;
+                hypothequer(Proprietes[index]);
+            }
+            return false;
         }
         /**************************************************************************
          * valeur d'entree : ce que le joueur doit payer
@@ -104,13 +108,10 @@ namespace WpfApplication1.sources
             return Argent; // on retourne le nouveau argent
         }
 
-
-        /**************************************************************************
-         * valeur d'entree : 
-         * valeur Sortie : Boolean : True: action effectuée
-                                     False: Action à déterminer
-         * détermine l'action à effectuer selon la case et la situation du joueur
-         ************************************************************************/
+        /// <summary>
+        /// détermine l'action à effectuer selon la case et la situation du joueur
+        /// </summary>
+        /// <returns>action effectuée</returns>
         public bool actionSurCase()
         {
             Carreau caseActuelle = getCarreauActuel();
@@ -127,9 +128,7 @@ namespace WpfApplication1.sources
                     }
                     else
                     {
-                        Payer(caseAchetable.getPrixAchat()); // le jouer peut decider d'acheter la case.
-                        caseAchetable.Proprietaire = this;
-                        Proprietes.Add((CarreauPropriete)caseAchetable);
+                        acheterPropriete();
                         return true;
                     }
                 }
@@ -177,16 +176,53 @@ namespace WpfApplication1.sources
             //enlever ce if de la fonction, ya pas d,affaire la
             if (this != carreauProprietaire)
             {
-                if (PeutPayer(droitPassage))
+                if (!carreauActuel.estHypothequee)
                 {
-                    Payer(droitPassage);
-                    carreauProprietaire.Depot(droitPassage);
-                }
-                else
-                {
-                    faitFaillite();
+                    if (PeutPayer(droitPassage))
+                    {
+                        Payer(droitPassage);
+                        carreauProprietaire.Depot(droitPassage);
+                    }
+                    else
+                    {
+                        faitFaillite();
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// Verifie s'il a l'argent pour acheter un terrain, et l'achete automatiquement s'il peut
+        /// </summary>
+        /// <returns>La propriete a bien ete achetee</returns>
+        public bool acheterPropriete()
+        {
+            CarreauAchetable caseAchetable = (CarreauAchetable)getCarreauActuel();
+            if (PeutPayer(caseAchetable.getPrixAchat()))
+            {
+                Payer(caseAchetable.getPrixAchat()); // le jouer peut decider d'acheter la case.
+                caseAchetable.Proprietaire = this;
+                Proprietes.Add((CarreauPropriete)caseAchetable);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propriete"></param>
+        /// <returns>La propriete a bien ete hypothequee</returns>
+        private bool hypothequer(CarreauPropriete propriete)
+        {
+            if (!propriete.estHypothequee)
+            {
+                propriete.estHypothequee = true;
+                Depot(propriete.getPrixAchat() / 2);
+                return true;
+            }
+            else
+                return false;
         }
 
         private void faitFaillite()

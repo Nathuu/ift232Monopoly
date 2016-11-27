@@ -13,10 +13,13 @@ namespace WpfApplication1.sources
     {
         public int PrixAchat { get; protected set; }
 
+        public bool estHypothequee { get; set; }
         public Joueur Proprietaire { get; set; }
 
-
-        public CarreauAchetable(int position) : base(position) { }
+        public CarreauAchetable(int position) : base(position)
+        {
+            estHypothequee = false;
+        }
 
         public abstract long getPrixAchat();
 
