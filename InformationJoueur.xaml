@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfApplication1.InformationJoueur"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="Information Joueur" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height= "10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Nom du joueur : " FontSize="24" FontWeight="Bold" />
+            <TextBlock Name="txtNom" Text="exRouge" FontSize="24" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Argent : " FontSize="24" FontWeight="Bold"/>
+            <TextBlock Name="txtBudget" Text="exArgent " FontSize="24"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

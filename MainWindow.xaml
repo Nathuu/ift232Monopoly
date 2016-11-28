@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<Window x:Class="WpfApplication1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,3 +13,71 @@
         </Canvas>
     </Grid>
 </Window>
+=======
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        xmlns:src="clr-namespace:WpfApplication1.sources"
+        mc:Ignorable="d"
+        Title="MainWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Grid>
+        <!--Autant de ligne que de case-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "24" />
+            <RowDefinition Height="109" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="62" />
+            <RowDefinition Height="57" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="59" />
+            <RowDefinition Height="119" />
+            <RowDefinition Height="0" />
+        </Grid.RowDefinitions>
+        <!--Autant de colonne que de case-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="93" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="58" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="61" />
+            <ColumnDefinition Width="59" />
+            <ColumnDefinition Width="57" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="93" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <!--Si vous voulez rajouter des object dans le visuel.-->
+        <!--Veuillez les rajouter à la row 13 et + ex : (Grid.Row = "13") -->
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12">
+            <MenuItem Name="menuItemFichier" Header="Fichier" Click="menuItemFichier_Click">
+                <MenuItem Name="menuItemSave" Header="Sauvegarder" Click="btnSave_Click"/>
+                <MenuItem Name="menuItemRestore" Header="Restaurer"  Click="btnRestaurer_Click"/>
+            </MenuItem>
+            <MenuItem Name="menuItemStatistique" Header="Statistique" >
+                <MenuItem Name="menuItemJoueurRouge" Header="Joueur Rouge"  Click="menuItemJoueurRouge_Click"/>
+                <MenuItem Name="menuItemJoueurVert" Header="Joueur Vert"   Click="menuItemJoueurVert_Click" />
+                <MenuItem Name="menuItemJoueurBleu" Header="Joueur Bleu"   Click="menuItemJoueurBleu_Click"  />
+                <MenuItem Name="menuItemJoueurJaune" Header="Joueur Jaune"  Click="menuItemJoueurJaune_Click"/>
+            </MenuItem>
+        </Menu>
+        <Image Margin="0,0,0,10" Source="ressources/board.jpg" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11" Grid.RowSpan="11"/>
+        <Image Grid.Column="1" Grid.Row="1" Name="pionImageVert"  Source="ressources/vert.jpg" Width="30" Height="30"/>
+        <Image Grid.Column="1" Grid.Row="1" Name="pionImageRouge" Source="ressources/rouge.jpg" Width="30" Height="30"/>
+        <Image Grid.Column="1" Grid.Row="1"  Name="pionImageBleu" Source="ressources/bleu.jpg"  Width="30" Height="30"/>
+        <Image Grid.Column="1" Grid.Row="1"  Name="pionImageJaune" Source="ressources/jaune.jpg" Width="30" Height="30"/>
+        <StackPanel Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="2" >
+            <Button Name="btnFinTour" Content="Fin de tour" Click="btnFinTour_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
+>>>>>>> 5cc1b3f45a9fc6ead5d3b890f2c0aa29b74e55d3
