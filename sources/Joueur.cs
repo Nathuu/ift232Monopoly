@@ -18,9 +18,10 @@ namespace WpfApplication1.sources
         public Position Position { get; private set; } // un objet de type Position
         public string Nom { get;  set; }
         public List<CarreauPropriete> Proprietes { get; private set; }
-
+        public bool EstPrisonnier { get; set; }
+        public bool ACarteSortirPrison { get; set; } // Il y a deux cartes de ce type
+        public bool PeutPasserGo { get; set; }
         public int PositionCarreau { get; set; }
-        public int NbCartesSortirPrison; // Il y a deux cartes de ce type
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
@@ -32,7 +33,9 @@ namespace WpfApplication1.sources
             this.Position = new Position(1, 1);
             this.Image.Width = 20;
             this.Image.Height = 20;
-            this.NbCartesSortirPrison = 0;
+            this.ACarteSortirPrison = false;
+            this.EstPrisonnier = false;
+            this.PeutPasserGo = true;
             this.Proprietes = new List<CarreauPropriete>();
         }
 
@@ -60,19 +63,29 @@ namespace WpfApplication1.sources
         // Début du tour du joueur : va appeller LanceDes,Bouger,...
         public void JouerSonTour()
         {
-            int coupDe = LanceDeuxDes();
-            MessageBox.Show("Joueur " + Nom + " avance de " + coupDe + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-            Avancer(coupDe);
+            if (EstPrisonnier)
+            {
+                TenteSortirPrison();
+            }
+            else
+            {
+                int coupDe = LanceDeuxDes();
+                MessageBox.Show("Joueur " + Nom + " avance de " + coupDe + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                Avancer(coupDe);
+            }
         }
 
 
         public void Avancer(int nbCases)
         {
-            this.PositionCarreau = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
+            int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
+            if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
+                Depot(Plateau.Instance.MontantCarreauDepart);
+
+            this.PositionCarreau = nouvellePosition;
             this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
             Grid.SetRow(this.Image, this.Position.rangee + 1);
             Grid.SetColumn(this.Image, this.Position.colonne + 1);
-            actionSurCase();
         }
 
         /// <summary>
@@ -97,71 +110,21 @@ namespace WpfApplication1.sources
          ************************************************************************/
         public long Payer(long aPayer)
         {
-
             Argent -= aPayer;
+            MessageBox.Show("Joueur " + Nom + " paie " + aPayer + "$.\n" +
+            "Montant dans le compte: " + Argent + "$", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             return Argent; // return l'argent  que le jouer a ;
         }
         public long Depot(long deposer)
         {
 
             Argent += deposer;
+            MessageBox.Show("Joueur " + Nom + " dépose " + deposer + "$ dans son compte.\n" +
+                "Montant dans le compte: " + Argent + "$", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             return Argent; // on retourne le nouveau argent
         }
 
-        /// <summary>
-        /// détermine l'action à effectuer selon la case et la situation du joueur
-        /// </summary>
-        /// <returns>action effectuée</returns>
-        public bool actionSurCase()
-        {
-            Carreau caseActuelle = getCarreauActuel();
-            if (caseActuelle.estCarreauPayant())
-            {
-                CarreauPayant casePayante = (CarreauPayant)caseActuelle;
-                if (casePayante.estCarreauAchetable())
-                {
-                    CarreauAchetable caseAchetable = (CarreauAchetable)casePayante;
-                    if (caseAchetable.estPossede())
-                    {
-                        payerDroitPassage(); // le joueur paie selon l'action.
-                        return true;
-                    }
-                    else
-                    {
-                        acheterPropriete();
-                        return true;
-                    }
-                }
-                else // les deux cases taxes. 
-                {
-                    //Autres actions à déterminer
-                    return false;
-                }
-            }
-            else if (caseActuelle.estCarreauAction())
-            {
-                CarreauAction caseAction = (CarreauAction)caseActuelle;
-                if (caseAction.estCarreauCarte())
-                {
-                    CarreauCarte caseCarte = (CarreauCarte)caseAction;
-                    Carte cartePigee = caseCarte.Piger();
-                    // Effectuer l'action de la carte
-                  
-                }
-                else if (caseAction.estCarreauVaEnPrison())
-                {
-                    
-                }
-
-                return true;
- 
-            }
-            //Autres actions à déterminer
-            else 
-            {
-                return false;
-            }
-        }
+   
         /// <summary>
         /// Cette fonction sert a payer le droit de passage sur une propriété qui n'est pas la sienne
         /// Si le joueur n'a pas assez de tunes pour payer le propriétaire, il fait faillite
@@ -235,7 +198,7 @@ namespace WpfApplication1.sources
         /// <returns>
         /// retourne un carreau selon la position du jouer.
         /// </returns>
-        private Carreau getCarreauActuel() 
+        public Carreau getCarreauActuel() 
         {
             return Plateau.Instance.getCarreau(PositionCarreau);
         }
@@ -256,6 +219,16 @@ namespace WpfApplication1.sources
                 return nbProprieteCouleur == 2;
             else
                 return nbProprieteCouleur == 3;
+        }
+
+        public void TenteSortirPrison()
+        {
+            MessageBox.Show("Joueur " + Nom + " tente de s'échapper.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (LanceUnDes() == LanceUnDes())
+            {
+                EstPrisonnier = false;
+                MessageBox.Show("Joueur " + Nom + " est libre!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

@@ -19,5 +19,10 @@ namespace WpfApplication1.sources
         {
             return this is CarreauVaPrison;
         }
+
+        public bool estCarreauPrison()
+        {
+            return this is CarreauPrison;
+        }
     }
 }

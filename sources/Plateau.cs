@@ -22,19 +22,27 @@ namespace WpfApplication1.sources
 
 
         protected List<int> Proprietes = new List<int>() { 1, 3, 6, 21, 23, 24 , 26, 27, 29, 31, 32, 34 , 37 ,39 };
+        protected const int INDEX_PRISON = 10;
+        protected const int INDEX_ALLEZ_PRISON = 30;
 
         private Canvas canvas = new Canvas();
         private Point decalage = new Point(30, 30);
         private int hauteur = 660;
         private int largeur = 660;
 
-        private const Int16 nombreCarreauxMaximal = 40;
+        private const Int16 NB_CARREAUX_MAX = 40;
+        private const Int16 MONTANT_CARREAU_DEPART = 200;
         
         public Int16 NombreCarreauxMaximal
         {
-            get { return nombreCarreauxMaximal; }
+            get { return NB_CARREAUX_MAX; }
         }
         
+        public Int16 MontantCarreauDepart
+        {
+            get { return MONTANT_CARREAU_DEPART; }
+        }
+
     private Plateau()
         { 
             Joueurs = new List<Joueur>();
@@ -58,9 +66,9 @@ namespace WpfApplication1.sources
 
         private void initCarreaux()
         {
-            Cases = new Carreau[nombreCarreauxMaximal];
+            Cases = new Carreau[NB_CARREAUX_MAX];
 
-            for (int i = 0; i < nombreCarreauxMaximal; ++i)
+            for (int i = 0; i < NB_CARREAUX_MAX; ++i)
             {
                 Cases[i] = new CarreauConcretTest(i);                
             }
@@ -68,6 +76,8 @@ namespace WpfApplication1.sources
             {
                 Cases[indexCase] = new CarreauPropriete(indexCase, CarreauPropriete.Couleurs.Brun);
             }
+            Cases[INDEX_PRISON] = new CarreauPrison(INDEX_PRISON);
+            Cases[INDEX_ALLEZ_PRISON] = new CarreauVaPrison(INDEX_ALLEZ_PRISON);
         }
         
         //Redefini le joueur courant.
@@ -76,8 +86,78 @@ namespace WpfApplication1.sources
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
+            actionSurCase();
         }
-        
+
+        /// <summary>
+        /// détermine l'action à effectuer selon la case et la situation du joueur
+        /// </summary>
+        /// <returns>action effectuée</returns>
+        public bool actionSurCase()
+        {
+            Carreau caseActuelle = JoueurCourant.getCarreauActuel();
+            if (caseActuelle.estCarreauPayant())
+            {
+                CarreauPayant casePayante = (CarreauPayant)caseActuelle;
+                if (casePayante.estCarreauAchetable())
+                {
+                    CarreauAchetable caseAchetable = (CarreauAchetable)casePayante;
+                    if (caseAchetable.estPossede())
+                    {
+                        JoueurCourant.payerDroitPassage(); // le joueur paie selon l'action.
+                        return true;
+                    }
+                    else
+                    {
+                        JoueurCourant.acheterPropriete();
+                        return true;
+                    }
+                }
+                else // les deux cases taxes. 
+                {
+                    //Autres actions à déterminer
+                    return false;
+                }
+            }
+            else if (caseActuelle.estCarreauAction())
+            {
+                CarreauAction caseAction = (CarreauAction)caseActuelle;
+                if (caseAction.estCarreauCarte())
+                {
+                    CarreauCarte caseCarte = (CarreauCarte)caseAction;
+                    Carte cartePigee = caseCarte.Piger();
+                    // Effectuer l'action de la carte
+                    cartePigee.Executer();
+                }
+                else if (caseAction.estCarreauVaEnPrison())
+                {
+                    JoueurCourant.PeutPasserGo = false;
+                    JoueurCourant.Avancer(20); // constante avec un nom significatif?
+                    JoueurCourant.PeutPasserGo = true;
+                    if (JoueurCourant.ACarteSortirPrison)
+                        JoueurCourant.ACarteSortirPrison = false; // CHOIX: utiliser carte ou pas?
+                    else
+                    {
+                        MessageBox.Show("Joueur " + JoueurCourant.Nom + " est emprisonné!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                        JoueurCourant.EstPrisonnier = true;
+                    }
+                }
+                else if (caseAction.estCarreauPrison())
+                {
+                    if(JoueurCourant.EstPrisonnier)
+                        JoueurCourant.TenteSortirPrison();
+                }
+
+                return true;
+
+            }
+            //Autres actions à déterminer
+            else
+            {
+                return false;
+            }
+        }
+
         //Les methodes sauvegarder partie et restorer devrais etre dans Joueurs. Puisqu'on creer nos fichier a partir de nos joueurs
         public void sauvegarderPartie()
         {
