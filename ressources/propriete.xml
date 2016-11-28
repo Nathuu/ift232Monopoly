@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Proprietes>
+  <Groupe>
+	  <Couleur>Mauve</Couleur>
+	  <Titre>
+		  <Nom>Mediterranean Ave.</Nom>
+		  <Position>2</Position>
+		  <Prix>60</Prix>
+		  <Location>
+		    <base>2</base>
+		    <uneMaison>10</uneMaison>
+		    <deuxMaison>30</deuxMaison>
+		    <troisMaison>90</troisMaison>
+		    <quatreMaison>160</quatreMaison>
+		    <hotel>250</hotel>
+		  </Location>
+		  <Groupe>Mauve</Groupe>
+	  </Titre>
+
+	  <Titre>
+		  <Nom>Baltic Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>60</Prix>
+		  <Location>
+		    <base>4</base>
+		    <uneMaison>20</uneMaison>
+		    <deuxMaison>60</deuxMaison>
+		    <troisMaison>180</troisMaison>
+		    <quatreMaison>320</quatreMaison>
+		    <hotel>450</hotel>
+		  </Location>
+		  <Groupe>Mauve</Groupe>
+	  </Titre>
+  </Groupe>
+
+  <Groupe>
+	  <Couleur>Bleu Pale</Couleur>
+	
+	  <Titre>
+		  <Nom>Oriental Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>100</Prix>
+		  <Location>
+		    <base>6</base>
+		    <uneMaison>30</uneMaison>
+		    <deuxMaison>90</deuxMaison>
+		    <troisMaison>270</troisMaison>
+		    <quatreMaison>400</quatreMaison>
+		    <hotel>550</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Vermont Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>100</Prix>
+		  <Location>
+		    <base>6</base>
+		    <uneMaison>30</uneMaison>
+		    <deuxMaison>90</deuxMaison>
+		    <troisMaison>270</troisMaison>
+		    <quatreMaison>400</quatreMaison>
+		    <hotel>550</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Connecticut Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>120</Prix>
+		  <Location>
+		    <base>8</base>
+		    <uneMaison>40</uneMaison>
+		    <deuxMaison>100</deuxMaison>
+		    <troisMaison>300</troisMaison>
+		    <quatreMaison>450</quatreMaison>
+		    <hotel>600</hotel>
+		  </Location>    
+	  </Titre>
+  </Groupe>
+
+  <Groupe>
+	  <Couleur>Violet</Couleur>
+	
+	  <Titre>
+		  <Nom>St. Charles Place</Nom>
+		  <Position>2</Position>
+		  <Prix>140</Prix>
+		  <Location>
+		    <base>10</base>
+		    <uneMaison>50</uneMaison>
+		    <deuxMaison>150</deuxMaison>
+		    <troisMaison>450</troisMaison>
+		    <quatreMaison>625</quatreMaison>
+		    <hotel>750</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>States Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>140</Prix>
+		  <Location>
+		    <base>10</base>
+		    <uneMaison>50</uneMaison>
+		    <deuxMaison>150</deuxMaison>
+		    <troisMaison>450</troisMaison>
+		    <quatreMaison>625</quatreMaison>
+		    <hotel>750</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Virginia Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>160</Prix>
+		  <Location>
+		    <base>12</base>
+		    <uneMaison>60</uneMaison>
+		    <deuxMaison>180</deuxMaison>
+		    <troisMaison>500</troisMaison>
+		    <quatreMaison>700</quatreMaison>
+		    <hotel>900</hotel>
+		  </Location>    
+	  </Titre>
+  </Groupe>
+
+  <Groupe>
+	  <Couleur>Orange</Couleur>
+	
+	  <Titre>
+		  <Nom>St. James Place</Nom>
+		  <Position>2</Position>
+		  <Prix>180</Prix>
+		  <Location>
+		    <base>14</base>
+		    <uneMaison>70</uneMaison>
+		    <deuxMaison>200</deuxMaison>
+		    <troisMaison>550</troisMaison>
+		    <quatreMaison>750</quatreMaison>
+		    <hotel>950</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Tennessee Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>180</Prix>
+		  <Location>
+		    <base>14</base>
+		    <uneMaison>70</uneMaison>
+		    <deuxMaison>200</deuxMaison>
+		    <troisMaison>550</troisMaison>
+		    <quatreMaison>750</quatreMaison>
+		    <hotel>950</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>New York Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>200</Prix>
+		  <Location>
+		    <base>16</base>
+		    <uneMaison>80</uneMaison>
+		    <deuxMaison>220</deuxMaison>
+		    <troisMaison>600</troisMaison>
+		    <quatreMaison>800</quatreMaison>
+		    <hotel>1000</hotel>
+		  </Location>    
+	  </Titre>
+  </Groupe>
+
+
+  <Groupe>
+	  <Couleur>Rouge</Couleur>
+	
+	  <Titre>
+		  <Nom>Kentucky Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>220</Prix>
+		  <Location>
+			  <base>18</base>
+			  <uneMaison>90</uneMaison>
+			  <deuxMaison>250</deuxMaison>
+			  <troisMaison>700</troisMaison>
+			  <quatreMaison>875</quatreMaison>
+			  <hotel>1050</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Indiana Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>220</Prix>
+		  <Location>
+			  <base>18</base>
+			  <uneMaison>90</uneMaison>
+			  <deuxMaison>250</deuxMaison>
+			  <troisMaison>700</troisMaison>
+			  <quatreMaison>875</quatreMaison>
+			  <hotel>1050</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Illinois Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>200</Prix>
+		  <Location>
+		    <base>20</base>
+		    <uneMaison>100</uneMaison>
+		    <deuxMaison>300</deuxMaison>
+		    <troisMaison>750</troisMaison>
+		    <quatreMaison>925</quatreMaison>
+		    <hotel>1100</hotel>
+		  </Location>    
+	  </Titre>
+  </Groupe>
+
+  <Groupe>
+	  <Couleur>Jaune</Couleur>
+	
+	  <Titre>
+		  <Nom>Atlantic Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>260</Prix>
+		  <Location>
+			  <base>22</base>
+			  <uneMaison>110</uneMaison>
+			  <deuxMaison>330</deuxMaison>
+			  <troisMaison>800</troisMaison>
+			  <quatreMaison>975</quatreMaison>
+			  <hotel>1150</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Ventnor Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>260</Prix>
+		  <Location>
+			  <base>22</base>
+			  <uneMaison>110</uneMaison>
+			  <deuxMaison>330</deuxMaison>
+			  <troisMaison>800</troisMaison>
+			  <quatreMaison>975</quatreMaison>
+			  <hotel>1150</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Marvin Gardens</Nom>
+		  <Position>2</Position>
+		  <Prix>280</Prix>
+		  <Location>
+		    <base>24</base>
+		    <uneMaison>120</uneMaison>
+		    <deuxMaison>360</deuxMaison>
+		    <troisMaison>850</troisMaison>
+		    <quatreMaison>1025</quatreMaison>
+		    <hotel>1200</hotel>
+		  </Location>    
+	  </Titre>
+  </Groupe>
+
+  <Groupe>
+	  <Couleur>Vert</Couleur>
+	
+	  <Titre>
+		  <Nom>Pacific Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>300</Prix>
+		  <Location>
+			  <base>26</base>
+			  <uneMaison>130</uneMaison>
+			  <deuxMaison>390</deuxMaison>
+			  <troisMaison>900</troisMaison>
+			  <quatreMaison>1100</quatreMaison>
+			  <hotel>1275</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>North Carolina Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>300</Prix>
+		  <Location>
+			  <base>26</base>
+			  <uneMaison>130</uneMaison>
+			  <deuxMaison>390</deuxMaison>
+			  <troisMaison>900</troisMaison>
+			  <quatreMaison>1100</quatreMaison>
+			  <hotel>1275</hotel>
+		  </Location>   
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Pennsylvania Avenue</Nom>
+		  <Position>2</Position>
+		  <Prix>320</Prix>
+		  <Location>
+		    <base>28</base>
+		    <uneMaison>150</uneMaison>
+		    <deuxMaison>450</deuxMaison>
+		    <troisMaison>1000</troisMaison>
+		    <quatreMaison>1200</quatreMaison>
+		    <hotel>1400</hotel>
+		  </Location>    
+	  </Titre>
+  </Groupe>
+
+  <Groupe>
+	  <Couleur>Bleu</Couleur>
+	
+	  <Titre>
+		  <Nom>Park Place</Nom>
+		  <Position>2</Position>
+		  <Prix>350</Prix>
+		  <Location>
+			  <base>35</base>
+			  <uneMaison>175</uneMaison>
+			  <deuxMaison>500</deuxMaison>
+			  <troisMaison>1100</troisMaison>
+			  <quatreMaison>1300</quatreMaison>
+			  <hotel>1500</hotel>
+		  </Location>    
+	  </Titre>
+	
+	  <Titre>
+		  <Nom>Boardwalk</Nom>
+		  <Position>2</Position>
+		  <Prix>400</Prix>
+		  <Location>
+			  <base>50</base>
+			  <uneMaison>200</uneMaison>
+			  <deuxMaison>600</deuxMaison>
+			  <troisMaison>1400</troisMaison>
+			  <quatreMaison>1700</quatreMaison>
+			  <hotel>2000</hotel>
+		  </Location>   
+	  </Titre>	
+  </Groupe>
+</Proprietes>

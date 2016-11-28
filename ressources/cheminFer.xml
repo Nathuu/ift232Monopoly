@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheminFers>
+	<Titre>
+		<Nom>Reading RR</Nom>
+		<Position>2</Position>
+		<Prix>200</Prix>
+		<Location>
+			<base>25</base>	
+		</Location>    
+	</Titre>
+	<Titre>
+		<Nom>Pennsylvania RR</Nom>
+		<Position>2</Position>
+		<Prix>200</Prix>
+		<Location>
+			<base>25</base>	
+		</Location>    
+	</Titre>
+	<Titre>
+		<Nom>B&amp;O RR</Nom>
+		<Position>2</Position>
+		<Prix>200</Prix>
+		<Location>
+			<base>25</base>	
+		</Location>    
+	</Titre>
+	<Titre>
+		<Nom>Short Line</Nom>
+		<Position>2</Position>
+		<Prix>200</Prix>
+		<Location>
+			<base>25</base>	
+		</Location>    
+	</Titre>
+</CheminFers>
+
