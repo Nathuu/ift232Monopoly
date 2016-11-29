@@ -1,4 +1,4 @@
-# ift239Monopoly
+# ift232Monopoly
 School work project; A monopoly game implemented in c# using WPF
 
 Monopoly
