@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="sources\Interface\ButtonMonopoly.cs" />
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
     </Compile>
@@ -75,6 +76,12 @@
     <Compile Include="sources\Cartes\Carte.cs" />
     <Compile Include="sources\Cartes\CarteChance.cs" />
     <Compile Include="sources\Cartes\CarteCommunaute.cs" />
+    <Compile Include="sources\Commandes\Command.cs" />
+    <Compile Include="sources\Commandes\CommandFactory.cs" />
+    <Compile Include="sources\Commandes\CommandFinTour.cs" />
+    <Compile Include="sources\Commandes\CommandSauvegarde.cs" />
+    <Compile Include="sources\Interface\Executeur.cs" />
+    <Compile Include="sources\Interface\MenuItemMonopoly.cs" />
     <Compile Include="sources\PaquetDeCarte.cs" />
     <Compile Include="sources\Position.cs" />
     <Page Include="InformationJoueur.xaml">
