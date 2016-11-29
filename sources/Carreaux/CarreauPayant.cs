@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApplication1.sources
+namespace WpfApplication1.sources.Carreaux
 {
     /// <summary>
     /// Carreau qui ont la fonction de faire payer une joueur lors de son arrivé sur la case
@@ -14,10 +14,5 @@ namespace WpfApplication1.sources
         public CarreauPayant(int position) :base(position) { }
 
         public abstract long getPrixPassage();
-
-        public bool estCarreauAchetable()
-        {
-            return this is CarreauAchetable;
-        }
     }
 }

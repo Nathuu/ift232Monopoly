@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfApplication1.sources.Carreaux;
 
 namespace WpfApplication1.sources
 {
@@ -95,6 +96,7 @@ namespace WpfApplication1.sources
         /// <returns>Si le joueur peut payer le montant</returns>
         public bool PeutPayer(long aPayer)//on regarde si le joueur peut payer tel montant
         {
+            if (Argent > aPayer) return true;
             for (int index = 0; index < Proprietes.Count; ++index)
             {
                 if (Argent > aPayer) return true;
@@ -124,53 +126,6 @@ namespace WpfApplication1.sources
             return Argent; // on retourne le nouveau argent
         }
 
-   
-        /// <summary>
-        /// Cette fonction sert a payer le droit de passage sur une propriété qui n'est pas la sienne
-        /// Si le joueur n'a pas assez de tunes pour payer le propriétaire, il fait faillite
-        /// </summary>
-        public void payerDroitPassage()
-        {
-            CarreauAchetable carreauActuel = (CarreauAchetable)getCarreauActuel();
-            Joueur carreauProprietaire = carreauActuel.Proprietaire;
-            long droitPassage = carreauActuel.getPrixPassage();
-
-            // Faire une fct qui valide si le joueur est propriétaire de la case sur laquel il est
-            //enlever ce if de la fonction, ya pas d,affaire la
-            if (this != carreauProprietaire)
-            {
-                if (!carreauActuel.estHypothequee)
-                {
-                    if (PeutPayer(droitPassage))
-                    {
-                        Payer(droitPassage);
-                        carreauProprietaire.Depot(droitPassage);
-                    }
-                    else
-                    {
-                        faitFaillite();
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Verifie s'il a l'argent pour acheter un terrain, et l'achete automatiquement s'il peut
-        /// </summary>
-        /// <returns>La propriete a bien ete achetee</returns>
-        public bool acheterPropriete()
-        {
-            CarreauAchetable caseAchetable = (CarreauAchetable)getCarreauActuel();
-            if (PeutPayer(caseAchetable.getPrixAchat()))
-            {
-                Payer(caseAchetable.getPrixAchat()); // le jouer peut decider d'acheter la case.
-                caseAchetable.Proprietaire = this;
-                Proprietes.Add((CarreauPropriete)caseAchetable);
-                return true;
-            }
-            return false;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -188,7 +143,7 @@ namespace WpfApplication1.sources
                 return false;
         }
 
-        private void faitFaillite()
+        public void faitFaillite()
         {
             Console.Write("Tu vas rotter du sang enculé!\n");
         }

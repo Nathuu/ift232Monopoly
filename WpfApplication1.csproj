@@ -64,14 +64,17 @@
     <Compile Include="SauvegardeFichier.xaml.cs">
       <DependentUpon>SauvegardeFichier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="sources\Carreaux\CarereauConcret\CarreauCarteChance.cs" />
+    <Compile Include="sources\Carreaux\CarereauConcret\CarreauCarteCommunaute.cs" />
+    <Compile Include="sources\Carreaux\Action\AchatPropriete.cs" />
+    <Compile Include="sources\Carreaux\Action\AllezEnPrison.cs" />
+    <Compile Include="sources\Carreaux\Action\DroitPassage.cs" />
+    <Compile Include="sources\Carreaux\Action\ICommande.cs" />
     <Compile Include="sources\Carreaux\CarreauConcretTest.cs" />
-    <Compile Include="sources\Carreaux\Payant\CarreauAchetable.cs" />
-    <Compile Include="sources\Carreaux\Action\CarreauAction.cs" />
-    <Compile Include="sources\Carreaux\Action\CarreauCarte.cs" />
-    <Compile Include="sources\Carreaux\Action\CarreauCarteChance.cs" />
-    <Compile Include="sources\Carreaux\Action\CarreauCarteCommunaute.cs" />
-    <Compile Include="sources\Carreaux\Payant\CarreauPayant.cs" />
-    <Compile Include="sources\Carreaux\Action\CarreauVaPrison.cs" />
+    <Compile Include="sources\Carreaux\CarereauConcret\CarreauAchetable.cs" />
+    <Compile Include="sources\Carreaux\CarreauCarte.cs" />
+    <Compile Include="sources\Carreaux\CarreauPayant.cs" />
+    <Compile Include="sources\Carreaux\CarereauConcret\CarreauVaPrison.cs" />
     <Compile Include="sources\Cartes\Carte.cs" />
     <Compile Include="sources\Cartes\CarteChance.cs" />
     <Compile Include="sources\Cartes\CarteCommunaute.cs" />
@@ -90,8 +93,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sources\Carreaux\Carreau.cs" />
-    <Compile Include="sources\Carreaux\CarreauPrison.cs" />
-    <Compile Include="sources\Carreaux\Payant\CarreauPropriete.cs" />
+    <Compile Include="sources\Carreaux\CarereauConcret\CarreauPrison.cs" />
+    <Compile Include="sources\Carreaux\CarreauPropriete.cs" />
     <Compile Include="sources\Joueur.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -124,6 +127,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

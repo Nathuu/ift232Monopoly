@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.IO;
+using WpfApplication1.sources.Carreaux;
 
 namespace WpfApplication1.sources
 {
@@ -18,6 +19,7 @@ namespace WpfApplication1.sources
         public Joueur JoueurCourant { get; set; }
         public PaquetDeCarte PaquetCarteChance { get; set; }
         public PaquetDeCarte PaquetCarteCommunaute { get; set; }
+
         private Carreau[] Cases;
 
 
@@ -86,39 +88,20 @@ namespace WpfApplication1.sources
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
-            actionSurCase();
+            JoueurCourant.getCarreauActuel().execute();
         }
 
         /// <summary>
         /// détermine l'action à effectuer selon la case et la situation du joueur
         /// </summary>
         /// <returns>action effectuée</returns>
-        public bool actionSurCase()
+        /*public bool actionSurCase()
         {
             Carreau caseActuelle = JoueurCourant.getCarreauActuel();
-            if (caseActuelle.estCarreauPayant())
-            {
-                CarreauPayant casePayante = (CarreauPayant)caseActuelle;
-                if (casePayante.estCarreauAchetable())
-                {
-                    CarreauAchetable caseAchetable = (CarreauAchetable)casePayante;
-                    if (caseAchetable.estPossede())
-                    {
-                        JoueurCourant.payerDroitPassage(); // le joueur paie selon l'action.
-                        return true;
-                    }
-                    else
-                    {
-                        JoueurCourant.acheterPropriete();
-                        return true;
-                    }
-                }
-                else // les deux cases taxes. 
-                {
-                    //Autres actions à déterminer
-                    return false;
-                }
-            }
+
+            caseActuelle.execute(); 
+
+            
             else if (caseActuelle.estCarreauAction())
             {
                 CarreauAction caseAction = (CarreauAction)caseActuelle;
@@ -156,7 +139,7 @@ namespace WpfApplication1.sources
             {
                 return false;
             }
-        }
+        }*/
 
         //Les methodes sauvegarder partie et restorer devrais etre dans Joueurs. Puisqu'on creer nos fichier a partir de nos joueurs
         public void sauvegarderPartie()

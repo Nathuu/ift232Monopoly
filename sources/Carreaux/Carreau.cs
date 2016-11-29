@@ -1,20 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using WpfApplication1.sources.Carreaux.Action;
 
 namespace WpfApplication1.sources
 {
-   public abstract class Carreau 
+   public abstract class Carreau
     {
+        public List<ICommande> actions;
         public Point position { get; private set; }
         public int positionCarreau { get; private set; }   
               
         public Carreau(int positionCarreau)
         {
+            actions = new List<ICommande>();
             this.positionCarreau = positionCarreau;
         }
+
         public static Position conversionInt2Position(int positionCarreau)
         {
             Position position;
@@ -27,22 +32,12 @@ namespace WpfApplication1.sources
             return position;
         }
 
-        /// <summary>
-        /// Appelé par achat pour savoir si la propriété peut être acheté
-        /// </summary>
-        /// <returns>< C'est une propriété</returns>
-        public bool estCarreauPayant()
+        public void execute()
         {
-            return this is CarreauPayant; //Peut-etre faire dautre chose ici 
-        }
-
-        /// <summary>
-        /// Appelé par actionSurCase pour savoir si la case contient une action
-        /// </summary>
-        /// <returns>C'est une action</returns>
-        public bool estCarreauAction()
-        {
-            return this is CarreauAction;
+            foreach(ICommande comm in actions)
+            {
+                comm.execute(this);
+            }
         }
     }
 }
