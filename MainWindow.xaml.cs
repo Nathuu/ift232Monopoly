@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApplication1.sources;
+using WpfApplication1.sources.Commandes;
+using WpfApplication1.sources.Interface;
 
 namespace WpfApplication1
 {
@@ -22,10 +24,16 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+        private CommandFactory commandFactory;
+
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
+            
+            commandFactory = CommandFactory.Instance;
+            InitButtons();
 
             // Création des joueurs 
             Plateau.Instance.Joueurs.Add(new Joueur("Vert", pionImageVert));
@@ -34,17 +42,48 @@ namespace WpfApplication1
             Plateau.Instance.Joueurs.Add(new Joueur("Jaune", pionImageJaune));
             Plateau.Instance.JoueurCourant = Plateau.Instance.Joueurs.First();
         }
-        private void btnFinTour_Click(object sender, RoutedEventArgs e)
+
+        private void InitButtons()
         {
-            Plateau.Instance.FinTour();
+            // Possibilite d'implanter une factory de panels pour simplifier le code ici
+            StackPanel panelButtonFinTour = new StackPanel();
+            panelButtonFinTour.Name = "panelBtnFinTour";
+            PlateauMonopoly.Children.Add(panelButtonFinTour);
+            Grid.SetRow(panelButtonFinTour, 10);
+            Grid.SetColumn(panelButtonFinTour, 6);
+            Grid.SetColumnSpan(panelButtonFinTour, 2);
+
+            // Possibilite d'implanter une factory de buttons pour simplifier le code ici
+            ButtonMonopoly buttonFinTour = new ButtonMonopoly();
+            CommandFinTour cmdFinTour = commandFactory.CreateCommandFinTour();
+            buttonFinTour.storeCommand(cmdFinTour);
+            buttonFinTour.Name = "btnFinTour";
+            buttonFinTour.Content = "Fin de tour";
+            buttonFinTour.Click += FinTour_Click;
+            panelButtonFinTour.Children.Add(buttonFinTour);
+
+            //  menuItemFichier
+            MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();
+            CommandSauvegarde cmdSauver = CommandFactory.Instance.CreateCommandSauvegarde();
+            menuSauvegarde.storeCommand(cmdSauver);
+            menuSauvegarde.Name = "menuSave";
+            menuSauvegarde.Header = "Sauvegarde";
+            menuSauvegarde.Click += Save_Click;
+            menuItemFichier.Items.Add(menuSauvegarde);
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void FinTour_Click(object sender, RoutedEventArgs e)
         {
-            Plateau.Instance.sauvegarderPartie();
+            (sender as Executeur).execute();       
         }
 
-        private void btnRestaurer_Click(object sender, RoutedEventArgs e)
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            (sender as Executeur).execute();
+        }
+
+        private void Restaurer_Click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.restaurerPartie(); // il faudrait demander le nom du fichier le mettre en parametre !!!JN & SARA!!!
         }
