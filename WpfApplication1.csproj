@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="sources\Carreaux\Action\PigerCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
     <Compile Include="sources\Cartes\CarteDeplacement.cs" />
     <Compile Include="sources\Cartes\CarteMontant.cs" />
@@ -74,9 +75,9 @@
     <Compile Include="sources\Carreaux\Action\AllezEnPrison.cs" />
     <Compile Include="sources\Carreaux\Action\DroitPassage.cs" />
     <Compile Include="sources\Carreaux\Action\ICommande.cs" />
-    <Compile Include="sources\Carreaux\CarreauConcretTest.cs" />
-    <Compile Include="sources\Carreaux\CarreauConcret\CarreauAchetable.cs" />
-    <Compile Include="sources\Carreaux\CarreauCarte.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauConcretTest.cs" />
+    <Compile Include="sources\Carreaux\CarreauAchetable.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauPayant.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauVaPrison.cs" />
     <Compile Include="sources\Cartes\Carte.cs" />
@@ -102,7 +103,7 @@
     </Compile>
     <Compile Include="sources\Carreaux\Carreau.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauPrison.cs" />
-    <Compile Include="sources\Carreaux\CarreauPropriete.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauPropriete.cs" />
     <Compile Include="sources\Joueur.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

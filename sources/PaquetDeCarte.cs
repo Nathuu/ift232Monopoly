@@ -6,34 +6,32 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
 using WpfApplication1.sources.Cartes;
+using System.Xml.Linq;
 
 namespace WpfApplication1.sources
 {
     public class PaquetDeCarte
     {
         private List<Carte> Paquet;
-        private String nomFichierXML;
 
-        public PaquetDeCarte(FileStream fsPaquetCartes)
+        public PaquetDeCarte(string fsPaquetCartes, Dictionary<String, int> dictionnaireCarreaux)
         {
             Paquet = new List<Carte>();
 
-            //this.nomFichierXML = fsPaquetCartes;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(fsPaquetCartes);
-            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            XDocument doc = XDocument.Load(fsPaquetCartes);
+
+            IEnumerable<XElement> cartes = doc.Root.Elements();
+            foreach (XElement carte in cartes)
             {
-                if (node.Attributes["type"]?.InnerText == "deplacement")
+                if (carte.Attribute("type").Value == "deplacement")
                 {
                     List<int> deplacementsPossibles = new List<int>();
-                    foreach (XmlNode deplacements in node.ChildNodes)
+                    foreach (XElement deplacements in carte.Descendants("destinationPossible"))
                     {
-                        String key = deplacements.Attributes["val"]?.InnerText;
-                        int i = Plateau.Instance.dictionnaireCarreaux[key];
-                        deplacementsPossibles.Add(i);
+                        deplacementsPossibles.Add(dictionnaireCarreaux[deplacements.Attribute("val").Value]);
                     }
 
-                    Paquet.Add(new CarteDeplacement(node.InnerText, deplacementsPossibles));
+                    Paquet.Add(new CarteDeplacement(carte.Value, deplacementsPossibles));
                 }
             }
         }

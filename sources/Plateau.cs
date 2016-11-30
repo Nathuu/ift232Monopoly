@@ -20,18 +20,11 @@ namespace WpfApplication1.sources
         public PaquetDeCarte PaquetCarteChance { get; set; }
         public PaquetDeCarte PaquetCarteCommunaute { get; set; }
 
+        public PaquetDeCarte PaquetTest { get; set; }
+
         private Carreau[] Cases;
 
         public Dictionary<String, int> dictionnaireCarreaux { get; private set; } = new Dictionary<string, int>(); 
-
-        protected const int INDEX_GO = 0;
-        protected const int INDEX_BELLEVILLE = 1;
-        protected const int INDEX_PRISON = 10;
-        protected const int INDEX_ALLEZ_PRISON = 30;
-        protected const int INDEX_TRAIN_1 = 5;
-        protected const int INDEX_TRAIN_2 = 15;
-        protected const int INDEX_TRAIN_3 = 25;
-        protected const int INDEX_TRAIN_4 = 35;
 
         protected List<int> Proprietes = new List<int>(); //{ INDEX_BELLEVILLE, 3, 6, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39 };
 
@@ -53,26 +46,15 @@ namespace WpfApplication1.sources
             get { return MONTANT_CARREAU_DEPART; }
         }
 
-    private Plateau()
+        private Plateau()
         { 
             Joueurs = new List<Joueur>();
-            JoueurCourant = null;          
-            initCarreaux();
-
-            FileStream fsPaquetCartes;
-            try
-            {
-                 fsPaquetCartes = System.IO.File.Open("U:\\monopolyBernard\\ressources\\CartesTest.xml",
-                                      FileMode.Open,
-                                      FileAccess.Read);
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
-            PaquetDeCarte paquetTest = new PaquetDeCarte(fsPaquetCartes);
+            JoueurCourant = null;
+            initDictionnaire();
+            PaquetTest = new PaquetDeCarte("U:\\monopolyBernard\\ressources\\CartesTest.xml", dictionnaireCarreaux);
             //PaquetCarteChance = new PaquetDeCarte(/*fichier xml CartesChance*/);
             //PaquetCarteCommunaute = new PaquetDeCarte(/*fichier xml CartesCommunaute*/);
+            initCarreaux();
         }
 
         public static Plateau Instance
@@ -85,18 +67,24 @@ namespace WpfApplication1.sources
                 }
                 return instance;
             }
+            private set { }
         }
 
-        private void initCarreaux()
+        private void initDictionnaire()
         {
             dictionnaireCarreaux.Add("INDEX_GO", 0);
             dictionnaireCarreaux.Add("INDEX_BELLEVILLE", 1);
             dictionnaireCarreaux.Add("INDEX_TRAIN_1", 5);
+            dictionnaireCarreaux.Add("INDEX_PRISON", 10);
             dictionnaireCarreaux.Add("INDEX_TRAIN_2", 15);
             dictionnaireCarreaux.Add("INDEX_TRAIN_3", 25);
+            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", 30);
             dictionnaireCarreaux.Add("INDEX_TRAIN_4", 35);
             dictionnaireCarreaux.Add("INDEX_CARTE_TEST", 2);
+        }
 
+        private void initCarreaux()
+        {
             Cases = new Carreau[NB_CARREAUX_MAX];
 
             for (int i = 0; i < NB_CARREAUX_MAX; ++i)
@@ -107,9 +95,9 @@ namespace WpfApplication1.sources
             {
                 Cases[indexCase] = new CarreauPropriete(indexCase, CarreauPropriete.Couleurs.Brun);
             }
-            Cases[INDEX_PRISON] = new CarreauPrison(INDEX_PRISON);
-            Cases[INDEX_ALLEZ_PRISON] = new CarreauVaPrison(INDEX_ALLEZ_PRISON);
-            Cases[dictionnaireCarreaux["INDEX_CARTE_TEST"]] = new CarreauCarte(dictionnaireCarreaux["INDEX_CARTE_TEST"]);
+            Cases[dictionnaireCarreaux["INDEX_PRISON"]] = new CarreauPrison(dictionnaireCarreaux["INDEX_PRISON"]);
+            Cases[dictionnaireCarreaux["INDEX_ALLEZ_PRISON"]] = new CarreauVaPrison(dictionnaireCarreaux["INDEX_ALLEZ_PRISON"]);
+            Cases[dictionnaireCarreaux["INDEX_CARTE_TEST"]] = new CarreauCarte(dictionnaireCarreaux["INDEX_CARTE_TEST"], PaquetTest);
         }
         
         //Redefini le joueur courant.

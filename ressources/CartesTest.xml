@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CartesTest>
   <carte type="deplacement" passerGo="true">
-    <destinationPossible val="INDEX_GO"/>
+    <destinationPossible val="INDEX_GO" />
     Avancez à Go (percevez 200 $)
   </carte>
   <carte type="deplacement" passerGo="true">
-    <destinationPossible val="INDEX_BELLEVILLE"/>
+    <destinationPossible val="INDEX_BELLEVILLE" />
     Avancez à l'avenue Belleville. - Si vous passez Go, percevez 200 $
   </carte>
-  <carte type="deplacement" dest="INDEX_TRAIN" passerGo="true">
-    <destinationPossible val="INDEX_TRAIN_1"/>
-    <destinationPossible val="INDEX_TRAIN_2"/>
-    <destinationPossible val="INDEX_TRAIN_3"/>
-    <destinationPossible val="INDEX_TRAIN_4"/>
+  <carte type="deplacement" passerGo="true">
+    <destinationPossible val="INDEX_TRAIN_1" />
+    <destinationPossible val="INDEX_TRAIN_2" />
+    <destinationPossible val="INDEX_TRAIN_3" />
+    <destinationPossible val="INDEX_TRAIN_4" />
     Avancez à la station de train la plus proche. - Si vous passez Go, percevez 200 $
   </carte>
   <carte type="montant" montant="50" >

@@ -18,8 +18,8 @@ namespace WpfApplication1.sources.Carreaux
         public CarreauAchetable(int position) : base(position)
         {
             estHypothequee = false;
-            actions.Add(new Action.AchatPropriete());
-            actions.Add(new Action.DroitPassage());
+            actions.Add(new AchatPropriete());
+            actions.Add(new DroitPassage());
         }
 
         public abstract long getPrixAchat();
