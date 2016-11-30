@@ -8,5 +8,6 @@ namespace WpfApplication1.sources.Carreaux
 {
     class CarreauCarteChance
     {
+
     }
 }

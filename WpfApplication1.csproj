@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
+    <Compile Include="sources\Cartes\CarteDeplacement.cs" />
+    <Compile Include="sources\Cartes\CarteMontant.cs" />
     <Compile Include="sources\Interface\ButtonMonopoly.cs" />
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
@@ -65,20 +68,18 @@
     <Compile Include="SauvegardeFichier.xaml.cs">
       <DependentUpon>SauvegardeFichier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="sources\Carreaux\CarereauConcret\CarreauCarteChance.cs" />
-    <Compile Include="sources\Carreaux\CarereauConcret\CarreauCarteCommunaute.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauCarteChance.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauCarteCommunaute.cs" />
     <Compile Include="sources\Carreaux\Action\AchatPropriete.cs" />
     <Compile Include="sources\Carreaux\Action\AllezEnPrison.cs" />
     <Compile Include="sources\Carreaux\Action\DroitPassage.cs" />
     <Compile Include="sources\Carreaux\Action\ICommande.cs" />
     <Compile Include="sources\Carreaux\CarreauConcretTest.cs" />
-    <Compile Include="sources\Carreaux\CarereauConcret\CarreauAchetable.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauAchetable.cs" />
     <Compile Include="sources\Carreaux\CarreauCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauPayant.cs" />
-    <Compile Include="sources\Carreaux\CarereauConcret\CarreauVaPrison.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauVaPrison.cs" />
     <Compile Include="sources\Cartes\Carte.cs" />
-    <Compile Include="sources\Cartes\CarteChance.cs" />
-    <Compile Include="sources\Cartes\CarteCommunaute.cs" />
     <Compile Include="sources\Commandes\Command.cs" />
     <Compile Include="sources\Commandes\CommandFactory.cs" />
     <Compile Include="sources\Commandes\CommandFinTour.cs" />
@@ -100,7 +101,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sources\Carreaux\Carreau.cs" />
-    <Compile Include="sources\Carreaux\CarereauConcret\CarreauPrison.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauPrison.cs" />
     <Compile Include="sources\Carreaux\CarreauPropriete.cs" />
     <Compile Include="sources\Joueur.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -164,6 +165,9 @@
     <Resource Include="ressources\cheminFer.xml" />
     <Resource Include="ressources\propriete.xml" />
     <Resource Include="ressources\services.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ressources\CartesTest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

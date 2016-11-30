@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <carteChance>
-  <carte>
+  <carte type="deplacement" dest="INDEX_GO" passerGo="true">
 	  Avancez à Go (percevez 200 $)	
   </carte>
-  <carte>
+  <carte type="deplacement" dest="INDEX_BELLEVILLE" passerGo="true">
 	  Avancez à l'avenue Illinois. - Si vous passez Go, percevez 200 $
   </carte>
   <carte>
@@ -18,7 +18,7 @@
   <carte>
 	  Avancez le jeton au Chemin de fer le plus proche et payez le propriétaire deux fois de la location à laquelle il / elle a droit. Si Railroad n'est pas propriétaire, vous pouvez l'acheter auprès de la Banque.
   </carte>
-  <carte>
+  <carte type="montant" montant="50" >
 	  La Banque vous verse un dividende de 50 $
   </carte>
   <carte>

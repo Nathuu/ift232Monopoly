@@ -8,7 +8,7 @@ namespace WpfApplication1.sources.Commandes
 {
     public interface Executeur
     {
-        void execute();
+        void execute(object sender, System.Windows.RoutedEventArgs e);
 
     }
 }

@@ -59,7 +59,7 @@ namespace WpfApplication1
             buttonFinTour.storeCommand(cmdFinTour);
             buttonFinTour.Name = "btnFinTour";
             buttonFinTour.Content = "Fin de tour";
-            buttonFinTour.Click += FinTour_Click;
+            buttonFinTour.Click += buttonFinTour.execute;
             panelButtonFinTour.Children.Add(buttonFinTour);
 
             //  menuItemFichier
@@ -68,19 +68,8 @@ namespace WpfApplication1
             menuSauvegarde.storeCommand(cmdSauver);
             menuSauvegarde.Name = "menuSave";
             menuSauvegarde.Header = "Sauvegarde";
-            menuSauvegarde.Click += Save_Click;
+            menuSauvegarde.Click += menuSauvegarde.execute;
             menuItemFichier.Items.Add(menuSauvegarde);
-        }
-
-        private void FinTour_Click(object sender, RoutedEventArgs e)
-        {
-            (sender as Executeur).execute();       
-        }
-
-
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            (sender as Executeur).execute();
         }
 
         private void Restaurer_Click(object sender, RoutedEventArgs e)
