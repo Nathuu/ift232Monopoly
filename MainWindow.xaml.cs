@@ -27,6 +27,7 @@ namespace WpfApplication1
         
         private CommandFactory commandFactory;
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -72,6 +73,11 @@ namespace WpfApplication1
             menuItemFichier.Items.Add(menuSauvegarde);
         }
 
+        private void Deplacer_click(object sender, RoutedEventArgs e)
+        {
+            int dep = int.Parse(txtBoxNbDeplacement.Text);
+            Plateau.Instance.JoueurCourant.Avancer(dep);
+        }
         private void Restaurer_Click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.restaurerPartie(); // il faudrait demander le nom du fichier le mettre en parametre !!!JN & SARA!!!
@@ -103,6 +109,11 @@ namespace WpfApplication1
         {
             InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Jaune"));
             infoWindow.ShowDialog();
+        }
+
+        private void txtBoxNbDeplacement_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -28,6 +28,10 @@
             <TextBlock Text="Argent : " FontSize="24" FontWeight="Bold"/>
             <TextBlock Name="txtBudget" Text="exArgent " FontSize="24"/>
         </StackPanel>
-        
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Proprietes : " FontSize="24" FontWeight="Bold"/>
+            <TextBlock Name="txtListProp" Text="exArgent " FontSize="24"/>
+        </StackPanel>
+
     </Grid>
 </Window>

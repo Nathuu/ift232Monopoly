@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApplication1.sources;
+using WpfApplication1.sources.Carreaux;
 
 namespace WpfApplication1
 {
@@ -25,6 +26,14 @@ namespace WpfApplication1
             InitializeComponent();
             txtNom.Text = j.Nom;
             txtBudget.Text = j.Argent.ToString();
+            string liste="";
+       
+            foreach (CarreauPropriete p in j.Proprietes)
+                liste+= p.positionCarreau.ToString();
+            if (liste == "") liste = "Aucune";
+            txtListProp.Text = liste;
+
+
         }
     }
 }
