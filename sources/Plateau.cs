@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.IO;
 using WpfApplication1.sources.Carreaux;
+using System.Xml.Linq;
+using WpfApplication1.sources.Carreaux.CarreauConcret;
 
 namespace WpfApplication1.sources
 {
@@ -22,9 +24,7 @@ namespace WpfApplication1.sources
 
         public PaquetDeCarte PaquetTest { get; set; }
 
-        private Carreau[] Cases;
-
-        public Dictionary<String, int> dictionnaireCarreaux { get; private set; } = new Dictionary<string, int>(); 
+        public Dictionary<String, Carreau> dictionnaireCarreaux { get; private set; } = new Dictionary<string, Carreau>();
 
         protected List<int> Proprietes = new List<int>(); //{ INDEX_BELLEVILLE, 3, 6, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39 };
 
@@ -34,27 +34,30 @@ namespace WpfApplication1.sources
         private int largeur = 660;
 
         private const Int16 NB_CARREAUX_MAX = 40;
+        public Int16 getNbCarreauxMax() { return NB_CARREAUX_MAX; }
+
         private const Int16 MONTANT_CARREAU_DEPART = 200;
-        
+
         public Int16 NombreCarreauxMaximal
         {
             get { return NB_CARREAUX_MAX; }
         }
-        
+
         public Int16 MontantCarreauDepart
         {
             get { return MONTANT_CARREAU_DEPART; }
         }
 
         private Plateau()
-        { 
+        {
             Joueurs = new List<Joueur>();
             JoueurCourant = null;
             initDictionnaire();
-            PaquetTest = new PaquetDeCarte("U:\\monopolyBernard\\ressources\\CartesTest.xml", dictionnaireCarreaux);
-            //PaquetCarteChance = new PaquetDeCarte(/*fichier xml CartesChance*/);
-            //PaquetCarteCommunaute = new PaquetDeCarte(/*fichier xml CartesCommunaute*/);
-            initCarreaux();
+            PaquetTest = new PaquetDeCarte("U:\\monopolyJo2\\ressources\\CartesTest.xml", dictionnaireCarreaux);
+            // SW Les carreauCarte doivent être initialisés après le paquetTest
+            dictionnaireCarreaux.Add("INDEX_CARTE_TEST", new CarreauCarte(7, PaquetTest));
+            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE2", new CarreauCarte(22, PaquetTest));
+            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE3", new CarreauCarte(36, PaquetTest));
         }
 
         public static Plateau Instance
@@ -70,36 +73,41 @@ namespace WpfApplication1.sources
             private set { }
         }
 
+        /// <summary>
+        /// On va init tous les carreaux de chaque type
+        /// </summary>
         private void initDictionnaire()
-        {
-            dictionnaireCarreaux.Add("INDEX_GO", 0);
-            dictionnaireCarreaux.Add("INDEX_BELLEVILLE", 1);
-            dictionnaireCarreaux.Add("INDEX_TRAIN_1", 5);
-            dictionnaireCarreaux.Add("INDEX_PRISON", 10);
-            dictionnaireCarreaux.Add("INDEX_TRAIN_2", 15);
-            dictionnaireCarreaux.Add("INDEX_TRAIN_3", 25);
-            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", 30);
-            dictionnaireCarreaux.Add("INDEX_TRAIN_4", 35);
-            dictionnaireCarreaux.Add("INDEX_CARTE_TEST", 2);
+        { 
+            dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
+            dictionnaireCarreaux.Add("INDEX_BELLEVILLE", new CarreauConcretTest(1));
+            dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauPrison(10));
+            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauVaPrison(30));
+            dictionnaireCarreaux.Add("INDEX_TRAIN_1", new CarreauTrain(5));
+            dictionnaireCarreaux.Add("INDEX_TRAIN_2", new CarreauTrain(15));
+            dictionnaireCarreaux.Add("INDEX_TRAIN_3", new CarreauTrain(25));
+            dictionnaireCarreaux.Add("INDEX_TRAIN_4", new CarreauTrain(35));
+            // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
+            int[] carreauxConcrets = { 2,3,4,5,6,8,9,11,12,13,14,16,17,18,19,20,21,23,24,26,27,28,29,31,32,33,34,37,38,39 };
+            foreach (int i in carreauxConcrets)
+            {
+                dictionnaireCarreaux.Add("INDEX_CONCRET_"+ i, new CarreauConcretTest(i));
+            }
+            lireXMLProprietes();
         }
 
-        private void initCarreaux()
+        /// <summary>
+        /// On vient lire le XML des propriété
+        /// </summary>
+        private void lireXMLProprietes()
         {
-            Cases = new Carreau[NB_CARREAUX_MAX];
-
-            for (int i = 0; i < NB_CARREAUX_MAX; ++i)
+            XDocument doc = XDocument.Load("U:\\monopolyJo2\\ressources\\propriete.xml");
+            XElement proprietes = doc.Root.Element("Proprietes");
+            foreach (XElement titre in doc.Root.Elements("Titre"))
             {
-                Cases[i] = new CarreauConcretTest(i);                
+                MessageBox.Show(titre.Descendants("Nom").First().ToString());
             }
-            foreach (int indexCase in Proprietes)
-            {
-                Cases[indexCase] = new CarreauPropriete(indexCase, CarreauPropriete.Couleurs.Brun);
-            }
-            Cases[dictionnaireCarreaux["INDEX_PRISON"]] = new CarreauPrison(dictionnaireCarreaux["INDEX_PRISON"]);
-            Cases[dictionnaireCarreaux["INDEX_ALLEZ_PRISON"]] = new CarreauVaPrison(dictionnaireCarreaux["INDEX_ALLEZ_PRISON"]);
-            Cases[dictionnaireCarreaux["INDEX_CARTE_TEST"]] = new CarreauCarte(dictionnaireCarreaux["INDEX_CARTE_TEST"], PaquetTest);
         }
-        
+
         //Redefini le joueur courant.
         public void FinTour()
         {
@@ -206,7 +214,7 @@ namespace WpfApplication1.sources
             }
             fichierSauvegarde.Close();
         }
-        
+
 
         /// <summary>
         /// </summary>
@@ -216,8 +224,12 @@ namespace WpfApplication1.sources
         /// </returns>
         public Carreau getCarreau(int indiceCarreau)
         {
-            //indice  0 à 39
-            return Cases[indiceCarreau];
+            foreach (KeyValuePair<string, Carreau> carreau in dictionnaireCarreaux)
+            {
+                if (indiceCarreau == carreau.Value.positionCarreau)
+                    return carreau.Value;
+            }
+            return null;
         }
     }
 }

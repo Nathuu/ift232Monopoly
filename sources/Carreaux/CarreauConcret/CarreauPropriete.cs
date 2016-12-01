@@ -16,13 +16,15 @@ namespace WpfApplication1.sources.Carreaux
             Brun, BleuPale, Rose, Orange, Rouge, Jaune, Vert, BleuFonce
         };
 
-
-        // Droit de passage qui varie en fonction du nombre de maisons ou hotel
-        private long[] DroitPassage = new long[6] { 5, 10, 15, 20, 25, 30 }; // prix selon le nombre de maison
-
         // Ancienne implementation du loyer
         //public int Loyer { get; private set; }
         public int NombreMaison { get; private set; }
+
+        // Droit de passage qui varie en fonction du nombre de maisons ou hotel
+        private long[] DroitPassage = new long[6] { 5, 10, 15, 20, 25, 30 }; // prix selon le nombre de maison
+        // Droit de passage selon nombre de maisons
+        // 1er index: 0 maison, 2ème index: 1 maison, 3ème....
+        public long[] PrixSelonMaisons { get; private set; }
 
         public Couleurs Couleur { get; private set; }
 
