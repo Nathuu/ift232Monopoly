@@ -46,9 +46,8 @@ namespace WpfApplication1.sources
         }
         public int LanceUnDes()// un dé est lancé
         {
-            Random random = new Random();
-            int des = random.Next(1, 6); // va retourner entre 1 et 6 
-            return des;
+            Random random1 = new Random(DateTime.Now.Millisecond);
+            return random1.Next(1, 6);
         }
 
         internal void Sauvegarder(StreamWriter fichierSauvegarde)

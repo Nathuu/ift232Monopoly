@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="sources\Carreaux\Action\PigerCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauTrain.cs" />
     <Compile Include="sources\Cartes\CarteDeplacement.cs" />
     <Compile Include="sources\Cartes\CarteMontant.cs" />
     <Compile Include="sources\Interface\ButtonMonopoly.cs" />

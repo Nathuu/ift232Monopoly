@@ -8,22 +8,30 @@ namespace WpfApplication1.sources.Cartes
 {
     public class CarteDeplacement : Carte
     {
-        public List<int> DestinationsPossibles { get; protected set; } // Une seule carte requiert un deplacement numerique.
+        public List<Carreau> DestinationsPossibles { get; protected set; } // Une seule carte requiert un deplacement numerique.
         public bool PasserGo { get; protected set; }
 
-        public CarteDeplacement(String desc, List<int> destinationsPossibles) : base(desc)
+        public CarteDeplacement(String desc, List<Carreau> destinationsPossibles) : base(desc)
         {
             this.DestinationsPossibles = destinationsPossibles;
         }
 
         private int CalculerDestination()
         {
-            foreach (int dest in DestinationsPossibles)
+            foreach (Carreau dest in DestinationsPossibles)
             {
-                if (Plateau.Instance.JoueurCourant.PositionCarreau < dest)
-                    return dest;
+                if (Plateau.Instance.JoueurCourant.PositionCarreau < dest.positionCarreau)
+                    return dest.positionCarreau;
             }
-            return DestinationsPossibles.Min();
+            //Retourner la position Carreau minimale
+
+            int min = Plateau.Instance.getNbCarreauxMax();
+            foreach (Carreau dest in DestinationsPossibles)
+            {
+                if (min > dest.positionCarreau)
+                    min = dest.positionCarreau;
+            }
+            return min;
         }
 
         public override void Executer()

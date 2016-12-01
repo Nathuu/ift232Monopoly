@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1.sources.Carreaux.CarreauConcret
 {
-    class CarreauGo : Carreau
+    class CarreauTrain : Carreau
     {
-        public CarreauGo(int positionCarreau) : base(positionCarreau)
+        public CarreauTrain(int positionCarreau) : base(positionCarreau)
         {
 
         }
