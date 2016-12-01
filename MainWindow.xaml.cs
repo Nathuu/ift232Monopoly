@@ -115,5 +115,10 @@ namespace WpfApplication1
         {
 
         }
+
+        public void voirSiCaMarche()
+        {
+
+        }
     }
 }

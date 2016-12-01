@@ -77,7 +77,6 @@ namespace WpfApplication1.sources
         private void initDictionnaire()
         { 
             dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
-            dictionnaireCarreaux.Add("INDEX_BELLEVILLE", new CarreauConcretTest(1));
             dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauVisiterPrison(10));
             dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
             dictionnaireCarreaux.Add("INDEX_TRAIN_1", new CarreauTrain(5));
@@ -85,12 +84,12 @@ namespace WpfApplication1.sources
             dictionnaireCarreaux.Add("INDEX_TRAIN_3", new CarreauTrain(25));
             dictionnaireCarreaux.Add("INDEX_TRAIN_4", new CarreauTrain(35));
             // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
-            int[] carreauxConcrets = { 2,3,4,5,6,8,9,11,12,13,14,16,17,18,19,20,21,23,24,26,27,28,29,31,32,33,34,37,38,39 };
+            int[] carreauxConcrets = { 2,4,12,17,20,28,33,38 };
             foreach (int i in carreauxConcrets)
             {
                 dictionnaireCarreaux.Add("INDEX_CONCRET_"+ i, new CarreauConcretTest(i));
             }
-            //lireXMLProprietes();
+            lireXMLProprietes();
         }
 
         /// <summary>
@@ -100,9 +99,23 @@ namespace WpfApplication1.sources
         {
             XDocument doc = XDocument.Load(@"..\\..\\ressources\\propriete.xml");
             XElement proprietes = doc.Root.Element("Proprietes");
+            //MessageBox.Show(doc.Root.Elements("Titre").Count()+"");
             foreach (XElement titre in doc.Root.Elements("Titre"))
             {
-                MessageBox.Show(titre.Descendants("Nom").First().ToString());
+                String indexDictionnaire = titre.Descendants("IndexDictionnaire").First().Value.ToString();
+                int position = Int32.Parse(titre.Descendants("Position").First().Value.ToString());
+                CarreauPropriete.Couleurs nouveauCarreauCouleur = (CarreauPropriete.Couleurs) Int32.Parse(titre.Descendants("Couleur").First().Value.ToString());
+                long prixAchat = Int32.Parse(titre.Descendants("Prix").First().Value.ToString());
+                long droitPassBase = Int32.Parse(titre.Element("Location").Descendants("base").First().Value.ToString());
+                long droitPass1Maison = Int32.Parse(titre.Element("Location").Descendants("uneMaison").First().Value.ToString());
+                long droitPass2Maisons = Int32.Parse(titre.Element("Location").Descendants("deuxMaisons").First().Value.ToString());
+                long droitPass3Maisons = Int32.Parse(titre.Element("Location").Descendants("troisMaisons").First().Value.ToString());
+                long droitPass4Maisons = Int32.Parse(titre.Element("Location").Descendants("quatreMaisons").First().Value.ToString());
+                long droitPassHotel = Int32.Parse(titre.Element("Location").Descendants("hotel").First().Value.ToString());
+                long[] droitPassage = { droitPassBase, droitPass1Maison, droitPass2Maisons, droitPass3Maisons, droitPass4Maisons, droitPassHotel };
+                Carreau nouveauCarreau = new CarreauPropriete(position,  nouveauCarreauCouleur, prixAchat, droitPassage);
+                //MessageBox.Show(titre.Descendants("Couleur").First().Value.ToString() + " "+ nouveauCarreauCouleur); 
+                dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
             }
         }
 
@@ -112,6 +125,14 @@ namespace WpfApplication1.sources
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
+            JoueurCourant.getCarreauActuel().execute();
+            /*MainWindow.GetWindow.
+            //trouver une facon d'afficher le joueur courant dans la window
+            namespace WpfApplication1
+            {
+                Main
+            }
+            */
         }
 
         /// <summary>
@@ -183,6 +204,7 @@ namespace WpfApplication1.sources
         }
         public void restaurerPartie()
         {
+            //ajouter une validation si le restore est anuler
             List<string> fichierRestaurationDisponible = new List<string>();
             DirectoryInfo dinfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             FileInfo[] Files = dinfo.GetFiles("*.txt");

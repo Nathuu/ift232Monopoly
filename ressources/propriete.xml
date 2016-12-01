@@ -14,11 +14,12 @@
 		    <quatreMaisons>160</quatreMaisons>
 		    <hotel>250</hotel>
 		  </Location>
-		  <Couleur>Brun</Couleur>
+      <Couleur>0</Couleur>
 	  </Titre>
 
 	  <Titre>
 		  <Nom>Rue Lecourbe</Nom>
+      <IndexDictionnaire>INDEX_LECOURBE</IndexDictionnaire>
 		  <Position>3</Position>
 		  <Prix>60</Prix>
 		  <Location>
@@ -29,13 +30,14 @@
 		    <quatreMaisons>320</quatreMaisons>
 		    <hotel>450</hotel>
 		  </Location>
-      <Couleur>Brun</Couleur>
+      <Couleur>0</Couleur>
 	  </Titre>
-  
 
-	  <Titre>
-		  <Nom>Oriental Avenue</Nom>
-		  <Position>2</Position>
+
+     <Titre>
+		  <Nom>Rue de Vaugirard</Nom>
+      <IndexDictionnaire>INDEX_VAUGIRARD</IndexDictionnaire>
+		  <Position>6</Position>
 		  <Prix>100</Prix>
 		  <Location>
 		    <base>6</base>
@@ -45,12 +47,13 @@
 		    <quatreMaisons>400</quatreMaisons>
 		    <hotel>550</hotel>
 		  </Location>
-      <Couleur>BleuPale</Couleur>
+      <Couleur>1</Couleur>
 	  </Titre>
 	
 	  <Titre>
-		  <Nom>Vermont Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Rue de Courcelles</Nom>
+      <IndexDictionnaire>INDEX_COURCELLES</IndexDictionnaire>
+		  <Position>8</Position>
 		  <Prix>100</Prix>
 		  <Location>
 		    <base>6</base>
@@ -60,12 +63,13 @@
 		    <quatreMaisons>400</quatreMaisons>
 		    <hotel>550</hotel>
 		  </Location>
-      <Couleur>BleuPale</Couleur>
+      <Couleur>1</Couleur>
 	  </Titre>
 	
 	  <Titre>
-		  <Nom>Connecticut Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue de la Republique</Nom>
+      <IndexDictionnaire>INDEX_AVREPUBLIQUE</IndexDictionnaire>
+		  <Position>9</Position>
 		  <Prix>120</Prix>
 		  <Location>
 		    <base>8</base>
@@ -75,14 +79,13 @@
 		    <quatreMaisons>450</quatreMaisons>
 		    <hotel>600</hotel>
 		  </Location>
-      <Couleur>BleuPale</Couleur>
+      <Couleur>1</Couleur>
 	  </Titre>
 
-	
-	
 	  <Titre>
-		  <Nom>St. Charles Place</Nom>
-		  <Position>2</Position>
+		  <Nom>Boulevard de la Villette</Nom>
+      <IndexDictionnaire>INDEX_VILLETTE</IndexDictionnaire>
+		  <Position>11</Position>
 		  <Prix>140</Prix>
 		  <Location>
 		    <base>10</base>
@@ -92,12 +95,13 @@
 		    <quatreMaisons>625</quatreMaisons>
 		    <hotel>750</hotel>
 		  </Location>
-      <Couleur>Violet</Couleur>
+      <Couleur>2</Couleur>
 	  </Titre>
 	
 	  <Titre>
-		  <Nom>States Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue de Neuilly</Nom>
+      <IndexDictionnaire>INDEX_NEUILLY</IndexDictionnaire>
+		  <Position>13</Position>
 		  <Prix>140</Prix>
 		  <Location>
 		    <base>10</base>
@@ -107,12 +111,13 @@
 		    <quatreMaisons>625</quatreMaisons>
 		    <hotel>750</hotel>
 		  </Location>
-      <Couleur>Violet</Couleur>
+      <Couleur>2</Couleur>
 	  </Titre>
 	
 	  <Titre>
-		  <Nom>Virginia Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Rue de Paradis</Nom>
+      <IndexDictionnaire>INDEX_PARADIS</IndexDictionnaire>
+		  <Position>14</Position>
 		  <Prix>160</Prix>
 		  <Location>
 		    <base>12</base>
@@ -122,13 +127,13 @@
 		    <quatreMaisons>700</quatreMaisons>
 		    <hotel>900</hotel>
 		  </Location>
-      <Couleur>Violet</Couleur>
+      <Couleur>2</Couleur>
 	  </Titre>
 
-	
 	  <Titre>
-		  <Nom>St. James Place</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue Mozart</Nom>
+      <IndexDictionnaire>INDEX_MOZART</IndexDictionnaire>
+		  <Position>16</Position>
 		  <Prix>180</Prix>
 		  <Location>
 		    <base>14</base>
@@ -138,12 +143,13 @@
 		    <quatreMaisons>750</quatreMaisons>
 		    <hotel>950</hotel>
 		  </Location>
-      <Couleur>Orange</Couleur>
+      <Couleur>3</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>Tennessee Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Boulevard St-Michel</Nom>
+      <IndexDictionnaire>INDEX_STMICHEL</IndexDictionnaire>
+		  <Position>18</Position>
 		  <Prix>180</Prix>
 		  <Location>
 		    <base>14</base>
@@ -153,12 +159,13 @@
 		    <quatreMaisons>750</quatreMaisons>
 		    <hotel>950</hotel>
       </Location>
-      <Couleur>Orange</Couleur>
+      <Couleur>3</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>New York Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Place Pigalle</Nom>
+      <IndexDictionnaire>INDEX_PIGALLE</IndexDictionnaire>
+		  <Position>19</Position>
 		  <Prix>200</Prix>
 		  <Location>
 		    <base>16</base>
@@ -168,14 +175,13 @@
 		    <quatreMaisons>800</quatreMaisons>
 		    <hotel>1000</hotel>
 		  </Location>
-      <Couleur>Orange</Couleur>
+      <Couleur>3</Couleur>
     </Titre>
 
-
-
   <Titre>
-    <Nom>Kentucky Avenue</Nom>
-    <Position>2</Position>
+    <Nom>Avenue Matignon</Nom>
+    <IndexDictionnaire>INDEX_MATIGNON</IndexDictionnaire>
+    <Position>21</Position>
     <Prix>220</Prix>
     <Location>
       <base>18</base>
@@ -185,12 +191,13 @@
       <quatreMaisons>875</quatreMaisons>
       <hotel>1050</hotel>
     </Location>
-    <Couleur>Rouge</Couleur>
+    <Couleur>4</Couleur>
   </Titre>
 	
 	  <Titre>
-		  <Nom>Indiana Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Boulevard Malesherbes</Nom>
+      <IndexDictionnaire>INDEX_MALESHERBES</IndexDictionnaire>
+		  <Position>23</Position>
 		  <Prix>220</Prix>
 		  <Location>
 			  <base>18</base>
@@ -200,12 +207,13 @@
 			  <quatreMaisons>875</quatreMaisons>
 			  <hotel>1050</hotel>
 		  </Location>
-      <Couleur>Rouge</Couleur>
+      <Couleur>4</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>Illinois Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue Henri-Martin</Nom>
+      <IndexDictionnaire>INDEX_HENRIMARTIN</IndexDictionnaire>
+		  <Position>24</Position>
 		  <Prix>200</Prix>
 		  <Location>
 		    <base>20</base>
@@ -215,13 +223,14 @@
 		    <quatreMaisons>925</quatreMaisons>
 		    <hotel>1100</hotel>
 		  </Location>
-      <Couleur>Rouge</Couleur>
+      <Couleur>4</Couleur>
     </Titre>
 
 	
 	  <Titre>
-		  <Nom>Atlantic Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Faubourg St-Honore</Nom>
+      <IndexDictionnaire>INDEX_STHONORE</IndexDictionnaire>
+		  <Position>26</Position>
 		  <Prix>260</Prix>
 		  <Location>
 			  <base>22</base>
@@ -231,12 +240,13 @@
 			  <quatreMaisons>975</quatreMaisons>
 			  <hotel>1150</hotel>
 		  </Location>
-      <Couleur>Jaune</Couleur>
+      <Couleur>5</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>Ventnor Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Place de la Bourse</Nom>
+      <IndexDictionnaire>INDEX_BOURSE</IndexDictionnaire>
+		  <Position>27</Position>
 		  <Prix>260</Prix>
 		  <Location>
 			  <base>22</base>
@@ -246,12 +256,13 @@
 			  <quatreMaisons>975</quatreMaisons>
 			  <hotel>1150</hotel>
 		  </Location>
-      <Couleur>Jaune</Couleur>
+      <Couleur>5</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>Marvin Gardens</Nom>
-		  <Position>2</Position>
+		  <Nom>Rue de la Fayette</Nom>
+      <IndexDictionnaire>INDEX_FAYETTE</IndexDictionnaire>
+		  <Position>29</Position>
 		  <Prix>280</Prix>
 		  <Location>
 		    <base>24</base>
@@ -261,13 +272,13 @@
 		    <quatreMaisons>1025</quatreMaisons>
 		    <hotel>1200</hotel>
 		  </Location>
-      <Couleur>Jaune</Couleur>
+      <Couleur>5</Couleur>
     </Titre>
 
-	
 	  <Titre>
-		  <Nom>Pacific Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue de Breteuil</Nom>
+      <IndexDictionnaire>INDEX_BRETEUIL</IndexDictionnaire>
+		  <Position>31</Position>
 		  <Prix>300</Prix>
 		  <Location>
 			  <base>26</base>
@@ -277,12 +288,13 @@
 			  <quatreMaisons>1100</quatreMaisons>
 			  <hotel>1275</hotel>
 		  </Location>
-      <Couleur>Vert</Couleur>
+      <Couleur>6</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>North Carolina Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue Roch</Nom>
+      <IndexDictionnaire>INDEX_ROCH</IndexDictionnaire>
+		  <Position>32</Position>
 		  <Prix>300</Prix>
 		  <Location>
 			  <base>26</base>
@@ -292,12 +304,13 @@
 			  <quatreMaisons>1100</quatreMaisons>
 			  <hotel>1275</hotel>
 		  </Location>
-      <Couleur>Vert</Couleur>
+      <Couleur>6</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>Pennsylvania Avenue</Nom>
-		  <Position>2</Position>
+		  <Nom>Boulevard des Capucines</Nom>
+      <IndexDictionnaire>INDEX_CAPUCINES</IndexDictionnaire>
+		  <Position>34</Position>
 		  <Prix>320</Prix>
 		  <Location>
 		    <base>28</base>
@@ -307,13 +320,14 @@
 		    <quatreMaisons>1200</quatreMaisons>
 		    <hotel>1400</hotel>
 		  </Location>
-      <Couleur>Vert</Couleur>
+      <Couleur>6</Couleur>
     </Titre>
 
 	
 	  <Titre>
-		  <Nom>Park Place</Nom>
-		  <Position>2</Position>
+		  <Nom>Avenue des Champs-Elysees</Nom>
+      <IndexDictionnaire>INDEX_CHAMPSELYSEES</IndexDictionnaire>
+		  <Position>37</Position>
 		  <Prix>350</Prix>
 		  <Location>
 			  <base>35</base>
@@ -323,12 +337,13 @@
 			  <quatreMaisons>1300</quatreMaisons>
 			  <hotel>1500</hotel>
 		  </Location>
-      <Couleur>Bleu</Couleur>
+      <Couleur>7</Couleur>
     </Titre>
 	
 	  <Titre>
-		  <Nom>Boardwalk</Nom>
-		  <Position>2</Position>
+		  <Nom>Rue de la Paix</Nom>
+      <IndexDictionnaire>INDEX_PAIX</IndexDictionnaire>
+		  <Position>39</Position>
 		  <Prix>400</Prix>
 		  <Location>
 			  <base>50</base>
@@ -338,6 +353,6 @@
 			  <quatreMaisons>1700</quatreMaisons>
 			  <hotel>2000</hotel>
 		  </Location>
-      <Couleur>Bleu</Couleur>
-    </Titre>	
+      <Couleur>7</Couleur>
+    </Titre>
 </Proprietes>

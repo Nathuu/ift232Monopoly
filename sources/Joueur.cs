@@ -42,8 +42,13 @@ namespace WpfApplication1.sources
             this.CompteurDeDouble = 0;
         }
 
-        public int LanceUnDes(Random random1)// un dé est lancé
+        public int LanceDeuxDes(Random random1)// un dé est lancé
         {
+            return LanceUnDes() + LanceUnDes();
+        }
+        public int LanceUnDes()// un dé est lancé
+        {
+            Random random1 = new Random(DateTime.Now.Millisecond);
             return random1.Next(1, 6);
         }
 
@@ -67,8 +72,8 @@ namespace WpfApplication1.sources
             else
             {
                 Random rnd = new Random() ;
-                int coupDe1 = LanceUnDes(rnd);
-                int coupDe2 = LanceUnDes(rnd);
+                int coupDe1 = LanceUnDes();
+                int coupDe2 = LanceUnDes();
            
                 int sommeDes = coupDe1 + coupDe2;
                 MessageBox.Show("Vous avez eu: (" + coupDe1 + " + " + coupDe2 + ")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -201,9 +206,8 @@ namespace WpfApplication1.sources
 
         public void TenteSortirPrison()
         {
-            Random rnd = new Random();
-            int coupDe1 = LanceUnDes(rnd);
-            int coupDe2 = LanceUnDes(rnd);
+            int coupDe1 = LanceUnDes();
+            int coupDe2 = LanceUnDes();
             int somme = coupDe1 + coupDe2;
             MessageBox.Show("Joueur " + Nom + " tente de s'échapper.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
 
