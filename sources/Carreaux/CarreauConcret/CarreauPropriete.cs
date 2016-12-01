@@ -18,22 +18,19 @@ namespace WpfApplication1.sources.Carreaux
 
         // Ancienne implementation du loyer
         //public int Loyer { get; private set; }
-        public int NombreMaison { get; private set; }
+        public int NombreMaisons { get; private set; }
 
         // Droit de passage qui varie en fonction du nombre de maisons ou hotel
-        private long[] DroitPassage = new long[6] { 5, 10, 15, 20, 25, 30 }; // prix selon le nombre de maison
-        // Droit de passage selon nombre de maisons
-        // 1er index: 0 maison, 2ème index: 1 maison, 3ème....
-        public long[] PrixSelonMaisons { get; private set; }
+        private long[] DroitPassage;
 
         public Couleurs Couleur { get; private set; }
 
-
-        public CarreauPropriete(int positionCarreau, Couleurs Couleur) : base(positionCarreau)
+        public CarreauPropriete(int positionCarreau, Couleurs Couleur, long prixAchat, long[] droitPassage) : base(positionCarreau)
         {
-            PrixAchat = 50;      
-            NombreMaison = 0;
             this.Couleur = Couleur;
+            this.PrixAchat = prixAchat;
+            this.DroitPassage = droitPassage;
+            this.NombreMaisons = 0; 
         }
 
         public bool estLibre()
@@ -48,7 +45,7 @@ namespace WpfApplication1.sources.Carreaux
         
         public override long getPrixPassage()
         {
-            if (NombreMaison == 0)
+            if (NombreMaisons == 0)
             {
                 if (Proprietaire.estSeulProprietaireDeMemeCouleur(Couleur))
                     return 2 * DroitPassage[0];
@@ -57,7 +54,7 @@ namespace WpfApplication1.sources.Carreaux
             }
             else
             {
-                return DroitPassage[NombreMaison];
+                return DroitPassage[NombreMaisons];
             }
         }
     }

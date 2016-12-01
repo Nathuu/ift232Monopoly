@@ -42,6 +42,7 @@ namespace WpfApplication1.sources
 
         public int LanceDeuxDes()// le joueur lance les dés
         {
+            //return 3;
             return LanceUnDes() + LanceUnDes();
         }
         public int LanceUnDes()// un dé est lancé

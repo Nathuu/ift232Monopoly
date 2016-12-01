@@ -12,7 +12,7 @@ namespace WpfApplication1.sources.Carreaux
     /// </summary>  
     public abstract class CarreauAchetable : CarreauPayant
     {
-        public int PrixAchat { get; protected set; }
+        public long PrixAchat { get; protected set; }
         public bool estHypothequee { get; set; }
         public Joueur Proprietaire { get; set; }
         public CarreauAchetable(int position) : base(position)
