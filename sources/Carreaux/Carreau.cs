@@ -11,7 +11,6 @@ namespace WpfApplication1.sources
    public abstract class Carreau
     {
         public List<ICommande> actions;
-        public Point position { get; private set; }
         public int positionCarreau { get; private set; }   
               
         public Carreau(int positionCarreau)

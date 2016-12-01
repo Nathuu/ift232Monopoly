@@ -18,4 +18,8 @@
   <carte type="montant" montant="50" >
     La Banque vous verse un dividende de 50 $
   </carte>
+  <carte type="deplacement" passerGo="false">
+    <destinationPossible val="INDEX_ALLEZ_PRISON" />
+    Aller à la prison - Aller directement à la prison - Ne pas passer Go, ne pas recueillir 200 $
+  </carte>
 </CartesTest>

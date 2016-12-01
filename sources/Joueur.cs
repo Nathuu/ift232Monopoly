@@ -16,13 +16,14 @@ namespace WpfApplication1.sources
     {
         public Image Image { get; private set; }
         public long Argent { get;  set; }
-        public Position Position { get; private set; } // un objet de type Position
+        public Position Position { get; set; } // un objet de type Position
         public string Nom { get;  set; }
         public List<CarreauPropriete> Proprietes { get; private set; }
         public bool EstPrisonnier { get; set; }
         public bool ACarteSortirPrison { get; set; } // Il y a deux cartes de ce type
         public bool PeutPasserGo { get; set; }
         public int PositionCarreau { get; set; }
+        public int CompteurDeDouble { get; set; }
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
@@ -38,15 +39,11 @@ namespace WpfApplication1.sources
             this.EstPrisonnier = false;
             this.PeutPasserGo = true;
             this.Proprietes = new List<CarreauPropriete>();
+            this.CompteurDeDouble = 0;
         }
 
-        public int LanceDeuxDes()// le joueur lance les dés
+        public int LanceUnDes(Random random1)// un dé est lancé
         {
-            return LanceUnDes() + LanceUnDes();
-        }
-        public int LanceUnDes()// un dé est lancé
-        {
-            Random random1 = new Random(DateTime.Now.Millisecond);
             return random1.Next(1, 6);
         }
 
@@ -69,15 +66,39 @@ namespace WpfApplication1.sources
             }
             else
             {
-                int coupDe = LanceDeuxDes();
-                MessageBox.Show("Joueur " + Nom + " avance de " + coupDe + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                Avancer(coupDe);
+                Random rnd = new Random() ;
+                int coupDe1 = LanceUnDes(rnd);
+                int coupDe2 = LanceUnDes(rnd);
+           
+                int sommeDes = coupDe1 + coupDe2;
+                MessageBox.Show("Vous avez eu: (" + coupDe1 + " + " + coupDe2 + ")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                if (coupDe1 == coupDe2)
+                {
+                    CompteurDeDouble += 1;
+                    if(CompteurDeDouble == 3)
+                    {
+                        PositionCarreau = 30;
+                        Position = Carreau.conversionInt2Position(PositionCarreau);
+                        getCarreauActuel().execute();
+                    }
+                    else{
+                        Avancer(sommeDes);
+                        JouerSonTour();
+                    }
+                }
+                else
+                {
+                    CompteurDeDouble = 0;
+                    Avancer(sommeDes);
+                }
             }
         }
 
 
         public void Avancer(int nbCases)
         {
+            MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
             if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
                 Depot(Plateau.Instance.MontantCarreauDepart);
@@ -86,6 +107,9 @@ namespace WpfApplication1.sources
             this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
             Grid.SetRow(this.Image, this.Position.rangee + 1);
             Grid.SetColumn(this.Image, this.Position.colonne + 1);
+            getCarreauActuel().execute();
+
+
         }
 
         /// <summary>
@@ -177,12 +201,20 @@ namespace WpfApplication1.sources
 
         public void TenteSortirPrison()
         {
+            Random rnd = new Random();
+            int coupDe1 = LanceUnDes(rnd);
+            int coupDe2 = LanceUnDes(rnd);
+            int somme = coupDe1 + coupDe2;
             MessageBox.Show("Joueur " + Nom + " tente de s'échapper.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-            if (LanceUnDes() == LanceUnDes())
+
+            if (coupDe1 == coupDe2)
             {
                 EstPrisonnier = false;
                 MessageBox.Show("Joueur " + Nom + " est libre!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                Avancer(somme);               
             }
+            else
+                MessageBox.Show("Joueur " + Nom + " resteen prison! ("+ coupDe1+" + "+ coupDe2+")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

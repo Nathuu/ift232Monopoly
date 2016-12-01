@@ -80,7 +80,7 @@
     <Compile Include="sources\Carreaux\CarreauAchetable.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauPayant.cs" />
-    <Compile Include="sources\Carreaux\CarreauConcret\CarreauVaPrison.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauAllerEnPrison.cs" />
     <Compile Include="sources\Cartes\Carte.cs" />
     <Compile Include="sources\Commandes\Command.cs" />
     <Compile Include="sources\Commandes\CommandFactory.cs" />
@@ -103,7 +103,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sources\Carreaux\Carreau.cs" />
-    <Compile Include="sources\Carreaux\CarreauConcret\CarreauPrison.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauVisiterPrison.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauPropriete.cs" />
     <Compile Include="sources\Joueur.cs" />
     <Compile Include="MainWindow.xaml.cs">

@@ -11,7 +11,6 @@ namespace WpfApplication1.sources.Carreaux.Action
         public void execute(Carreau carreau)
         {
             CarreauPropriete carreauActuel = (CarreauPropriete)carreau;
-            Joueur joueurCourant = Plateau.Instance.JoueurCourant;
             if (!carreauActuel.estPossede())
                 acheterPropriete(carreauActuel);
             }

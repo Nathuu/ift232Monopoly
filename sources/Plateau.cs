@@ -30,8 +30,6 @@ namespace WpfApplication1.sources
 
         private Canvas canvas = new Canvas();
         private Point decalage = new Point(30, 30);
-        private int hauteur = 660;
-        private int largeur = 660;
 
         private const Int16 NB_CARREAUX_MAX = 40;
         public Int16 getNbCarreauxMax() { return NB_CARREAUX_MAX; }
@@ -53,7 +51,7 @@ namespace WpfApplication1.sources
             Joueurs = new List<Joueur>();
             JoueurCourant = null;
             initDictionnaire();
-            PaquetTest = new PaquetDeCarte("U:\\monopolyJo2\\ressources\\CartesTest.xml", dictionnaireCarreaux);
+            PaquetTest = new PaquetDeCarte(@"..\\..\\ressources\\CartesTest.xml", dictionnaireCarreaux);
             // SW Les carreauCarte doivent être initialisés après le paquetTest
             dictionnaireCarreaux.Add("INDEX_CARTE_TEST", new CarreauCarte(7, PaquetTest));
             dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE2", new CarreauCarte(22, PaquetTest));
@@ -80,8 +78,8 @@ namespace WpfApplication1.sources
         { 
             dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
             dictionnaireCarreaux.Add("INDEX_BELLEVILLE", new CarreauConcretTest(1));
-            dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauPrison(10));
-            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauVaPrison(30));
+            dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauVisiterPrison(10));
+            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
             dictionnaireCarreaux.Add("INDEX_TRAIN_1", new CarreauTrain(5));
             dictionnaireCarreaux.Add("INDEX_TRAIN_2", new CarreauTrain(15));
             dictionnaireCarreaux.Add("INDEX_TRAIN_3", new CarreauTrain(25));
@@ -92,7 +90,7 @@ namespace WpfApplication1.sources
             {
                 dictionnaireCarreaux.Add("INDEX_CONCRET_"+ i, new CarreauConcretTest(i));
             }
-            lireXMLProprietes();
+            //lireXMLProprietes();
         }
 
         /// <summary>
@@ -100,7 +98,7 @@ namespace WpfApplication1.sources
         /// </summary>
         private void lireXMLProprietes()
         {
-            XDocument doc = XDocument.Load("U:\\monopolyJo2\\ressources\\propriete.xml");
+            XDocument doc = XDocument.Load(@"..\\..\\ressources\\propriete.xml");
             XElement proprietes = doc.Root.Element("Proprietes");
             foreach (XElement titre in doc.Root.Elements("Titre"))
             {
@@ -114,7 +112,6 @@ namespace WpfApplication1.sources
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             JoueurCourant.JouerSonTour();
-            JoueurCourant.getCarreauActuel().execute();
         }
 
         /// <summary>
