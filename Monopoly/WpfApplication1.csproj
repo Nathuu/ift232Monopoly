@@ -61,6 +61,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="sources\Carreaux\Action\RamasserMontant.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauParkingGratuit.cs" />
     <Compile Include="sources\Carreaux\Action\PigerCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTaxe.cs" />

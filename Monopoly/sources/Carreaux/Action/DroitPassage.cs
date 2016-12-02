@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApplication1.sources.Carreaux.CarreauConcret;
 
 namespace WpfApplication1.sources.Carreaux.Action
 {
@@ -62,8 +63,9 @@ namespace WpfApplication1.sources.Carreaux.Action
             long droitPassage = carreau.getPrixPassage();
             if (joueurCourant.PeutPayer(droitPassage))
             {
-                joueurCourant.Payer(droitPassage);
-                
+                joueurCourant.Payer(droitPassage);               
+
+                (Plateau.Instance.dictionnaireCarreaux["INDEX_PARKING_GRATUIT"] as CarreauParkingGratuit).ajoutMontant(droitPassage);
             }
             else
             {

@@ -92,9 +92,9 @@ namespace WpfApplication1.sources
             dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
             dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauVisiterPrison(10));
             dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
-            
+            dictionnaireCarreaux.Add("INDEX_PARKING_GRATUIT", new CarreauParkingGratuit(20));
             // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
-            int[] carreauxConcrets = { 2,12,17,20,28,33 };
+            int[] carreauxConcrets = { 2,12,17,28,33 };
             foreach (int i in carreauxConcrets)
             {
                 dictionnaireCarreaux.Add("INDEX_CONCRET_"+ i, new CarreauConcretTest(i));
@@ -179,7 +179,7 @@ namespace WpfApplication1.sources
                 {
                     int i = Joueurs.FindIndex(x => x == JoueurCourant);
                     JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
-                } while (!JoueurCourant.EstVivant);
+                } while (!JoueurCourant.EstVivant);                            
             }
             JoueurCourant.JouerSonTour();
 
