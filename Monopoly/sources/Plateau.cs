@@ -18,6 +18,7 @@ namespace WpfApplication1.sources
     {
         private static Plateau instance;
         public List<Joueur> Joueurs { get; set; }
+        
         public Joueur JoueurCourant { get; set; }
         public PaquetDeCarte PaquetCarteChance { get; set; }
         public PaquetDeCarte PaquetCarteCommunaute { get; set; }
@@ -33,9 +34,12 @@ namespace WpfApplication1.sources
 
         private Random random1 = new Random(DateTime.Now.Millisecond);
 
+        public bool Rejouer { get; set; }
+
         public int LanceUnDes()// un dé est lancé
         {
             return random1.Next(1, 6);
+
         }
 
         private const Int16 NB_CARREAUX_MAX = 40;
@@ -63,6 +67,7 @@ namespace WpfApplication1.sources
             dictionnaireCarreaux.Add("INDEX_CARTE_TEST", new CarreauCarte(7, PaquetTest));
             dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE2", new CarreauCarte(22, PaquetTest));
             dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE3", new CarreauCarte(36, PaquetTest));
+            Rejouer = false;
         }
 
         public static Plateau Instance
@@ -148,11 +153,18 @@ namespace WpfApplication1.sources
         }
 
         //Redefini le joueur courant.
-        public void FinTour()
+        public void JouerTour()
         {
-            int i = Joueurs.FindIndex(x => x == JoueurCourant);
-            JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
-            //JoueurCourant.JouerSonTour();
+            if (!Rejouer)
+            {
+                do
+                {
+                    int i = Joueurs.FindIndex(x => x == JoueurCourant);
+                    JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
+                } while (!JoueurCourant.EstVivant);
+            }
+            JoueurCourant.JouerSonTour();
+
         }
 
         /// <summary>

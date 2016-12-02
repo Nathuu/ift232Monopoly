@@ -10,7 +10,7 @@ namespace WpfApplication1.sources
     {
         public override void execute()
         {
-            Plateau.Instance.FinTour();
+            //Plateau.Instance.FinTour();
         }
     }
 }

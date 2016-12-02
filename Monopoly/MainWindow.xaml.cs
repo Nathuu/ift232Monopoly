@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApplication1.sources;
+using WpfApplication1.sources.Carreaux;
 using WpfApplication1.sources.Commandes;
 using WpfApplication1.sources.Interface;
 
@@ -60,16 +61,16 @@ namespace WpfApplication1
             buttonLancerDes.storeCommand(cmdLancerDes);
             buttonLancerDes.Name = "btnLancerDes";
             buttonLancerDes.Content = "Lancer les dés";
-            buttonLancerDes.Click += buttonLancerDes.execute;
+            buttonLancerDes.Click += buttonLancerDes.execute; 
             panelButtonFinTour.Children.Add(buttonLancerDes);
 
             ButtonMonopoly buttonFinTour = new ButtonMonopoly();
             CommandFinTour cmdFinTour = commandFactory.CreateCommandFinTour();
-            buttonFinTour.storeCommand(cmdFinTour);
-            buttonFinTour.Name = "btnFinTour";
-            buttonFinTour.Content = "Fin de tour";
-            buttonFinTour.Click += buttonFinTour.execute;
-            panelButtonFinTour.Children.Add(buttonFinTour);
+            //buttonFinTour.storeCommand(cmdFinTour);
+            //buttonFinTour.Name = "btnFinTour";
+            //buttonFinTour.Content = "Fin de tour";
+            //buttonFinTour.Click += buttonFinTour.execute;
+            //panelButtonFinTour.Children.Add(buttonFinTour);
             
             //  menuItemFichier
             MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();
@@ -129,6 +130,17 @@ namespace WpfApplication1
 
         }
 
-      
+        private void Faillite_click(object sender, RoutedEventArgs e)
+        {
+            Plateau.Instance.JoueurCourant.FaitFaillite();
+        }
+        private void Hypotheque_click(object sender, RoutedEventArgs e)
+        {
+            int dep = int.Parse(txtBoxNomPropriete.Text);
+            CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
+            if (prop.ToString() == null)
+                 Plateau.Instance.JoueurCourant.hypothequer(prop);
+        }
+
     }
 }

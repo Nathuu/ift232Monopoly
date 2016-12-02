@@ -12,7 +12,7 @@ namespace WpfApplication1.sources.Carreaux.CarreauConcret
         public CarreauTrain(int positionCarreau, long prixAchat, long[] droitPassage) : base(positionCarreau)
         {
             this.PrixAchat = prixAchat;
-            this.DroitPassage = droitPassage;
+            this.DroitPassage = new long[4] { 25, 50, 75, 100 };
         }
 
         public override long getPrixPassage()
