@@ -50,6 +50,51 @@ namespace WpfApplication1.sources
             EstVivant = true;
         }
 
+        internal bool HypothequerSuivant()
+        {
+            string liste = "";
+            foreach (CarreauAchetable prop in Proprietes)
+            {
+                if (!Hypotheques.Contains(prop))
+                {
+                    liste += prop.positionCarreau + ", ";
+                }
+            }
+            if (liste == "")
+            {
+                return false;
+            }
+            else
+            {
+                int dep = int.Parse(Microsoft.VisualBasic.Interaction.InputBox("Quel propriete voulez-vous hypotheque?\n" + liste + "\n" + " $        Votre argent: " + Plateau.Instance.JoueurCourant.Argent + " $ ", "Hypotheque?"));
+                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
+                if (prop != null)
+                    if (Plateau.Instance.JoueurCourant.hypothequer(prop))
+                    {
+                        MessageBox.Show("Propriete: " + dep + "a ete hypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return true;
+                    }
+                    else
+                        MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                {
+                    MessageBox.Show("Propriete: " + dep + "N'EXISTE PAS!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return HypothequerSuivant();
+                }
+            }
+            return false;
+        }
+
+        private CarreauAchetable intACarreauAchetable(int dep)
+        {
+            foreach (CarreauAchetable prop in Proprietes)
+            {
+                if (prop.positionCarreau == dep)
+                    return prop;
+            }
+            return null;
+        }
+
         public int LanceDeuxDes(Random random1)// un dé est lancé
         {
             return LanceUnDes() + LanceUnDes();
@@ -182,7 +227,7 @@ namespace WpfApplication1.sources
             }
             return false;
         }
-        
+
 
         public bool Dehypothequer(CarreauAchetable prop)
         {
@@ -197,7 +242,7 @@ namespace WpfApplication1.sources
             return false;
         }
 
-        public CarreauAchetable intACarreauAchetable(int i)
+        public CarreauAchetable intIndexACarreauAchetable(int i)
         {
             int j = 0;
             foreach (CarreauAchetable prop in Proprietes)
@@ -214,6 +259,8 @@ namespace WpfApplication1.sources
             MessageBox.Show("Joueur " + Nom + " est GAME OVER!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             EstVivant = false;
             Plateau.Instance.Rejouer = false;
+            Plateau.Instance.JoueurRestant--;
+            Plateau.Instance.ChangementJoueur();
             return true;
         }
 
