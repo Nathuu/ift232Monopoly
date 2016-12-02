@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApplication1.sources.Carreaux.Action;
 
 namespace WpfApplication1.sources.Carreaux
 {
@@ -11,7 +12,9 @@ namespace WpfApplication1.sources.Carreaux
     /// </summary>
     public abstract class CarreauPayant:Carreau
     {
-        public CarreauPayant(int position) :base(position) { }
+        public CarreauPayant(int position) :base(position) {
+            actions.Add(new DroitPassage());
+        }
 
         public abstract long getPrixPassage();
     }

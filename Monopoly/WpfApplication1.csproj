@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="sources\Carreaux\Action\PigerCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauTaxe.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTrain.cs" />
     <Compile Include="sources\Cartes\CarteDeplacement.cs" />
     <Compile Include="sources\Cartes\CarteMontant.cs" />
@@ -157,6 +158,12 @@
     <Resource Include="ressources\logo.png" />
     <Resource Include="ressources\rouge.jpg" />
     <Resource Include="ressources\vert.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\taxe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ressources\taxe.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

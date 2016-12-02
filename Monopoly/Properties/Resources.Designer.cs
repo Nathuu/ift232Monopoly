@@ -207,5 +207,30 @@ namespace WpfApplication1.Properties {
                 return ResourceManager.GetString("services", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;Taxes&gt;  
+        ///  &lt;Titre&gt;
+        ///    &lt;IndexDictionnaire&gt;INDEX_IMPOT_REVENU&lt;/IndexDictionnaire&gt;
+        ///    &lt;Nom&gt;Impot sur le revenu&lt;/Nom&gt;
+        ///    &lt;Position&gt;4&lt;/Position&gt;    
+        ///    &lt;Valeur&gt;200&lt;/Valeur&gt;
+        ///  &lt;/Titre&gt;
+        ///  &lt;Titre&gt;
+        ///    &lt;IndexDictionnaire&gt;INDEX_TAXE_LUXE&lt;/IndexDictionnaire&gt;
+        ///    &lt;Nom&gt;Taxe de Luxe&lt;/Nom&gt;
+        ///    &lt;Position&gt;38&lt;/Position&gt;
+        ///    &lt;Valeur&gt;100&lt;/Valeur&gt;
+        ///  &lt;/Titre&gt;
+        ///&lt;/Taxes&gt;
+        ///
+        ///.
+        /// </summary>
+        internal static string taxe {
+            get {
+                return ResourceManager.GetString("taxe", resourceCulture);
+            }
+        }
     }
 }
