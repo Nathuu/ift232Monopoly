@@ -87,11 +87,7 @@ namespace WpfApplication1.sources
             dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
             dictionnaireCarreaux.Add("INDEX_PARKING_GRATUIT", new CarreauParkingGratuit(20));
             // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
-<<<<<<< HEAD
             int[] carreauxConcrets = { 2,17,33 };
-=======
-            int[] carreauxConcrets = { 2, 12, 17, 28, 33 };
->>>>>>> 919c033e1840fc1d32341aaaa10638e549882cca
             foreach (int i in carreauxConcrets)
             {
                 dictionnaireCarreaux.Add("INDEX_CONCRET_" + i, new CarreauConcretTest(i));
@@ -99,26 +95,7 @@ namespace WpfApplication1.sources
             lireXMLProprietes();
             lireXMLTrains();
             lireXMLTaxe();
-<<<<<<< HEAD
             lireXMLServices();
-=======
-        }
-
-        private void lireXMLTaxe()
-        {
-            XDocument doc = XDocument.Parse(Properties.Resources.taxe);
-            XElement proprietes = doc.Root.Element("Taxes");
-            //MessageBox.Show(doc.Root.Elements("Titre").Count()+"");
-            foreach (XElement titre in doc.Root.Elements("Titre"))
-            {
-                String indexDictionnaire = titre.Descendants("IndexDictionnaire").First().Value.ToString();
-                int position = Int32.Parse(titre.Descendants("Position").First().Value.ToString());
-                long droitPassage = Int32.Parse(titre.Element("Valeur").Value.ToString());
-                Carreau nouveauCarreau = new CarreauTaxe(position, droitPassage);
-                //MessageBox.Show(titre.Descendants("Couleur").First().Value.ToString() + " "+ nouveauCarreauCouleur); 
-                dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
-            }
->>>>>>> 919c033e1840fc1d32341aaaa10638e549882cca
         }
 
         /// <summary>
@@ -212,8 +189,6 @@ namespace WpfApplication1.sources
 
         }
 
-<<<<<<< HEAD
-=======
         public void ChangementJoueur()
         {
             do
@@ -223,57 +198,7 @@ namespace WpfApplication1.sources
             } while (!JoueurCourant.EstVivant);
         }
 
-        /// <summary>
-        /// détermine l'action à effectuer selon la case et la situation du joueur
-        /// </summary>
-        /// <returns>action effectuée</returns>
-        /*public bool actionSurCase()
-        {
-            Carreau caseActuelle = JoueurCourant.getCarreauActuel();
 
-            caseActuelle.execute(); 
-
-            
-            else if (caseActuelle.estCarreauAction())
-            {
-                CarreauAction caseAction = (CarreauAction)caseActuelle;
-                if (caseAction.estCarreauCarte())
-                {
-                    CarreauCarte caseCarte = (CarreauCarte)caseAction;
-                    Carte cartePigee = caseCarte.Piger();
-                    // Effectuer l'action de la carte
-                    cartePigee.Executer();
-                }
-                else if (caseAction.estCarreauVaEnPrison())
-                {
-                    JoueurCourant.PeutPasserGo = false;
-                    JoueurCourant.Avancer(20); // constante avec un nom significatif?
-                    JoueurCourant.PeutPasserGo = true;
-                    if (JoueurCourant.ACarteSortirPrison)
-                        JoueurCourant.ACarteSortirPrison = false; // CHOIX: utiliser carte ou pas?
-                    else
-                    {
-                        MessageBox.Show("Joueur " + JoueurCourant.Nom + " est emprisonné!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                        JoueurCourant.EstPrisonnier = true;
-                    }
-                }
-                else if (caseAction.estCarreauPrison())
-                {
-                    if(JoueurCourant.EstPrisonnier)
-                        JoueurCourant.TenteSortirPrison();
-                }
-
-                return true;
-
-            }
-            //Autres actions à déterminer
-            else
-            {
-                return false;
-            }
-        }*/
-
->>>>>>> 919c033e1840fc1d32341aaaa10638e549882cca
         //Les methodes sauvegarder partie et restorer devrais etre dans Joueurs. Puisqu'on creer nos fichier a partir de nos joueurs
         public void sauvegarderPartie()
         {
