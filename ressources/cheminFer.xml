@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheminFers>
 	<Titre>
+    <IndexDictionnaire>INDEX_READING_RR</IndexDictionnaire>
 		<Nom>Reading RR</Nom>
-		<Position>2</Position>
+		<Position>5</Position>
 		<Prix>200</Prix>
 		<Location>
-			<base>25</base>	
+      <unTrain>25</unTrain>
+      <deuxTrains>50</deuxTrains>
+      <troisTrains>75</troisTrains>
+      <quatreTrains>100</quatreTrains>
 		</Location>    
 	</Titre>
 	<Titre>
+    <IndexDictionnaire>INDEX_PENSYLVANNIA_RR</IndexDictionnaire>
 		<Nom>Pennsylvania RR</Nom>
-		<Position>2</Position>
+		<Position>15</Position>
 		<Prix>200</Prix>
 		<Location>
-			<base>25</base>	
+      <unTrain>25</unTrain>
+      <deuxTrains>50</deuxTrains>
+      <troisTrains>75</troisTrains>
+      <quatreTrains>100</quatreTrains>
 		</Location>    
 	</Titre>
 	<Titre>
+    <IndexDictionnaire>INDEX_BO_RR</IndexDictionnaire>
 		<Nom>B&amp;O RR</Nom>
-		<Position>2</Position>
+		<Position>25</Position>
 		<Prix>200</Prix>
 		<Location>
-			<base>25</base>	
+      <unTrain>25</unTrain>
+      <deuxTrains>50</deuxTrains>
+      <troisTrains>75</troisTrains>
+      <quatreTrains>100</quatreTrains>
 		</Location>    
 	</Titre>
 	<Titre>
+    <IndexDictionnaire>INDEX_SHORT_LINE</IndexDictionnaire>
 		<Nom>Short Line</Nom>
-		<Position>2</Position>
+		<Position>35</Position>
 		<Prix>200</Prix>
 		<Location>
-			<base>25</base>	
+      <unTrain>25</unTrain>
+      <deuxTrains>50</deuxTrains>
+      <troisTrains>75</troisTrains>
+      <quatreTrains>100</quatreTrains>
 		</Location>    
 	</Titre>
 </CheminFers>

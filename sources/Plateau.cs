@@ -31,6 +31,13 @@ namespace WpfApplication1.sources
         private Canvas canvas = new Canvas();
         private Point decalage = new Point(30, 30);
 
+        private Random random1 = new Random(DateTime.Now.Millisecond);
+
+        public int LanceUnDes()// un dé est lancé
+        {
+            return random1.Next(1, 6);
+        }
+
         private const Int16 NB_CARREAUX_MAX = 40;
         public Int16 getNbCarreauxMax() { return NB_CARREAUX_MAX; }
 
@@ -71,6 +78,7 @@ namespace WpfApplication1.sources
             private set { }
         }
 
+
         /// <summary>
         /// On va init tous les carreaux de chaque type
         /// </summary>
@@ -79,10 +87,6 @@ namespace WpfApplication1.sources
             dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
             dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauVisiterPrison(10));
             dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
-            dictionnaireCarreaux.Add("INDEX_TRAIN_1", new CarreauTrain(5));
-            dictionnaireCarreaux.Add("INDEX_TRAIN_2", new CarreauTrain(15));
-            dictionnaireCarreaux.Add("INDEX_TRAIN_3", new CarreauTrain(25));
-            dictionnaireCarreaux.Add("INDEX_TRAIN_4", new CarreauTrain(35));
             // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
             int[] carreauxConcrets = { 2,4,12,17,20,28,33,38 };
             foreach (int i in carreauxConcrets)
@@ -90,6 +94,7 @@ namespace WpfApplication1.sources
                 dictionnaireCarreaux.Add("INDEX_CONCRET_"+ i, new CarreauConcretTest(i));
             }
             lireXMLProprietes();
+            lireXMLTrains();
         }
 
         /// <summary>
@@ -119,20 +124,35 @@ namespace WpfApplication1.sources
             }
         }
 
+        private void lireXMLTrains()
+        {
+            XDocument doc = XDocument.Load(@"..\\..\\ressources\\cheminFer.xml");
+            XElement trains = doc.Root.Element("CheminFers");
+            foreach (XElement titre in doc.Root.Elements("Titre"))
+            {
+                String indexDictionnaire = titre.Descendants("IndexDictionnaire").First().Value.ToString();
+                int position = Int32.Parse(titre.Descendants("Position").First().Value.ToString());
+                
+                long prixAchat = Int32.Parse(titre.Descendants("Prix").First().Value.ToString());
+                
+                long droitPass1Train = Int32.Parse(titre.Element("Location").Descendants("unTrain").First().Value.ToString());
+                long droitPass2Trains = Int32.Parse(titre.Element("Location").Descendants("deuxTrains").First().Value.ToString());
+                long droitPass3Trains = Int32.Parse(titre.Element("Location").Descendants("troisTrains").First().Value.ToString());
+                long droitPass4Trains = Int32.Parse(titre.Element("Location").Descendants("quatreTrains").First().Value.ToString());
+                
+                long[] droitPassage = { droitPass1Train, droitPass2Trains, droitPass3Trains, droitPass4Trains};
+                Carreau nouveauTrain = new CarreauTrain(position, prixAchat, droitPassage);
+                //MessageBox.Show(titre.Descendants("Couleur").First().Value.ToString() + " "+ nouveauCarreauCouleur); 
+                dictionnaireCarreaux.Add(indexDictionnaire, nouveauTrain);
+            }
+        }
+
         //Redefini le joueur courant.
         public void FinTour()
         {
             int i = Joueurs.FindIndex(x => x == JoueurCourant);
             JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
-            JoueurCourant.JouerSonTour();
-            JoueurCourant.getCarreauActuel().execute();
-            /*MainWindow.GetWindow.
-            //trouver une facon d'afficher le joueur courant dans la window
-            namespace WpfApplication1
-            {
-                Main
-            }
-            */
+            //JoueurCourant.JouerSonTour();
         }
 
         /// <summary>

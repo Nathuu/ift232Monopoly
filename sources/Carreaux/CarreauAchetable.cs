@@ -15,14 +15,19 @@ namespace WpfApplication1.sources.Carreaux
         public long PrixAchat { get; protected set; }
         public bool estHypothequee { get; set; }
         public Joueur Proprietaire { get; set; }
+        // Droit de passage qui varie en fonction du nombre de maisons ou hotel
+        protected long[] DroitPassage;
         public CarreauAchetable(int position) : base(position)
         {
             estHypothequee = false;
-            actions.Add(new AchatPropriete());
+            actions.Add(new AchatCarreauAchetable());
             actions.Add(new DroitPassage());
         }
 
-        public abstract long getPrixAchat();
+        public long getPrixAchat()
+        {
+            return PrixAchat;
+        }
 
         public bool estPossede()
         {

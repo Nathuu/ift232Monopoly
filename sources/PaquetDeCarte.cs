@@ -28,7 +28,7 @@ namespace WpfApplication1.sources
                     List<Carreau> deplacementsPossibles = new List<Carreau>();
                     foreach (XElement deplacements in carte.Descendants("destinationPossible"))
                     {
-                        deplacementsPossibles.Add(dictionnaireCarreaux[deplacements.Attribute("val").Value]);
+                        //deplacementsPossibles.Add(dictionnaireCarreaux[deplacements.Attribute("val").Value]);
                     }
 
                     Paquet.Add(new CarteDeplacement(carte.Value, deplacementsPossibles));

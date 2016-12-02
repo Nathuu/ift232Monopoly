@@ -60,6 +60,7 @@
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTrain.cs" />
     <Compile Include="sources\Cartes\CarteDeplacement.cs" />
     <Compile Include="sources\Cartes\CarteMontant.cs" />
+    <Compile Include="sources\Commandes\CommandLancerDes.cs" />
     <Compile Include="sources\Interface\ButtonMonopoly.cs" />
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
@@ -72,7 +73,7 @@
     </Compile>
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauCarteChance.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauCarteCommunaute.cs" />
-    <Compile Include="sources\Carreaux\Action\AchatPropriete.cs" />
+    <Compile Include="sources\Carreaux\Action\AchatCarreauAchetable.cs" />
     <Compile Include="sources\Carreaux\Action\AllezEnPrison.cs" />
     <Compile Include="sources\Carreaux\Action\DroitPassage.cs" />
     <Compile Include="sources\Carreaux\Action\ICommande.cs" />

@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApplication1.sources.Carreaux;
+using WpfApplication1.sources.Carreaux.CarreauConcret;
 
 namespace WpfApplication1.sources
 {
@@ -18,12 +19,14 @@ namespace WpfApplication1.sources
         public long Argent { get;  set; }
         public Position Position { get; set; } // un objet de type Position
         public string Nom { get;  set; }
-        public List<CarreauPropriete> Proprietes { get; private set; }
+        public List<CarreauAchetable> Proprietes { get; private set; }
+
         public bool EstPrisonnier { get; set; }
         public bool ACarteSortirPrison { get; set; } // Il y a deux cartes de ce type
         public bool PeutPasserGo { get; set; }
         public int PositionCarreau { get; set; }
         public int CompteurDeDouble { get; set; }
+
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
@@ -38,7 +41,7 @@ namespace WpfApplication1.sources
             this.ACarteSortirPrison = false;
             this.EstPrisonnier = false;
             this.PeutPasserGo = true;
-            this.Proprietes = new List<CarreauPropriete>();
+            this.Proprietes = new List<CarreauAchetable>();
             this.CompteurDeDouble = 0;
         }
 
@@ -48,8 +51,7 @@ namespace WpfApplication1.sources
         }
         public int LanceUnDes()// un dé est lancé
         {
-            Random random1 = new Random(DateTime.Now.Millisecond);
-            return random1.Next(1, 6);
+            return Plateau.Instance.LanceUnDes();
         }
 
         internal void Sauvegarder(StreamWriter fichierSauvegarde)
@@ -71,7 +73,7 @@ namespace WpfApplication1.sources
             }
             else
             {
-                Random rnd = new Random() ;
+                                
                 int coupDe1 = LanceUnDes();
                 int coupDe2 = LanceUnDes();
            
@@ -127,11 +129,14 @@ namespace WpfApplication1.sources
             if (Argent > aPayer) return true;
             for (int index = 0; index < Proprietes.Count; ++index)
             {
-                if (Argent > aPayer) return true;
                 hypothequer(Proprietes[index]);
+                if (Argent > aPayer) return true;
             }
+
             return false;
         }
+
+
         /**************************************************************************
          * valeur d'entree : ce que le joueur doit payer
          * valeur Sortie : nouvelle argent de joueur
@@ -159,7 +164,7 @@ namespace WpfApplication1.sources
         /// </summary>
         /// <param name="propriete"></param>
         /// <returns>La propriete a bien ete hypothequee</returns>
-        private bool hypothequer(CarreauPropriete propriete)
+        private bool hypothequer(CarreauAchetable propriete)
         {
             if (!propriete.estHypothequee)
             {
@@ -219,6 +224,15 @@ namespace WpfApplication1.sources
             }
             else
                 MessageBox.Show("Joueur " + Nom + " resteen prison! ("+ coupDe1+" + "+ coupDe2+")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public int getNbTrains()
+        {
+            int nbTrains = 0;
+            foreach (CarreauAchetable c in Proprietes)
+                if (c is CarreauTrain)
+                    ++nbTrains;
+            return nbTrains;
         }
     }
 }

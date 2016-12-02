@@ -20,9 +20,6 @@ namespace WpfApplication1.sources.Carreaux
         //public int Loyer { get; private set; }
         public int NombreMaisons { get; private set; }
 
-        // Droit de passage qui varie en fonction du nombre de maisons ou hotel
-        private long[] DroitPassage;
-
         public Couleurs Couleur { get; private set; }
 
         public CarreauPropriete(int positionCarreau, Couleurs Couleur, long prixAchat, long[] droitPassage) : base(positionCarreau)
@@ -38,11 +35,6 @@ namespace WpfApplication1.sources.Carreaux
             return (Proprietaire == null);
         }
 
-        public override long getPrixAchat()
-        {
-            return PrixAchat;
-        }
-        
         public override long getPrixPassage()
         {
             if (NombreMaisons == 0)

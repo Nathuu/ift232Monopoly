@@ -55,6 +55,14 @@ namespace WpfApplication1
             Grid.SetColumnSpan(panelButtonFinTour, 2);
 
             // Possibilite d'implanter une factory de buttons pour simplifier le code ici
+            ButtonMonopoly buttonLancerDes = new ButtonMonopoly();
+            CommandLancerDes cmdLancerDes = commandFactory.CreateCommandLancerDes();
+            buttonLancerDes.storeCommand(cmdLancerDes);
+            buttonLancerDes.Name = "btnLancerDes";
+            buttonLancerDes.Content = "Lancer les dés";
+            buttonLancerDes.Click += buttonLancerDes.execute;
+            panelButtonFinTour.Children.Add(buttonLancerDes);
+
             ButtonMonopoly buttonFinTour = new ButtonMonopoly();
             CommandFinTour cmdFinTour = commandFactory.CreateCommandFinTour();
             buttonFinTour.storeCommand(cmdFinTour);
@@ -62,7 +70,7 @@ namespace WpfApplication1
             buttonFinTour.Content = "Fin de tour";
             buttonFinTour.Click += buttonFinTour.execute;
             panelButtonFinTour.Children.Add(buttonFinTour);
-
+            
             //  menuItemFichier
             MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();
             CommandSauvegarde cmdSauver = CommandFactory.Instance.CreateCommandSauvegarde();

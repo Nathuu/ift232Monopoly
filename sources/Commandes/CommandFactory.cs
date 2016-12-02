@@ -25,6 +25,11 @@ namespace WpfApplication1.sources
             }
         }
 
+        public CommandLancerDes CreateCommandLancerDes()
+        {
+            return new CommandLancerDes();
+        }
+
         public CommandFinTour CreateCommandFinTour()
         {
             return new CommandFinTour();

@@ -27,9 +27,12 @@ namespace WpfApplication1
             txtNom.Text = j.Nom;
             txtBudget.Text = j.Argent.ToString();
             string liste="";
-       
-            foreach (CarreauPropriete p in j.Proprietes)
-                liste+= p.positionCarreau.ToString();
+
+            foreach (CarreauAchetable p in j.Proprietes)
+            {
+                liste += p.positionCarreau.ToString();
+                liste += ", ";
+            }
             if (liste == "") liste = "Aucune";
             txtListProp.Text = liste;
 
