@@ -157,11 +157,22 @@ namespace WpfApplication1.sources
         {
             if (!Rejouer)
             {
+                Joueur ProchainJoueur;
                 do
                 {
                     int i = Joueurs.FindIndex(x => x == JoueurCourant);
-                    JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
-                } while (!JoueurCourant.EstVivant);
+                    ProchainJoueur = Joueurs[(i + 1) % Joueurs.Count];
+                } while (!ProchainJoueur.EstVivant);
+                if(ProchainJoueur == JoueurCourant)
+                {
+                    //Ceci est la fin du jeu
+                    MessageBox.Show("Joueur " + JoueurCourant.Nom + "GAAAAAAAGNNNNEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!! ", "FIN DE LA PARTIE :)", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    JoueurCourant = ProchainJoueur;
+                }
             }
             JoueurCourant.JouerSonTour();
 

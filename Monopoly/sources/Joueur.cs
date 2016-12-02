@@ -16,9 +16,9 @@ namespace WpfApplication1.sources
     public class Joueur
     {
         public Image Image { get; private set; }
-        public long Argent { get;  set; }
+        public long Argent { get; set; }
         public Position Position { get; set; } // un objet de type Position
-        public string Nom { get;  set; }
+        public string Nom { get; set; }
         public List<CarreauAchetable> Proprietes { get; private set; }
         public List<CarreauAchetable> Trains { get; private set; }
         public List<CarreauAchetable> Hypotheques { get; private set; }
@@ -78,10 +78,10 @@ namespace WpfApplication1.sources
             }
             else
             {
-                                
+
                 int coupDe1 = LanceUnDes();
                 int coupDe2 = LanceUnDes();
-           
+
                 int sommeDes = coupDe1 + coupDe2;
                 MessageBox.Show("Vous avez eu: (" + coupDe1 + " + " + coupDe2 + ")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -96,9 +96,9 @@ namespace WpfApplication1.sources
                         getCarreauActuel().execute();
                         Plateau.Instance.Rejouer = false;
                     }
-                    else{
+                    else {
                         Avancer(sommeDes);
-                        
+
                     }
                 }
                 else
@@ -135,11 +135,11 @@ namespace WpfApplication1.sources
         public bool PeutPayer(long aPayer)//on regarde si le joueur peut payer tel montant
         {
             if (Argent > aPayer) return true;
-            for (int index = 0; index < Proprietes.Count; ++index)
-            {
-                hypothequer(Proprietes[index]);
-                if (Argent > aPayer) return true;
-            }
+            //for (int index = 0; index < Proprietes.Count; ++index)
+            //{
+            //    hypothequer(Proprietes[index]);
+            //    if (Argent > aPayer) return true;
+            //}
 
             return false;
         }
@@ -177,8 +177,22 @@ namespace WpfApplication1.sources
             if (!Hypotheques.Contains(propriete) && Proprietes.Contains(propriete))
             {
                 Hypotheques.Add(propriete);
-                Depot(propriete.getPrixAchat() / 2);
+                Depot(propriete.PrixAchat / 2);
                 return true;
+            }
+            return false;
+        }
+        
+
+        public bool Dehypothequer(CarreauAchetable prop)
+        {
+            if (this.PeutPayer(prop.PrixAchat))
+            {
+                if (Hypotheques.Remove(prop))
+                {
+                    this.Argent -= prop.PrixAchat;
+                    return true;
+                }
             }
             return false;
         }
@@ -195,11 +209,12 @@ namespace WpfApplication1.sources
             return null;
         }
 
-        public void FaitFaillite()
+        public bool FaitFaillite()
         {
             MessageBox.Show("Joueur " + Nom + " est GAME OVER!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             EstVivant = false;
             Plateau.Instance.Rejouer = false;
+            return true;
         }
 
         /// <summary>
@@ -207,7 +222,7 @@ namespace WpfApplication1.sources
         /// <returns>
         /// retourne un carreau selon la position du jouer.
         /// </returns>
-        public Carreau getCarreauActuel() 
+        public Carreau getCarreauActuel()
         {
             return Plateau.Instance.getCarreau(PositionCarreau);
         }
@@ -241,10 +256,10 @@ namespace WpfApplication1.sources
             {
                 EstPrisonnier = false;
                 MessageBox.Show("Joueur " + Nom + " est libre!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                Avancer(somme);               
+                Avancer(somme);
             }
             else
-                MessageBox.Show("Joueur " + Nom + " resteen prison! ("+ coupDe1+" + "+ coupDe2+")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Joueur " + Nom + " resteen prison! (" + coupDe1 + " + " + coupDe2 + ")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public int getNbTrains()

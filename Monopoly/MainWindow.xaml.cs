@@ -25,7 +25,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         private CommandFactory commandFactory;
 
 
@@ -61,7 +61,7 @@ namespace WpfApplication1
             buttonLancerDes.storeCommand(cmdLancerDes);
             buttonLancerDes.Name = "btnLancerDes";
             buttonLancerDes.Content = "Lancer les dés";
-            buttonLancerDes.Click += buttonLancerDes.execute; 
+            buttonLancerDes.Click += buttonLancerDes.execute;
             panelButtonFinTour.Children.Add(buttonLancerDes);
 
             ButtonMonopoly buttonFinTour = new ButtonMonopoly();
@@ -71,7 +71,7 @@ namespace WpfApplication1
             //buttonFinTour.Content = "Fin de tour";
             //buttonFinTour.Click += buttonFinTour.execute;
             //panelButtonFinTour.Children.Add(buttonFinTour);
-            
+
             //  menuItemFichier
             MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();
             CommandSauvegarde cmdSauver = CommandFactory.Instance.CreateCommandSauvegarde();
@@ -98,7 +98,7 @@ namespace WpfApplication1
 
         private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
         {
-            InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x=> x.Nom == "Rouge"));
+            InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));
             infoWindow.ShowDialog();
         }
 
@@ -137,9 +137,39 @@ namespace WpfApplication1
         private void Hypotheque_click(object sender, RoutedEventArgs e)
         {
             int dep = int.Parse(txtBoxNomPropriete.Text);
-            CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
-            if (prop.ToString() == null)
-                 Plateau.Instance.JoueurCourant.hypothequer(prop);
+            if (Plateau.Instance.JoueurCourant.Proprietes.Count() >= dep)
+            {
+                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
+                if (prop.ToString() != null)
+                    if (Plateau.Instance.JoueurCourant.hypothequer(prop))
+                        MessageBox.Show("Propriete: " + dep + "a ete hypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                    else
+                        MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                    MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show("Ce n'est pas une propriete indexe a " + Plateau.Instance.JoueurCourant.Nom  , "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+
+        private void DeHypotheque_click(object sender, RoutedEventArgs e)
+        {
+            int dep = int.Parse(txtBoxNomPropriete2.Text);
+            if (Plateau.Instance.JoueurCourant.Proprietes.Count() >= dep)
+            {
+                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
+                if (prop.ToString() != null)
+                    if (Plateau.Instance.JoueurCourant.Dehypothequer(prop))
+                        MessageBox.Show("Propriete: " + dep + "a ete Dehypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                    else
+                        MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                    MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                MessageBox.Show("Ce n'est pas une propriete indexe a " + Plateau.Instance.JoueurCourant.Nom, "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
     }

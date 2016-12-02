@@ -26,7 +26,7 @@ namespace WpfApplication1.sources.Carreaux
         {
             this.Couleur = Couleur;
             this.PrixAchat = prixAchat;
-            this.DroitPassage = droitPassage;
+            this.DroitPassage = new long[5] { 25, 50, 75, 100, 125 };
             this.NombreMaisons = 0; 
         }
 

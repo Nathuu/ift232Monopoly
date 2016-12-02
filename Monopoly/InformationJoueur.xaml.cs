@@ -27,7 +27,7 @@ namespace WpfApplication1
             txtNom.Text = j.Nom;
             txtBudget.Text = j.Argent.ToString();
             string liste="";
-            int noProp = 0;
+            int noProp = 1;
             foreach (CarreauAchetable p in j.Proprietes)
             {
                 liste += noProp.ToString() + ": ";
@@ -39,6 +39,18 @@ namespace WpfApplication1
             txtListProp.Text = liste;
 
             txtJoueurVivant.Text = j.EstVivant.ToString();
+
+            liste = "";
+            int noPropHypo = 1;
+            foreach (CarreauAchetable p in j.Hypotheques)
+            {
+                liste += noPropHypo.ToString() + ": ";
+                liste += p.positionCarreau.ToString();
+                liste += ", \n";
+                noPropHypo++;
+            }
+            if (liste == "") liste = "Aucune";
+            txtListPropHypo.Text = liste;
 
 
         }

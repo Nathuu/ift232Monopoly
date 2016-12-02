@@ -23,7 +23,7 @@ namespace WpfApplication1.sources.Carreaux.Action
         /// Cette fonction sert a payer le droit de passage sur une propriété qui n'est pas la sienne
         /// Si le joueur n'a pas assez de tunes pour payer le propriétaire, il fait faillite
         /// </summary>
-        public void payerDroitPassage(CarreauAchetable carreau)
+        public bool payerDroitPassage(CarreauAchetable carreau)
         {
             Joueur carreauProprietaire = carreau.Proprietaire;
             Joueur joueurCourant = Plateau.Instance.JoueurCourant;
@@ -33,7 +33,7 @@ namespace WpfApplication1.sources.Carreaux.Action
             //enlever ce if de la fonction, ya pas d,affaire la
             if (joueurCourant != carreauProprietaire)
             {
-                if (! carreau.Proprietaire.Hypotheques.Contains(carreau))
+                if (! carreauProprietaire.Hypotheques.Contains(carreau))
                 {
                     if (joueurCourant.PeutPayer(droitPassage))
                     {
@@ -42,10 +42,27 @@ namespace WpfApplication1.sources.Carreaux.Action
                     }
                     else
                     {
-                        joueurCourant.FaitFaillite();
+                        foreach (CarreauAchetable prop in Plateau.Instance.JoueurCourant.Proprietes)
+                        {
+                            if (!Plateau.Instance.JoueurCourant.Hypotheques.Contains(prop))
+                            {
+                                Plateau.Instance.JoueurCourant.hypothequer(prop);
+                                if (payerDroitPassage(carreau))
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    //return false dans la vraie vie #Jo
+                                    Plateau.Instance.JoueurCourant.FaitFaillite();
+                                    
+                                }
+                            }
+                        }
                     }
                 }
             }
+            return false;
         }
     }
 }

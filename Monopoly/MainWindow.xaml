@@ -88,5 +88,12 @@
             <TextBlock Text="Numero de Propriété : "  FontSize="10" Margin="0,25,0,10" Width="71" HorizontalAlignment="Left" />
             <TextBox  x:Name="txtBoxNomPropriete" Text="" FontSize="24" Width="44"  Margin="0,25,0,10" />
         </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="17" Orientation="Horizontal" Margin="37,0,-37,28">
+            <Button x:Name="btnDeHypotheque" Content="DeHypothèque" FontSize="10"  Click="DeHypotheque_click"/>
+        </StackPanel>
+        <StackPanel  Grid.Row="5" Grid.Column="14" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Left" Width="237">
+            <TextBlock Text="Numero de Propriété  : "  FontSize="10" Margin="0,25,0,10" Width="71" HorizontalAlignment="Left" />
+            <TextBox  x:Name="txtBoxNomPropriete2" Text="" FontSize="24" Width="44"  Margin="0,25,0,10" />
+        </StackPanel>
     </Grid>
 </Window>

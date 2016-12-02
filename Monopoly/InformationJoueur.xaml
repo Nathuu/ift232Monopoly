@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="Information Joueur" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" >
+        Title="Information Joueur" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" Height="350" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height= "10" />
@@ -13,7 +13,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height= "10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height= "200" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -24,18 +25,21 @@
             <TextBlock Text="Nom du joueur : " FontSize="24" FontWeight="Bold" />
             <TextBlock Name="txtNom" Text="exRouge" FontSize="24" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Text="Argent : " FontSize="24" FontWeight="Bold"/>
             <TextBlock Name="txtBudget" Text="exArgent " FontSize="24"/>
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Text="Proprietes : " FontSize="24" FontWeight="Bold"/>
             <TextBlock Name="txtListProp" Text="exArgent " FontSize="24"/>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Proprietes hypothequées : " FontSize="24" FontWeight="Bold" Margin="0,0,0,-33"/>
+            <TextBlock Name="txtListPropHypo" Text="exArgent " FontSize="24" Margin="0,0,0,-33"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Text="Joueur vivant : " FontSize="24" FontWeight="Bold" />
             <TextBlock Name="txtJoueurVivant" Text="exVrai" FontSize="24" />
         </StackPanel>
-
     </Grid>
 </Window>

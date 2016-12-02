@@ -21,12 +21,6 @@ namespace WpfApplication1.sources.Carreaux
             actions.Add(new AchatCarreauAchetable());
             actions.Add(new DroitPassage());
         }
-
-        public long getPrixAchat()
-        {
-            return PrixAchat;
-        }
-
         public bool estPossede()
         {
             return (Proprietaire != null);
