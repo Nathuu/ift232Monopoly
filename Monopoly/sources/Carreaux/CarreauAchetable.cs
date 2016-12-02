@@ -18,8 +18,7 @@ namespace WpfApplication1.sources.Carreaux
         protected long[] DroitPassage;
         public CarreauAchetable(int position) : base(position)
         {
-            actions.Add(new AchatCarreauAchetable());
-            actions.Add(new DroitPassage());
+            actions.Add(new AchatCarreauAchetable());           
         }
         public bool estPossede()
         {

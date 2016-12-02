@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApplication1.sources.Carreaux.CarreauConcret;
 
 namespace WpfApplication1.sources.Carreaux.Action
 {
@@ -13,11 +14,19 @@ namespace WpfApplication1.sources.Carreaux.Action
         }
 
         public void execute(Carreau carreau)
-        {
-            CarreauAchetable carreauActuel = (CarreauAchetable)carreau;
-            if (carreauActuel.estPossede())
-                payerDroitPassage(carreauActuel);
-        }
+        {            
+            if (carreau is CarreauAchetable)
+            {
+                CarreauAchetable carreauActuel= (CarreauAchetable)carreau;
+                if (carreauActuel.estPossede())
+                    payerDroitPassage(carreauActuel);
+            }
+            else if (carreau is CarreauTaxe)
+            {
+                payerTaxe((CarreauPayant)carreau);
+            }
+             
+        }     
 
         /// <summary>
         /// Cette fonction sert a payer le droit de passage sur une propriété qui n'est pas la sienne
@@ -63,6 +72,22 @@ namespace WpfApplication1.sources.Carreaux.Action
                 }
             }
             return false;
+        }
+
+        private void payerTaxe(CarreauPayant carreau)
+        {
+            Joueur joueurCourant = Plateau.Instance.JoueurCourant;
+            long droitPassage = carreau.getPrixPassage();
+            if (joueurCourant.PeutPayer(droitPassage))
+            {
+                joueurCourant.Payer(droitPassage);               
+
+                (Plateau.Instance.dictionnaireCarreaux["INDEX_PARKING_GRATUIT"] as CarreauParkingGratuit).ajoutMontant(droitPassage);
+            }
+            else
+            {
+                joueurCourant.FaitFaillite();
+            }
         }
     }
 }

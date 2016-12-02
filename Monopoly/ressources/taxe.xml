@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Taxes>  
+  <Titre>
+    <IndexDictionnaire>INDEX_IMPOT_REVENU</IndexDictionnaire>
+    <Nom>Impot sur le revenu</Nom>
+    <Position>4</Position>    
+    <Valeur>200</Valeur>
+  </Titre>
+  <Titre>
+    <IndexDictionnaire>INDEX_TAXE_LUXE</IndexDictionnaire>
+    <Nom>Taxe de Luxe</Nom>
+    <Position>38</Position>
+    <Valeur>100</Valeur>
+  </Titre>
+</Taxes>
+
