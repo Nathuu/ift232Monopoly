@@ -42,6 +42,7 @@ namespace WpfApplication1
             Plateau.Instance.Joueurs.Add(new Joueur("Rouge", pionImageRouge));
             Plateau.Instance.Joueurs.Add(new Joueur("Bleu", pionImageBleu));
             Plateau.Instance.Joueurs.Add(new Joueur("Jaune", pionImageJaune));
+            Plateau.Instance.JoueurRestant = Plateau.Instance.Joueurs.Count();
             Plateau.Instance.JoueurCourant = Plateau.Instance.Joueurs.First();
         }
 
@@ -139,17 +140,14 @@ namespace WpfApplication1
             int dep = int.Parse(txtBoxNomPropriete.Text);
             if (Plateau.Instance.JoueurCourant.Proprietes.Count() >= dep)
             {
-                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
-                if (prop.ToString() != null)
-                    if (Plateau.Instance.JoueurCourant.hypothequer(prop))
-                        MessageBox.Show("Propriete: " + dep + "a ete hypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                    else
-                        MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intIndexACarreauAchetable(dep);
+                if (Plateau.Instance.JoueurCourant.hypothequer(prop))
+                    MessageBox.Show("Propriete: " + dep + "a ete hypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                     MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
-                MessageBox.Show("Ce n'est pas une propriete indexe a " + Plateau.Instance.JoueurCourant.Nom  , "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Ce n'est pas une propriete indexe a " + Plateau.Instance.JoueurCourant.Nom, "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
@@ -158,7 +156,7 @@ namespace WpfApplication1
             int dep = int.Parse(txtBoxNomPropriete2.Text);
             if (Plateau.Instance.JoueurCourant.Proprietes.Count() >= dep)
             {
-                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
+                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intIndexACarreauAchetable(dep);
                 if (prop.ToString() != null)
                     if (Plateau.Instance.JoueurCourant.Dehypothequer(prop))
                         MessageBox.Show("Propriete: " + dep + "a ete Dehypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using System.Windows;
+using System.Windows.Forms;
 using WpfApplication1.sources.Carreaux.CarreauConcret;
 
 namespace WpfApplication1.sources.Carreaux.Action
@@ -25,42 +28,38 @@ namespace WpfApplication1.sources.Carreaux.Action
                     acheterTrain(carreauActuel);
             }
         }
-
+        
         /// <summary>
         /// Verifie s'il a l'argent pour acheter un terrain, et l'achete automatiquement s'il peut
         /// </summary>
         /// <returns>La propriete a bien ete achetee</returns>
-        public bool acheterPropriete(CarreauPropriete carreau)
+        public void acheterPropriete(CarreauPropriete carreau)
         {
-//ACHAT OBLIGATOIRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Joueur joueurCourant = Plateau.Instance.JoueurCourant;
             if (joueurCourant.PeutPayer(carreau.PrixAchat))
             {
-                joueurCourant.Payer(carreau.PrixAchat); // le jouer peut decider d'acheter la case.
-                carreau.Proprietaire = joueurCourant;
-                joueurCourant.Proprietes.Add(carreau);
-                return true;
+                
+                if(DialogResult.Yes == System.Windows.Forms.MessageBox.Show("Voulez-vous achetez la proprieté?\n" + " Prix: " + carreau.PrixAchat +  " $        Votre argent: " + Plateau.Instance.JoueurCourant.Argent + " $ ", "Achat de la proprieté", MessageBoxButtons.YesNo, MessageBoxIcon.Question)){
+                    joueurCourant.Payer(carreau.PrixAchat); // le jouer peut decider d'acheter la case.
+                    carreau.Proprietaire = joueurCourant;
+                    joueurCourant.Proprietes.Add(carreau);
+                }
+                
             }
             else
             {
-                foreach(CarreauAchetable prop in Plateau.Instance.JoueurCourant.Proprietes)
+                if (DialogResult.Yes == System.Windows.Forms.MessageBox.Show("Voulez-vous hypothéquer pour acheter la proprieté?\n" + " Prix: " + carreau.PrixAchat + " $        Votre argent: " + Plateau.Instance.JoueurCourant.Argent + " $ ", "Achat de la proprieté", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
-                    if (!Plateau.Instance.JoueurCourant.Hypotheques.Contains(prop))
+                    if (Plateau.Instance.JoueurCourant.HypothequerSuivant())
                     {
-                        Plateau.Instance.JoueurCourant.hypothequer(prop);
-                        if (acheterPropriete(carreau))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            //return false dans la vraie vie #Jo
-                            Plateau.Instance.JoueurCourant.FaitFaillite();
-                        }
+                        acheterPropriete(carreau);
+                    }
+                    else
+                    {
+                        Plateau.Instance.JoueurCourant.FaitFaillite();
                     }
                 }
             }
-            return false;
         }
 
         public bool acheterTrain(CarreauTrain carreau)
