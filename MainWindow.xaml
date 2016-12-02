@@ -73,5 +73,20 @@
         <StackPanel Grid.Row="10" Grid.Column="14" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,28">
             <Button Name="btnDeplacer" Content="Deplacer" FontSize="10"  Margin="0" Click="Deplacer_click"/>
         </StackPanel>
+
+
+        <StackPanel  Grid.Row="1" Grid.Column="14" Grid.ColumnSpan="4" Orientation="Horizontal" Width="237">
+            <TextBlock Name="txtBlockChoix" Text="Voulez-vous hypothéquer ou faire faillite" FontSize="14" Margin="0,25,0,10" Width="130"  />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="14" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,28">
+            <Button x:Name="btnFaillite" Content="Faillite" FontSize="10"  Click="Faillite_click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="17" Orientation="Horizontal" Margin="37,0,-37,28">
+            <Button x:Name="btnHypotheque" Content="Hypothèque" FontSize="10"  Click="Hypotheque_click"/>
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.Column="14" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Left" Width="237">
+            <TextBlock Text="Numero de Propriété : "  FontSize="10" Margin="0,25,0,10" Width="71" HorizontalAlignment="Left" />
+            <TextBox  x:Name="txtBoxNomPropriete" Text="" FontSize="24" Width="44"  Margin="0,25,0,10" />
+        </StackPanel>
     </Grid>
 </Window>

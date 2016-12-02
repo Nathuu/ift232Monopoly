@@ -40,6 +40,10 @@ namespace WpfApplication1.sources.Carreaux.Action
                 joueurCourant.Proprietes.Add(carreau);
                 return true;
             }
+            else
+            {
+
+            }
             return false;
         }
 
@@ -50,7 +54,7 @@ namespace WpfApplication1.sources.Carreaux.Action
             {
                 joueurCourant.Payer(carreau.getPrixAchat()); // le jouer peut decider d'acheter la case.
                 carreau.Proprietaire = joueurCourant;
-                joueurCourant.Proprietes.Add(carreau);
+                joueurCourant.Trains.Add(carreau);
                 return true;
             }
             return false;

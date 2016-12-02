@@ -20,12 +20,14 @@ namespace WpfApplication1.sources
         public Position Position { get; set; } // un objet de type Position
         public string Nom { get;  set; }
         public List<CarreauAchetable> Proprietes { get; private set; }
-
+        public List<CarreauAchetable> Trains { get; private set; }
+        public List<CarreauAchetable> Hypotheques { get; private set; }
         public bool EstPrisonnier { get; set; }
         public bool ACarteSortirPrison { get; set; } // Il y a deux cartes de ce type
         public bool PeutPasserGo { get; set; }
         public int PositionCarreau { get; set; }
         public int CompteurDeDouble { get; set; }
+        public bool EstVivant { get; set; }
 
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
@@ -42,7 +44,10 @@ namespace WpfApplication1.sources
             this.EstPrisonnier = false;
             this.PeutPasserGo = true;
             this.Proprietes = new List<CarreauAchetable>();
+            this.Trains = new List<CarreauAchetable>();
+            this.Hypotheques = new List<CarreauAchetable>();
             this.CompteurDeDouble = 0;
+            EstVivant = true;
         }
 
         public int LanceDeuxDes(Random random1)// un dé est lancé
@@ -83,21 +88,24 @@ namespace WpfApplication1.sources
                 if (coupDe1 == coupDe2)
                 {
                     CompteurDeDouble += 1;
-                    if(CompteurDeDouble == 3)
+                    Plateau.Instance.Rejouer = true;
+                    if (CompteurDeDouble == 3)
                     {
                         PositionCarreau = 30;
                         Position = Carreau.conversionInt2Position(PositionCarreau);
                         getCarreauActuel().execute();
+                        Plateau.Instance.Rejouer = false;
                     }
                     else{
                         Avancer(sommeDes);
-                        JouerSonTour();
+                        
                     }
                 }
                 else
                 {
                     CompteurDeDouble = 0;
                     Avancer(sommeDes);
+                    Plateau.Instance.Rejouer = false;
                 }
             }
         }
@@ -164,21 +172,34 @@ namespace WpfApplication1.sources
         /// </summary>
         /// <param name="propriete"></param>
         /// <returns>La propriete a bien ete hypothequee</returns>
-        private bool hypothequer(CarreauAchetable propriete)
+        public bool hypothequer(CarreauAchetable propriete)
         {
-            if (!propriete.estHypothequee)
+            if (!Hypotheques.Contains(propriete) && Proprietes.Contains(propriete))
             {
-                propriete.estHypothequee = true;
+                Hypotheques.Add(propriete);
                 Depot(propriete.getPrixAchat() / 2);
                 return true;
             }
-            else
-                return false;
+            return false;
         }
 
-        public void faitFaillite()
+        public CarreauAchetable intACarreauAchetable(int i)
         {
-            Console.Write("Tu vas rotter du sang enculé!\n");
+            int j = 0;
+            foreach (CarreauAchetable prop in Proprietes)
+            {
+                j++;
+                if (j == i)
+                    return prop;
+            }
+            return null;
+        }
+
+        public void FaitFaillite()
+        {
+            MessageBox.Show("Joueur " + Nom + " est GAME OVER!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            EstVivant = false;
+            Plateau.Instance.Rejouer = false;
         }
 
         /// <summary>
@@ -195,9 +216,9 @@ namespace WpfApplication1.sources
         public bool estSeulProprietaireDeMemeCouleur(CarreauPropriete.Couleurs couleur)
         {
             int nbProprieteCouleur = 0;
-            foreach (CarreauPropriete propriete in Proprietes)
+            foreach (CarreauPropriete prop in Proprietes)
             {
-                if (couleur == propriete.Couleur)
+                if (couleur == prop.Couleur)
                 {
                     nbProprieteCouleur++;
                 }
@@ -229,9 +250,8 @@ namespace WpfApplication1.sources
         public int getNbTrains()
         {
             int nbTrains = 0;
-            foreach (CarreauAchetable c in Proprietes)
-                if (c is CarreauTrain)
-                    ++nbTrains;
+            foreach (CarreauTrain c in Trains)
+                ++nbTrains;
             return nbTrains;
         }
     }

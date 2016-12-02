@@ -33,7 +33,7 @@ namespace WpfApplication1.sources.Carreaux.Action
             //enlever ce if de la fonction, ya pas d,affaire la
             if (joueurCourant != carreauProprietaire)
             {
-                if (! carreau.estHypothequee)
+                if (! carreau.Proprietaire.Hypotheques.Contains(carreau))
                 {
                     if (joueurCourant.PeutPayer(droitPassage))
                     {
@@ -42,7 +42,7 @@ namespace WpfApplication1.sources.Carreaux.Action
                     }
                     else
                     {
-                        joueurCourant.faitFaillite();
+                        joueurCourant.FaitFaillite();
                     }
                 }
             }

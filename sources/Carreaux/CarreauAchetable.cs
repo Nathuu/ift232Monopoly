@@ -13,13 +13,11 @@ namespace WpfApplication1.sources.Carreaux
     public abstract class CarreauAchetable : CarreauPayant
     {
         public long PrixAchat { get; protected set; }
-        public bool estHypothequee { get; set; }
         public Joueur Proprietaire { get; set; }
         // Droit de passage qui varie en fonction du nombre de maisons ou hotel
         protected long[] DroitPassage;
         public CarreauAchetable(int position) : base(position)
         {
-            estHypothequee = false;
             actions.Add(new AchatCarreauAchetable());
             actions.Add(new DroitPassage());
         }
@@ -33,5 +31,6 @@ namespace WpfApplication1.sources.Carreaux
         {
             return (Proprietaire != null);
         }
+        
     }
 }
