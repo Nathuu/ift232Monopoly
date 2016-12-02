@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1.csproj", "{EDD62A79-2E94-40E8-B021-94608FC27630}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonopolyTest", "..\MonopolyTest\MonopolyTest.csproj", "{0874317A-518C-4FD9-8787-2A0B11D3659E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EDD62A79-2E94-40E8-B021-94608FC27630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDD62A79-2E94-40E8-B021-94608FC27630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDD62A79-2E94-40E8-B021-94608FC27630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0874317A-518C-4FD9-8787-2A0B11D3659E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0874317A-518C-4FD9-8787-2A0B11D3659E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0874317A-518C-4FD9-8787-2A0B11D3659E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0874317A-518C-4FD9-8787-2A0B11D3659E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

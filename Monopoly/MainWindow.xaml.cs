@@ -32,7 +32,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             this.DataContext = this;
-            
+
             commandFactory = CommandFactory.Instance;
             InitButtons();
 
@@ -128,5 +128,7 @@ namespace WpfApplication1
         {
 
         }
+
+      
     }
 }

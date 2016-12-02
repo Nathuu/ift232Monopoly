@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="sources\Carreaux\Action\PigerCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTrain.cs" />
@@ -125,11 +131,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -137,8 +138,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -150,27 +151,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ressources\vert.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ressources\board.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="ressources\bleu.jpg" />
+    <Resource Include="ressources\board.jpg" />
     <Resource Include="ressources\jaune.jpg" />
+    <Resource Include="ressources\logo.png" />
     <Resource Include="ressources\rouge.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ressources\carteCommunaute.xml" />
-    <Resource Include="ressources\cartesChances.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ressources\cheminFer.xml" />
-    <Resource Include="ressources\propriete.xml" />
-    <Resource Include="ressources\services.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ressources\CartesTest.xml" />
+    <Resource Include="ressources\vert.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

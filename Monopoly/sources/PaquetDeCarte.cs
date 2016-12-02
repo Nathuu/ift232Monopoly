@@ -18,7 +18,7 @@ namespace WpfApplication1.sources
         {
             Paquet = new List<Carte>();
 
-            XDocument doc = XDocument.Load(fsPaquetCartes);
+            XDocument doc = XDocument.Parse(fsPaquetCartes);
 
             IEnumerable<XElement> cartes = doc.Root.Elements();
             foreach (XElement carte in cartes)

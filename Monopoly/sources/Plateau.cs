@@ -57,8 +57,8 @@ namespace WpfApplication1.sources
         {
             Joueurs = new List<Joueur>();
             JoueurCourant = null;
-            initDictionnaire();
-            PaquetTest = new PaquetDeCarte(@"..\\..\\ressources\\CartesTest.xml", dictionnaireCarreaux);
+            initDictionnaire();            
+            PaquetTest = new PaquetDeCarte(Properties.Resources.CartesTest, dictionnaireCarreaux);
             // SW Les carreauCarte doivent être initialisés après le paquetTest
             dictionnaireCarreaux.Add("INDEX_CARTE_TEST", new CarreauCarte(7, PaquetTest));
             dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE2", new CarreauCarte(22, PaquetTest));
@@ -102,7 +102,7 @@ namespace WpfApplication1.sources
         /// </summary>
         private void lireXMLProprietes()
         {
-            XDocument doc = XDocument.Load(@"..\\..\\ressources\\propriete.xml");
+            XDocument doc = XDocument.Parse(Properties.Resources.propriete);            
             XElement proprietes = doc.Root.Element("Proprietes");
             //MessageBox.Show(doc.Root.Elements("Titre").Count()+"");
             foreach (XElement titre in doc.Root.Elements("Titre"))
@@ -125,8 +125,8 @@ namespace WpfApplication1.sources
         }
 
         private void lireXMLTrains()
-        {
-            XDocument doc = XDocument.Load(@"..\\..\\ressources\\cheminFer.xml");
+        {                      
+            XDocument doc = XDocument.Parse(Properties.Resources.cheminFer);
             XElement trains = doc.Root.Element("CheminFers");
             foreach (XElement titre in doc.Root.Elements("Titre"))
             {
