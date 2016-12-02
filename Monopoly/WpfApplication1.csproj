@@ -65,6 +65,7 @@
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauParkingGratuit.cs" />
     <Compile Include="sources\Carreaux\Action\PigerCarte.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauGo.cs" />
+    <Compile Include="sources\Carreaux\CarreauConcret\CarreauService.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTaxe.cs" />
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTrain.cs" />
     <Compile Include="sources\Cartes\CarteDeplacement.cs" />

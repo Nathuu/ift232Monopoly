@@ -94,7 +94,7 @@ namespace WpfApplication1.sources
             dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
             dictionnaireCarreaux.Add("INDEX_PARKING_GRATUIT", new CarreauParkingGratuit(20));
             // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
-            int[] carreauxConcrets = { 2,12,17,28,33 };
+            int[] carreauxConcrets = { 2,17,33 };
             foreach (int i in carreauxConcrets)
             {
                 dictionnaireCarreaux.Add("INDEX_CONCRET_"+ i, new CarreauConcretTest(i));
@@ -102,22 +102,7 @@ namespace WpfApplication1.sources
             lireXMLProprietes();
             lireXMLTrains();
             lireXMLTaxe();
-        }
-
-        private void lireXMLTaxe()
-        {
-            XDocument doc = XDocument.Parse(Properties.Resources.taxe);
-            XElement proprietes = doc.Root.Element("Taxes");
-            //MessageBox.Show(doc.Root.Elements("Titre").Count()+"");
-            foreach (XElement titre in doc.Root.Elements("Titre"))
-            {
-                String indexDictionnaire = titre.Descendants("IndexDictionnaire").First().Value.ToString();
-                int position = Int32.Parse(titre.Descendants("Position").First().Value.ToString());
-                long droitPassage = Int32.Parse(titre.Element("Valeur").Value.ToString());          
-                Carreau nouveauCarreau = new CarreauTaxe(position, droitPassage);
-                //MessageBox.Show(titre.Descendants("Couleur").First().Value.ToString() + " "+ nouveauCarreauCouleur); 
-                dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
-            }
+            lireXMLServices();
         }
 
         /// <summary>
@@ -167,6 +152,36 @@ namespace WpfApplication1.sources
                 Carreau nouveauTrain = new CarreauTrain(position, prixAchat, droitPassage);
                 //MessageBox.Show(titre.Descendants("Couleur").First().Value.ToString() + " "+ nouveauCarreauCouleur); 
                 dictionnaireCarreaux.Add(indexDictionnaire, nouveauTrain);
+            }
+        }
+
+        private void lireXMLTaxe()
+        {
+            XDocument doc = XDocument.Parse(Properties.Resources.taxe);
+            XElement proprietes = doc.Root.Element("Taxes");
+            //MessageBox.Show(doc.Root.Elements("Titre").Count()+"");
+            foreach (XElement titre in doc.Root.Elements("Titre"))
+            {
+                String indexDictionnaire = titre.Descendants("IndexDictionnaire").First().Value.ToString();
+                int position = Int32.Parse(titre.Descendants("Position").First().Value.ToString());
+                long droitPassage = Int32.Parse(titre.Element("Valeur").Value.ToString());
+                Carreau nouveauCarreau = new CarreauTaxe(position, droitPassage);
+                //MessageBox.Show(titre.Descendants("Couleur").First().Value.ToString() + " "+ nouveauCarreauCouleur); 
+                dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
+            }
+        }
+
+        private void lireXMLServices()
+        {
+            XDocument doc = XDocument.Parse(Properties.Resources.services);
+            XElement trains = doc.Root.Element("Services");
+            foreach (XElement titre in doc.Root.Elements("Titre"))
+            {
+                String indexDictionnaire = titre.Descendants("IndexDictionnaire").First().Value.ToString();
+                int position = Int32.Parse(titre.Descendants("Position").First().Value.ToString());
+                long prixAchat = Int32.Parse(titre.Element("Prix").Value.ToString());
+                Carreau nouveauCarreau = new CarreauService(position, prixAchat);
+                dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
             }
         }
 

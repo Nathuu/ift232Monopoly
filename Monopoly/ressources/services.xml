@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Service>
 	<Titre>
+    <IndexDictionnaire>INDEX_COMPAGNIE_ELECTRICITE</IndexDictionnaire>
 		<Nom>Electric Company</Nom>
-		<Position>2</Position>
+		<Position>12</Position>
 		<Prix>150</Prix>
 	</Titre>
 
 	<Titre>
+    <IndexDictionnaire>INDEX_COMPAGNIE_EAUX</IndexDictionnaire>
 		<Nom>Water Works</Nom>
-		<Position>2</Position>
+		<Position>28</Position>
 		<Prix>150</Prix>
 	</Titre>
 </Service>

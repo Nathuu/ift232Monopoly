@@ -245,6 +245,16 @@ namespace WpfApplication1.sources
                 return nbProprieteCouleur == 3;
         }
 
+        public bool estSeulProprietaireServices()
+        {
+            int nbServices = 0;
+            foreach (CarreauAchetable prop in Proprietes)
+            {
+                if (prop is CarreauService) ++nbServices;
+            }
+            return nbServices == 2;
+        }
+
         public void TenteSortirPrison()
         {
             int coupDe1 = LanceUnDes();
