@@ -11,9 +11,9 @@ namespace WpfApplication1.sources.Carreaux.Action
     {
         public void execute(Carreau carreau)
         {
-            MessageBox.Show("Vous avez pige une carte!");
             CarreauCarte caseCarte = (CarreauCarte)carreau;
             Carte cartePigee = caseCarte.PaquetCarte.Piger();
+            MessageBox.Show("Vous avez pige une carte!\n\n" + cartePigee.Description);
             // Effectuer l'action de la carte
             cartePigee.Executer();
         }

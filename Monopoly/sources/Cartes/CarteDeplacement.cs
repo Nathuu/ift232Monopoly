@@ -11,9 +11,10 @@ namespace WpfApplication1.sources.Cartes
         public List<Carreau> DestinationsPossibles { get; protected set; } // Une seule carte requiert un deplacement numerique.
         public bool PasserGo { get; protected set; }
 
-        public CarteDeplacement(String desc, List<Carreau> destinationsPossibles) : base(desc)
+        public CarteDeplacement(String desc, List<Carreau> destinationsPossibles, bool passerGo) : base(desc)
         {
             this.DestinationsPossibles = destinationsPossibles;
+            this.PasserGo = passerGo;
         }
 
         private int CalculerDestination()
@@ -25,18 +26,23 @@ namespace WpfApplication1.sources.Cartes
             }
             //Retourner la position Carreau minimale
 
-            int min = Plateau.Instance.getNbCarreauxMax();
-            foreach (Carreau dest in DestinationsPossibles)
-            {
-                if (min > dest.positionCarreau)
-                    min = dest.positionCarreau;
-            }
-            return min;
+            //int min = Plateau.Instance.getNbCarreauxMax();
+            //foreach (Carreau dest in DestinationsPossibles)
+            //{
+            //    if (min > dest.positionCarreau)
+            //        min = dest.positionCarreau;
+            //}
+            return DestinationsPossibles.Min<Carreau>().positionCarreau;
         }
 
         public override void Executer()
         {
-            Plateau.Instance.JoueurCourant.Avancer(CalculerDestination() - Plateau.Instance.JoueurCourant.PositionCarreau);
+            int deplacement = CalculerDestination() - Plateau.Instance.JoueurCourant.PositionCarreau;
+            if (deplacement < 0)
+                deplacement += 40;
+            Plateau.Instance.JoueurCourant.PeutPasserGo = PasserGo;
+            Plateau.Instance.JoueurCourant.Avancer(deplacement);
+            Plateau.Instance.JoueurCourant.PeutPasserGo = true;
         }
     }
 }

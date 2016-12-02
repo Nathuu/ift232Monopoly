@@ -13,6 +13,8 @@ namespace WpfApplication1.sources
     public class PaquetDeCarte
     {
         private List<Carte> Paquet;
+        private int nbCartesPigees = 0;
+        private Random rand = new Random(DateTime.Now.Millisecond);
 
         public PaquetDeCarte(string fsPaquetCartes, Dictionary<String, Carreau> dictionnaireCarreaux)
         {
@@ -28,10 +30,10 @@ namespace WpfApplication1.sources
                     List<Carreau> deplacementsPossibles = new List<Carreau>();
                     foreach (XElement deplacements in carte.Descendants("destinationPossible"))
                     {
-                        //deplacementsPossibles.Add(dictionnaireCarreaux[deplacements.Attribute("val").Value]);
+                        deplacementsPossibles.Add(dictionnaireCarreaux[deplacements.Attribute("val").Value]);
                     }
 
-                    Paquet.Add(new CarteDeplacement(carte.Value, deplacementsPossibles));
+                    Paquet.Add(new CarteDeplacement(carte.Value, deplacementsPossibles, bool.Parse(carte.Attribute("passerGo").Value)));
                 }
             }
         }
@@ -39,10 +41,12 @@ namespace WpfApplication1.sources
         public Carte Piger()
         {
             // Pige la 1ere carte, puis la met a la fin du paquet
-            Carte cartePigee = Paquet[0];
-            for (int i = 1; i < Paquet.Count; i++)
-                Paquet[i - 1] = Paquet[i];
-            Paquet[(Paquet.Count - 1)] = cartePigee;
+            int index = rand.Next(0, Paquet.Count - 1 - nbCartesPigees);
+            Carte cartePigee = Paquet[index];
+            Paquet.RemoveAt(index);
+            Paquet.Add(cartePigee);
+            if (++nbCartesPigees == Paquet.Count - 1)
+                nbCartesPigees = 0;
             return cartePigee;
         }
     }

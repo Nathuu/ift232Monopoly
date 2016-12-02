@@ -196,56 +196,6 @@ namespace WpfApplication1.sources
 
         }
 
-        /// <summary>
-        /// détermine l'action à effectuer selon la case et la situation du joueur
-        /// </summary>
-        /// <returns>action effectuée</returns>
-        /*public bool actionSurCase()
-        {
-            Carreau caseActuelle = JoueurCourant.getCarreauActuel();
-
-            caseActuelle.execute(); 
-
-            
-            else if (caseActuelle.estCarreauAction())
-            {
-                CarreauAction caseAction = (CarreauAction)caseActuelle;
-                if (caseAction.estCarreauCarte())
-                {
-                    CarreauCarte caseCarte = (CarreauCarte)caseAction;
-                    Carte cartePigee = caseCarte.Piger();
-                    // Effectuer l'action de la carte
-                    cartePigee.Executer();
-                }
-                else if (caseAction.estCarreauVaEnPrison())
-                {
-                    JoueurCourant.PeutPasserGo = false;
-                    JoueurCourant.Avancer(20); // constante avec un nom significatif?
-                    JoueurCourant.PeutPasserGo = true;
-                    if (JoueurCourant.ACarteSortirPrison)
-                        JoueurCourant.ACarteSortirPrison = false; // CHOIX: utiliser carte ou pas?
-                    else
-                    {
-                        MessageBox.Show("Joueur " + JoueurCourant.Nom + " est emprisonné!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                        JoueurCourant.EstPrisonnier = true;
-                    }
-                }
-                else if (caseAction.estCarreauPrison())
-                {
-                    if(JoueurCourant.EstPrisonnier)
-                        JoueurCourant.TenteSortirPrison();
-                }
-
-                return true;
-
-            }
-            //Autres actions à déterminer
-            else
-            {
-                return false;
-            }
-        }*/
-
         //Les methodes sauvegarder partie et restorer devrais etre dans Joueurs. Puisqu'on creer nos fichier a partir de nos joueurs
         public void sauvegarderPartie()
         {
