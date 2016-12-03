@@ -16,7 +16,7 @@ namespace WpfApplication1.sources
         private int nbCartesPigees = 0;
         private Random rand = new Random(DateTime.Now.Millisecond);
 
-        public PaquetDeCarte(string fsPaquetCartes, Dictionary<String, Carreau> dictionnaireCarreaux)
+        public PaquetDeCarte(string fsPaquetCartes, Dictionary<string, Carreau> dictionnaireCarreaux)
         {
             Paquet = new List<Carte>();
 

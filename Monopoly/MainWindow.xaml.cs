@@ -85,20 +85,10 @@ namespace WpfApplication1
             menuItemFichier.Items.Add(menuSauvegarde);
         }
 
-        private void Deplacer_click(object sender, RoutedEventArgs e)
-        {
-            int dep = int.Parse(txtBoxNbDeplacement.Text);
-            Plateau.Instance.JoueurCourant.Avancer(dep);
-        }
         private void Restaurer_Click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.restaurerPartie(); // il faudrait demander le nom du fichier le mettre en parametre !!!JN & SARA!!!
         }
-        private void menuItemFichier_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
         {
             InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));
@@ -133,38 +123,14 @@ namespace WpfApplication1
             infoWindow.ShowDialog();
         }
 
-        private void txtBoxNbDeplacement_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        public void voirSiCaMarche()
-        {
-
-        }
-
         private void Faillite_click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.JoueurCourant.FaitFaillite();
         }
-        private void Hypotheque_click(object sender, RoutedEventArgs e)
-        {
-            Plateau.Instance.JoueurCourant.Hypothequer(Plateau.Instance.JoueurCourant.Proprietes.FirstOrDefault(x => x.positionCarreau == int.Parse(txtBoxNomPropriete.Text)));
-        }
-
-        private void DeHypotheque_click(object sender, RoutedEventArgs e)
-        {
-            Plateau.Instance.JoueurCourant.Dehypothequer(Plateau.Instance.JoueurCourant.Proprietes.FirstOrDefault(x => x.positionCarreau == int.Parse(txtBoxNomPropriete.Text)));
-        }
-
         private void menuTest_Click(object sender, RoutedEventArgs e)
         {
             TestApplication test = new TestApplication();
             test.ShowDialog();
-        }
-        public void updateTxtBlockJoueurCourant (Joueur j)
-        {
-            txtBlockJoueurCourant.Text = "Au tour de " + j.Nom + " a jouer";       
         }
     }
 }

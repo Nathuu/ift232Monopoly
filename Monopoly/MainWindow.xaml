@@ -45,7 +45,7 @@
         <Menu Name="MainMenu"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12">
                 <!--Le menu item sauvegarde est initialise dans MainWindow.xaml.cs-->
                 <!--Faire la meme chose pour Restaurer-->
-                <MenuItem Name="menuItemFichier" Header="Fichier" Click="menuItemFichier_Click">
+                <MenuItem Name="menuItemFichier" Header="Fichier">
                 <MenuItem Name="menuItemRestore" Header="Restaurer"  Click="Restaurer_Click"/>
             </MenuItem>
             <MenuItem Name="menuItemStatistique" Header="Statistique" >

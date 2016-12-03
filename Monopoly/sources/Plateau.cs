@@ -28,7 +28,7 @@ namespace WpfApplication1.sources
         private Point decalage = new Point(30, 30);
         private Random random1 = new Random(DateTime.Now.Millisecond);
         public bool Rejouer { get; set; }
-        public int JoueurRestant { get; set;}
+        public int JoueurRestant { get; set; }
         public int LanceUnDes()// un dé est lancé
         {
             return random1.Next(1, 6);
@@ -53,12 +53,8 @@ namespace WpfApplication1.sources
         {
             Joueurs = new List<Joueur>();
             JoueurCourant = null;
+            //initialisation de tous les carreaux
             initDictionnaire();
-            PaquetTest = new PaquetDeCarte(Properties.Resources.CartesTest, dictionnaireCarreaux);
-            // SW Les carreauCarte doivent être initialisés après le paquetTest
-            dictionnaireCarreaux.Add("INDEX_CARTE_TEST", new CarreauCarte(7, PaquetTest));
-            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE2", new CarreauCarte(22, PaquetTest));
-            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE3", new CarreauCarte(36, PaquetTest));
             Rejouer = false;
             JoueurRestant = Joueurs.Count();
         }
@@ -82,24 +78,43 @@ namespace WpfApplication1.sources
         /// </summary>
         private void initDictionnaire()
         {
-            dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
-            dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauVisiterPrison(10));
-            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
-            dictionnaireCarreaux.Add("INDEX_PARKING_GRATUIT", new CarreauParkingGratuit(20));
-            // Ajout de cases concrets tests (sera éventuellement remplacé par les vraies cases)
-            int[] carreauxConcrets = { 2,17,33 };
-            foreach (int i in carreauxConcrets)
-            {
-                dictionnaireCarreaux.Add("INDEX_CONCRET_" + i, new CarreauConcretTest(i));
-            }
+            //on initialise tous les carreaux 
+            init4Coins();        
             lireXMLProprietes();
             lireXMLTrains();
             lireXMLTaxe();
             lireXMLServices();
+            //Les carreauCarte doivent être initialisés après le paquetTest car lors de la lecture 
+            //des cartes on assigne des déplacement  à des index connus du dictionnaire.
+            //ces index doivent être créé avant
+            PaquetTest = new PaquetDeCarte(Properties.Resources.CartesTest, dictionnaireCarreaux);
+            initCarreauCarte();
+
+        }
+        public void init4Coins()
+        {
+            // ON INDEX LES 4 COINS
+            dictionnaireCarreaux.Add("INDEX_GO", new CarreauGo(0));
+            dictionnaireCarreaux.Add("INDEX_PRISON", new CarreauVisiterPrison(10));
+            dictionnaireCarreaux.Add("INDEX_ALLEZ_PRISON", new CarreauAllerEnPrison(30));
+            dictionnaireCarreaux.Add("INDEX_PARKING_GRATUIT", new CarreauParkingGratuit(20));
+
+        }
+        public void initCarreauCarte()
+        {
+            //on index les carreaux de cartes 
+            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE1", new CarreauCarte(7, PaquetTest));
+            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE2", new CarreauCarte(22, PaquetTest));
+            dictionnaireCarreaux.Add("INDEX_CARTE_CHANCE3", new CarreauCarte(36, PaquetTest));
+            // cartes Communautés
+            dictionnaireCarreaux.Add("INDEX_CARTE_COMMUNAUTE1", new CarreauCarte(2, PaquetTest));
+            dictionnaireCarreaux.Add("INDEX_CARTE_COMMUNAUTE2", new CarreauCarte(17, PaquetTest));
+            dictionnaireCarreaux.Add("INDEX_CARTE_COMMUNAUTE3", new CarreauCarte(33, PaquetTest));
         }
 
         /// <summary>
         /// On vient lire le XML des propriété
+        /// et on initalise les carreaux Propriétées
         /// </summary>
         private void lireXMLProprietes()
         {
@@ -124,7 +139,10 @@ namespace WpfApplication1.sources
                 dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
             }
         }
-
+        /// <summary>
+        /// on lis le xml des trains
+        /// on initialise les trains
+        /// </summary>
         private void lireXMLTrains()
         {
             XDocument doc = XDocument.Parse(Properties.Resources.cheminFer);
@@ -147,7 +165,9 @@ namespace WpfApplication1.sources
                 dictionnaireCarreaux.Add(indexDictionnaire, nouveauTrain);
             }
         }
-
+        /// <summary>
+        /// on initialise les carreaux taxes
+        /// </summary>
         private void lireXMLTaxe()
         {
             XDocument doc = XDocument.Parse(Properties.Resources.taxe);
@@ -163,7 +183,9 @@ namespace WpfApplication1.sources
                 dictionnaireCarreaux.Add(indexDictionnaire, nouveauCarreau);
             }
         }
-
+        /// <summary>
+        /// on initilase
+        /// </summary>
         private void lireXMLServices()
         {
             XDocument doc = XDocument.Parse(Properties.Resources.services);
@@ -195,7 +217,7 @@ namespace WpfApplication1.sources
                 int i = Joueurs.FindIndex(x => x == JoueurCourant);
                 JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             } while (!JoueurCourant.EstVivant);
-            ((MainWindow)System.Windows.Application.Current.MainWindow).updateTxtBlockJoueurCourant(JoueurCourant);
+            //((MainWindow)System.Windows.Application.Current.MainWindow).updateTxtBlockJoueurCourant(JoueurCourant);
         }
 
 
