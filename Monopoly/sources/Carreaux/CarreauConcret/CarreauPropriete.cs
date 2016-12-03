@@ -18,7 +18,7 @@ namespace WpfApplication1.sources.Carreaux
 
         // Ancienne implementation du loyer
         //public int Loyer { get; private set; }
-        public int NombreMaisons { get; private set; }
+        public int NombreMaisons { get; set; }
 
         public Couleurs Couleur { get; private set; }
 

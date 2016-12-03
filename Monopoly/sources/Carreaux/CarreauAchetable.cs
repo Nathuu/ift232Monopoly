@@ -14,8 +14,10 @@ namespace WpfApplication1.sources.Carreaux
     {
         public long PrixAchat { get; protected set; }
         public Joueur Proprietaire { get; set; }
+        public bool EstHypotheque { get; set; }
         // Droit de passage qui varie en fonction du nombre de maisons ou hotel
         protected long[] DroitPassage;
+
         public CarreauAchetable(int position, long prixAchat) : base(position)
         {
             this.PrixAchat = prixAchat;
@@ -25,6 +27,11 @@ namespace WpfApplication1.sources.Carreaux
         {
             return (Proprietaire != null);
         }
-        
+
+        public override string ToString()
+        {
+            return positionCarreau.ToString();
+        }
+
     }
 }

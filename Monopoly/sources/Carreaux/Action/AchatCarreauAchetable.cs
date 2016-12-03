@@ -50,13 +50,12 @@ namespace WpfApplication1.sources.Carreaux.Action
             {
                 foreach(CarreauAchetable prop in Plateau.Instance.JoueurCourant.Proprietes)
                 {
-                    if (!Plateau.Instance.JoueurCourant.Hypotheques.Contains(prop))
+                    if (!prop.EstHypotheque)
                     {
-                        Plateau.Instance.JoueurCourant.hypothequer(prop);
+                        Plateau.Instance.JoueurCourant.Hypothequer(prop);
+
                         if (acheterPropriete(carreau))
                         {
-
-
                             return true;
                         }
                         else

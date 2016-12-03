@@ -42,15 +42,15 @@ namespace WpfApplication1
 
             liste = "";
             int noPropHypo = 1;
-            foreach (CarreauAchetable p in j.Hypotheques)
-            {
-                liste += noPropHypo.ToString() + ": ";
-                liste += p.positionCarreau.ToString();
-                liste += ", \n";
-                noPropHypo++;
-            }
-            if (liste == "") liste = "Aucune";
-            txtListPropHypo.Text = liste;
+            //foreach (CarreauAchetable p in j.Hypotheques)
+            //{
+            //    liste += noPropHypo.ToString() + ": ";
+            //    liste += p.positionCarreau.ToString();
+            //    liste += ", \n";
+            //    noPropHypo++;
+            //}
+            //if (liste == "") liste = "Aucune";
+            //txtListPropHypo.Text = liste;
 
 
         }

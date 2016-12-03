@@ -18,6 +18,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height= "200" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -37,28 +39,36 @@
             <TextBlock Text="Joueur est vivant : " FontSize="24" FontWeight="Bold" />
             <CheckBox Name="chkJoueurVivant" Text="exVrai" FontSize="24" />
         </StackPanel>-->
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Argent : " FontSize="24" FontWeight="Bold"/>
             <TextBox Name="txtBudget"  FontSize="24" Width="100"/>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Faillite : " FontSize="24" FontWeight="Bold"/>
             <CheckBox  Name="chkEstFaillite" FontSize="24" Margin="0,11,0,0"/>
             <TextBlock Text="est en faillite." Margin="10,11,0,0" FontSize="14" />
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
-            <TextBlock Text="Proprietes : " FontSize="24" FontWeight="Bold"/>
-            <ListView Name="lvProprietes"  FontSize="24" />
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Propriétés : " FontSize="24" FontWeight="Bold"/>
+            <ListView Name="gridProprietes"  FontSize="24" />
         </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-            <TextBlock Text="Proprietes hypothequées : " FontSize="24" FontWeight="Bold" />
-            <ListView Name="lvProprietesHypotheque"  FontSize="24"/>
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Propriétés hypothequées : " FontSize="24" FontWeight="Bold" />
+            <ListView Name="gridProprietesHypotheque"   FontSize="24"/>
         </StackPanel>
-        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Hypothéquer la propriété :  " FontSize="24" FontWeight="Bold" />
+            <TextBox   Name="txtBoxHypothequer"  FontSize="24" Width="150"/>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Déhypothéquer la propriété :  " FontSize="24" FontWeight="Bold" />
+            <TextBox   Name="txtBoxDehypotequer"  FontSize="24" Width="150"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Déplacement joueur :  " FontSize="24" FontWeight="Bold" />
             <TextBox   Name="txtBoxDeplacementJoueur"  FontSize="24" Width="150"/>
         </StackPanel>
-        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal" Margin="5">
             <Button Content="OK" Width="80" Padding="5" FontSize="24" FontWeight="Bold" Click="Button_Click"/>
         </StackPanel>
     </Grid>

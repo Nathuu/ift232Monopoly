@@ -21,14 +21,13 @@ namespace WpfApplication1.sources
         public string Nom { get; set; }
         public List<CarreauAchetable> Proprietes { get; private set; }
         public List<CarreauAchetable> Trains { get; private set; }
-        public List<CarreauAchetable> Hypotheques { get; private set; }
+        public List<CarreauAchetable> Services { get; private set; }
         public bool EstPrisonnier { get; set; }
         public bool ACarteSortirPrison { get; set; } // Il y a deux cartes de ce type
         public bool PeutPasserGo { get; set; }
         public int PositionCarreau { get; set; }
         public int CompteurDeDouble { get; set; }
         public bool EstVivant { get; set; }
-
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
         public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
@@ -45,54 +44,9 @@ namespace WpfApplication1.sources
             this.PeutPasserGo = true;
             this.Proprietes = new List<CarreauAchetable>();
             this.Trains = new List<CarreauAchetable>();
-            this.Hypotheques = new List<CarreauAchetable>();
+            this.Services = new List<CarreauAchetable>();
             this.CompteurDeDouble = 0;
             EstVivant = true;
-        }
-
-        internal bool HypothequerSuivant()
-        {
-            string liste = "";
-            foreach (CarreauAchetable prop in Proprietes)
-            {
-                if (!Hypotheques.Contains(prop))
-                {
-                    liste += prop.positionCarreau + ", ";
-                }
-            }
-            if (liste == "")
-            {
-                return false;
-            }
-            else
-            {
-                int dep = int.Parse(Microsoft.VisualBasic.Interaction.InputBox("Quel propriete voulez-vous hypotheque?\n" + liste + "\n" + " $        Votre argent: " + Plateau.Instance.JoueurCourant.Argent + " $ ", "Hypotheque?"));
-                CarreauAchetable prop = Plateau.Instance.JoueurCourant.intACarreauAchetable(dep);
-                if (prop != null)
-                    if (Plateau.Instance.JoueurCourant.hypothequer(prop))
-                    {
-                        MessageBox.Show("Propriete: " + dep + "a ete hypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                        return true;
-                    }
-                    else
-                        MessageBox.Show("Propriete: " + dep + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                else
-                {
-                    MessageBox.Show("Propriete: " + dep + "N'EXISTE PAS!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return HypothequerSuivant();
-                }
-            }
-            return false;
-        }
-
-        private CarreauAchetable intACarreauAchetable(int dep)
-        {
-            foreach (CarreauAchetable prop in Proprietes)
-            {
-                if (prop.positionCarreau == dep)
-                    return prop;
-            }
-            return null;
         }
 
         public int LanceDeuxDes(Random random1)// un dé est lancé
@@ -111,11 +65,27 @@ namespace WpfApplication1.sources
             fichierSauvegarde.WriteLine(Position.rangee);
             fichierSauvegarde.WriteLine(Argent);
             fichierSauvegarde.WriteLine(PositionCarreau);
+            fichierSauvegarde.WriteLine(EstVivant);
             foreach (CarreauPropriete p in Proprietes)
             {
-                fichierSauvegarde.WriteLine(p.positionCarreau.ToString());
+                fichierSauvegarde.WriteLine(p.positionCarreau);
+                fichierSauvegarde.WriteLine(p.NombreMaisons);
+                fichierSauvegarde.WriteLine(p.EstHypotheque);
             }
-            fichierSauvegarde.WriteLine(".");
+            fichierSauvegarde.WriteLine("p");
+
+            foreach (CarreauTrain t in Trains)
+            {
+                fichierSauvegarde.WriteLine(t.positionCarreau);
+                fichierSauvegarde.WriteLine(t.EstHypotheque);
+            }
+            fichierSauvegarde.WriteLine("t");
+            foreach (CarreauService s in Services)
+            {
+                fichierSauvegarde.WriteLine(s.positionCarreau);
+                fichierSauvegarde.WriteLine(s.EstHypotheque);
+            }
+            fichierSauvegarde.WriteLine("s");
         }
 
         public void Restaurer(StreamReader fichierSauvegarde, string nomJoueurCourant)
@@ -124,14 +94,81 @@ namespace WpfApplication1.sources
             Position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
             Position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
             Argent = Int64.Parse(fichierSauvegarde.ReadLine());
+            EstVivant = Boolean.Parse(fichierSauvegarde.ReadLine());
             PositionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
-            Avancer(0);
-            while (fichierSauvegarde.ReadLine() != ".")
+            while ((char)fichierSauvegarde.Peek() != 'p')
             {
-                //Proprietes.Add()
+                int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+                CarreauPropriete prop = (CarreauPropriete)Plateau.Instance.getCarreau(positionCarreau);
+                prop.NombreMaisons = Int32.Parse(fichierSauvegarde.ReadLine());
+                prop.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
+                this.Proprietes.Add(prop);
             }
+            fichierSauvegarde.ReadLine();
+            while ((char)fichierSauvegarde.Peek() != 't')
+            {
+                int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+                CarreauTrain train = (CarreauTrain)Plateau.Instance.getCarreau(positionCarreau);
+                train.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
+
+                this.Trains.Add(train);
+            }
+            fichierSauvegarde.ReadLine();
+            while ((char)fichierSauvegarde.Peek() != 's')
+            {
+                int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+                CarreauService service = (CarreauService)Plateau.Instance.getCarreau(positionCarreau);
+                service.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
+                this.Services.Add(service);
+            }
+            fichierSauvegarde.ReadLine();
             if (Nom == nomJoueurCourant)
                 Plateau.Instance.JoueurCourant = this;
+            Avancer(0);
+        }
+        public bool Dehypothequer(CarreauAchetable prop)
+        {
+            if (prop != null)
+            {
+                if (this.PeutPayer(prop.PrixAchat))
+                {
+                    if (prop.EstHypotheque)
+                    {
+                        this.Argent -= prop.PrixAchat;
+                        prop.EstHypotheque = false;
+                        MessageBox.Show("Propriete: " + prop.positionCarreau + "a ete rachetée!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return true;
+                    }
+                    else
+                        MessageBox.Show("Propriete: " + prop.positionCarreau + "n'est pas hypothequée!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Joueur: " + prop.Proprietaire.Nom + "ne peut pas racheter la propriété.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return false;
+                }
+            }
+            else
+                MessageBox.Show("Propriete: " + prop.positionCarreau + "n'appartient pas au joueur courant", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            return false;
+        }
+
+        internal bool Hypothequer(CarreauAchetable carreauAHypothequer)
+        {
+            if (carreauAHypothequer != null)
+            {
+                if (!carreauAHypothequer.EstHypotheque)
+                {
+                    Depot(carreauAHypothequer.PrixAchat / 2);
+                    carreauAHypothequer.EstHypotheque = true;
+                    MessageBox.Show("Propriete: " + carreauAHypothequer.positionCarreau + " a ete hypotheque!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return true;
+                }
+                else MessageBox.Show("Propriete: " + carreauAHypothequer.positionCarreau + "N'EST PAS HYPOTHEQUE!!!!", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else MessageBox.Show("La propriete selectionnée n'appartient pas au joueur courant", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            return false;
         }
 
 
@@ -163,10 +200,7 @@ namespace WpfApplication1.sources
                         Plateau.Instance.Rejouer = false;
                     }
                     else
-                    {
                         Avancer(sommeDes);
-
-                    }
                 }
                 else
                 {
@@ -180,23 +214,24 @@ namespace WpfApplication1.sources
 
         public void Avancer(int nbCases)
         {
-            if (this.EstVivant)
+            if (nbCases != 0)
             {
-                MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
-                if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
-                    Depot(Plateau.Instance.MontantCarreauDepart);
+                if (this.EstVivant)
+                {
+                    MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                    int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
+                    if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
+                        Depot(Plateau.Instance.MontantCarreauDepart);
 
-                this.PositionCarreau = nouvellePosition;
-                this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
-                Grid.SetRow(this.Image, this.Position.rangee + 1);
-                Grid.SetColumn(this.Image, this.Position.colonne + 1);
-                getCarreauActuel().execute();
+                    this.PositionCarreau = nouvellePosition;
+                    this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
+                    Grid.SetRow(this.Image, this.Position.rangee + 1);
+                    Grid.SetColumn(this.Image, this.Position.colonne + 1);
+                    getCarreauActuel().execute();
+                }
+                else
+                    MessageBox.Show("Joueur " + Nom + " ne peut plus avancer puisqu'il est en faillite.", "ADVERTISSEMENT", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else
-                MessageBox.Show("Joueur " + Nom + " ne peut plus avancer puisqu'il est en faillite.", "ADVERTISSEMENT", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
         }
 
         /// <summary>
@@ -232,54 +267,13 @@ namespace WpfApplication1.sources
         }
         public long Depot(long deposer)
         {
-
             Argent += deposer;
             MessageBox.Show("Joueur " + Nom + " dépose " + deposer + "$ dans son compte.\n" +
                 "Montant dans le compte: " + Argent + "$", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
             return Argent; // on retourne le nouveau argent
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="propriete"></param>
-        /// <returns>La propriete a bien ete hypothequee</returns>
-        public bool hypothequer(CarreauAchetable propriete)
-        {
-            if (!Hypotheques.Contains(propriete) && Proprietes.Contains(propriete))
-            {
-                Hypotheques.Add(propriete);
-                Depot(propriete.PrixAchat / 2);
-                return true;
-            }
-            return false;
-        }
 
-
-        public bool Dehypothequer(CarreauAchetable prop)
-        {
-            if (this.PeutPayer(prop.PrixAchat))
-            {
-                if (Hypotheques.Remove(prop))
-                {
-                    this.Argent -= prop.PrixAchat;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public CarreauAchetable intIndexACarreauAchetable(int i)
-        {
-            int j = 0;
-            foreach (CarreauAchetable prop in Proprietes)
-            {
-                j++;
-                if (j == i)
-                    return prop;
-            }
-            return null;
-        }
 
         public bool FaitFaillite()
         {
@@ -344,14 +338,6 @@ namespace WpfApplication1.sources
             }
             else
                 MessageBox.Show("Joueur " + Nom + " resteen prison! (" + coupDe1 + " + " + coupDe2 + ")", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        public int getNbTrains()
-        {
-            int nbTrains = 0;
-            foreach (CarreauTrain c in Trains)
-                ++nbTrains;
-            return nbTrains;
         }
     }
 }

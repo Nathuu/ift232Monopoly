@@ -16,7 +16,7 @@ namespace WpfApplication1.sources.Carreaux.CarreauConcret
 
         public override long getPrixPassage()
         {
-                return DroitPassage[Proprietaire.getNbTrains() - 1];
+                return DroitPassage[Proprietaire.Trains.Count() - 1];
         }
 
     }
