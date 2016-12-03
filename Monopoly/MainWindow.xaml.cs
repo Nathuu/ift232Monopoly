@@ -29,6 +29,7 @@ namespace WpfApplication1
         private CommandFactory commandFactory;
 
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace WpfApplication1
             Plateau.Instance.JoueurRestant = Plateau.Instance.Joueurs.Count();
             Plateau.Instance.JoueurCourant = Plateau.Instance.Joueurs.First();
         }
+
 
         private void InitButtons()
         {
@@ -184,6 +186,10 @@ namespace WpfApplication1
         {
             TestApplication test = new TestApplication();
             test.ShowDialog();
+        }
+        public void updateTxtBlockJoueurCourant (Joueur j)
+        {
+            txtBlockJoueurCourant.Text = "Au tour de " + j.Nom + " a jouer";       
         }
     }
 }

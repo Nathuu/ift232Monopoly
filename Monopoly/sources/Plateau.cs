@@ -181,12 +181,11 @@ namespace WpfApplication1.sources
         //Redefini le joueur courant.
         public void JouerTour()
         {
+            JoueurCourant.JouerSonTour();
             if (!Rejouer)
             {
                 ChangementJoueur();
             }
-            JoueurCourant.JouerSonTour();
-
         }
 
         public void ChangementJoueur()
@@ -196,6 +195,7 @@ namespace WpfApplication1.sources
                 int i = Joueurs.FindIndex(x => x == JoueurCourant);
                 JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
             } while (!JoueurCourant.EstVivant);
+            ((MainWindow)System.Windows.Application.Current.MainWindow).updateTxtBlockJoueurCourant(JoueurCourant);
         }
 
 
@@ -235,15 +235,7 @@ namespace WpfApplication1.sources
 
             foreach (Joueur j in Joueurs)
             {
-                j.Nom = fichierSauvegarde.ReadLine();
-                j.Position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
-                j.Position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
-                j.Argent = Int64.Parse(fichierSauvegarde.ReadLine());
-                j.PositionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
-                j.Avancer(0);
-                if (j.Nom == nomJoueurCourant)
-                    JoueurCourant = j;
-
+                j.Restaurer(fichierSauvegarde, nomJoueurCourant);
             }
             fichierSauvegarde.Close();
         }
@@ -264,5 +256,6 @@ namespace WpfApplication1.sources
             }
             return null;
         }
+
     }
 }

@@ -104,13 +104,34 @@ namespace WpfApplication1.sources
             return Plateau.Instance.LanceUnDes();
         }
 
-        internal void Sauvegarder(StreamWriter fichierSauvegarde)
+        public void Sauvegarder(StreamWriter fichierSauvegarde)
         {
             fichierSauvegarde.WriteLine(Nom);
             fichierSauvegarde.WriteLine(Position.colonne);
             fichierSauvegarde.WriteLine(Position.rangee);
             fichierSauvegarde.WriteLine(Argent);
             fichierSauvegarde.WriteLine(PositionCarreau);
+            foreach (CarreauPropriete p in Proprietes)
+            {
+                fichierSauvegarde.WriteLine(p.positionCarreau.ToString());
+            }
+            fichierSauvegarde.WriteLine(".");
+        }
+
+        public void Restaurer(StreamReader fichierSauvegarde, string nomJoueurCourant)
+        {
+            Nom = fichierSauvegarde.ReadLine();
+            Position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
+            Position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
+            Argent = Int64.Parse(fichierSauvegarde.ReadLine());
+            PositionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+            Avancer(0);
+            while (fichierSauvegarde.ReadLine() != ".")
+            {
+                //Proprietes.Add()
+            }
+            if (Nom == nomJoueurCourant)
+                Plateau.Instance.JoueurCourant = this;
         }
 
 
