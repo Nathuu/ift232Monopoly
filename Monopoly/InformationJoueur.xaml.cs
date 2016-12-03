@@ -28,11 +28,20 @@ namespace WpfApplication1
             txtBudget.Text = j.Argent.ToString();
             string liste="";
             int noProp = 1;
+            //on affiche la liste de propriété 
             foreach (CarreauAchetable p in j.Proprietes)
             {
                 liste += noProp.ToString() + ": ";
                 liste += p.positionCarreau.ToString();
                 liste += ", \n" ;
+                noProp++;
+            }
+            //on affiche les trains
+            foreach (CarreauAchetable p in j.Trains)
+            {
+                liste += noProp.ToString() + ": ";
+                liste += p.positionCarreau.ToString();
+                liste += ", \n";
                 noProp++;
             }
             if (liste == "") liste = "Aucune";
@@ -42,6 +51,7 @@ namespace WpfApplication1
 
             liste = "";
             int noPropHypo = 1;
+            //on affiche les propriétées hypothèquées
             foreach (CarreauAchetable p in j.Hypotheques)
             {
                 liste += noPropHypo.ToString() + ": ";
@@ -51,8 +61,6 @@ namespace WpfApplication1
             }
             if (liste == "") liste = "Aucune";
             txtListPropHypo.Text = liste;
-
-
         }
     }
 }
