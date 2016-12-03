@@ -103,6 +103,9 @@
     <Compile Include="sources\Interface\MenuItemMonopoly.cs" />
     <Compile Include="sources\PaquetDeCarte.cs" />
     <Compile Include="sources\Position.cs" />
+    <Compile Include="TestApplication.xaml.cs">
+      <DependentUpon>TestApplication.xaml</DependentUpon>
+    </Compile>
     <Page Include="InformationJoueur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SauvegardeFichier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestApplication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,9 +170,6 @@
     <Resource Include="ressources\logo.png" />
     <Resource Include="ressources\rouge.jpg" />
     <Resource Include="ressources\vert.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\taxe.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ressources\taxe.xml" />

@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfApplication1.TestApplication"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="Sortes de test pour tester l'application" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height= "200" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Choississez le joueur à tester :" FontSize="24" FontWeight="Bold" />
+            <ComboBox Name="cmbJouers" FontSize="24" SelectionChanged="cmbJouers_SelectionChanged" Margin="10,0,0,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Nom du joueur : " FontSize="24" FontWeight="Bold" />
+            <TextBlock Name="txtNom"  FontSize="24" />
+        </StackPanel>
+        <!--<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Joueur est vivant : " FontSize="24" FontWeight="Bold" />
+            <CheckBox Name="chkJoueurVivant" Text="exVrai" FontSize="24" />
+        </StackPanel>-->
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Argent : " FontSize="24" FontWeight="Bold"/>
+            <TextBox Name="txtBudget"  FontSize="24" Width="100"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Faillite : " FontSize="24" FontWeight="Bold"/>
+            <CheckBox  Name="chkEstFaillite" FontSize="24" Margin="0,11,0,0"/>
+            <TextBlock Text="est en faillite." Margin="10,11,0,0" FontSize="14" />
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Proprietes : " FontSize="24" FontWeight="Bold"/>
+            <ListView Name="lvProprietes"  FontSize="24" />
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Proprietes hypothequées : " FontSize="24" FontWeight="Bold" />
+            <ListView Name="lvProprietesHypotheque"  FontSize="24"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Text="Déplacement joueur :  " FontSize="24" FontWeight="Bold" />
+            <TextBox   Name="txtBoxDeplacementJoueur"  FontSize="24" Width="150"/>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+            <Button Content="OK" Width="80" Padding="5" FontSize="24" FontWeight="Bold" Click="Button_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

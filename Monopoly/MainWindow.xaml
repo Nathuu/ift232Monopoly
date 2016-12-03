@@ -46,9 +46,9 @@
         <!--Si vous voulez rajouter des object dans le visuel.-->
         <!--Veuillez les rajouter à la row 13 et + ex : (Grid.Row = "13") -->
         <Menu Name="MainMenu"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12">
-            <MenuItem Name="menuItemFichier" Header="Fichier" Click="menuItemFichier_Click">
                 <!--Le menu item sauvegarde est initialise dans MainWindow.xaml.cs-->
                 <!--Faire la meme chose pour Restaurer-->
+                <MenuItem Name="menuItemFichier" Header="Fichier" Click="menuItemFichier_Click">
                 <MenuItem Name="menuItemRestore" Header="Restaurer"  Click="Restaurer_Click"/>
             </MenuItem>
             <MenuItem Name="menuItemStatistique" Header="Statistique" >
@@ -57,6 +57,7 @@
                 <MenuItem Name="menuItemJoueurBleu" Header="Joueur Bleu"   Click="menuItemJoueurBleu_Click"  />
                 <MenuItem Name="menuItemJoueurJaune" Header="Joueur Jaune"  Click="menuItemJoueurJaune_Click"/>
             </MenuItem>
+            <MenuItem Name="menuTest" Header="Test"  Click="menuTest_Click"/>
         </Menu>
         <Image Margin="0,0,0,10" Source="ressources/board.jpg" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11" Grid.RowSpan="11"/>
         <Image Grid.Column="1" Grid.Row="1" Name="pionImageVert"  Source="ressources/vert.jpg" Width="30" Height="30"/>

@@ -37,7 +37,7 @@ namespace WpfApplication1.sources.Carreaux.Action
         /// <returns>La propriete a bien ete achetee</returns>
         public bool acheterPropriete(CarreauPropriete carreau)
         {
-//ACHAT OBLIGATOIRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //ACHAT OBLIGATOIRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Joueur joueurCourant = Plateau.Instance.JoueurCourant;
             if (joueurCourant.PeutPayer(carreau.PrixAchat))
             {
@@ -55,6 +55,8 @@ namespace WpfApplication1.sources.Carreaux.Action
                         Plateau.Instance.JoueurCourant.hypothequer(prop);
                         if (acheterPropriete(carreau))
                         {
+
+
                             return true;
                         }
                         else

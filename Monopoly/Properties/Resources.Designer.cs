@@ -79,7 +79,7 @@ namespace WpfApplication1.Properties {
         ///	  Sortez de prison gratuitement - Cette carte peut être conservée jusqu&apos;à ce qu&apos;elle soit nécessaire ou vendue
         ///  &lt;/carte&gt;
         ///  &lt;carte&gt;
-        ///	  Aller à la prison - Aller directement à la prison - Ne pas passer Go - Ne pas recuei [rest of string was truncated]&quot;;.
+        ///	  Aller à la prison - Aller directement à la prison - Ne pas passer  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string carteCommunaute {
             get {
@@ -100,7 +100,7 @@ namespace WpfApplication1.Properties {
         ///	  Avancez à St. Charles Place - Si vous passez Go, percevez 200 $
         ///  &lt;/carte&gt;
         ///  &lt;carte&gt;
-        ///	  Avancez le jeton à l&apos;utilitaire le plus proche. Si vous êtes non propriétaire, vous pouvez l&apos;acheter aup [rest of string was truncated]&quot;;.
+        ///	  Avancez le jeton à l&apos;utilitaire le plus proche. Si vous êtes non propriétaire, vous pouvez l [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string cartesChances {
             get {
@@ -120,9 +120,8 @@ namespace WpfApplication1.Properties {
         ///    Avancez à l&apos;avenue Belleville. - Si vous passez Go, percevez 200 $
         ///  &lt;/carte&gt;
         ///  &lt;carte type=&quot;deplacement&quot; passerGo=&quot;true&quot;&gt;
-        ///    &lt;destinationPossible val=&quot;INDEX_TRAIN_1&quot; /&gt;
-        ///    &lt;destinationPossible val=&quot;INDEX_TRAIN_2&quot; /&gt;
-        ///    &lt;de [rest of string was truncated]&quot;;.
+        ///    &lt;destinationPossible val=&quot;INDEX_READING_RR&quot; /&gt;
+        ///    &lt;destinationPossible val=&quot;INDEX_PENS [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CartesTest {
             get {
@@ -148,8 +147,7 @@ namespace WpfApplication1.Properties {
         ///	&lt;Titre&gt;
         ///    &lt;IndexDictionnaire&gt;INDEX_PENSYLVANNIA_RR&lt;/IndexDictionnaire&gt;
         ///		&lt;Nom&gt;Pennsylvania RR&lt;/Nom&gt;
-        ///		&lt;Position&gt;15&lt;/Position&gt;
-        ///		&lt;Prix&gt;200&lt;/Pri [rest of string was truncated]&quot;;.
+        ///		&lt;Position&gt;15&lt;/Position&gt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string cheminFer {
             get {
@@ -178,7 +176,7 @@ namespace WpfApplication1.Properties {
         ///	  &lt;/Titre&gt;
         ///
         ///	  &lt;Titre&gt;
-        ///		  &lt;Nom&gt;Rue Lecourbe&lt;/ [rest of string was truncated]&quot;;.
+        ///		  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string propriete {
             get {
@@ -190,14 +188,16 @@ namespace WpfApplication1.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;Service&gt;
         ///	&lt;Titre&gt;
+        ///    &lt;IndexDictionnaire&gt;INDEX_COMPAGNIE_ELECTRICITE&lt;/IndexDictionnaire&gt;
         ///		&lt;Nom&gt;Electric Company&lt;/Nom&gt;
-        ///		&lt;Position&gt;2&lt;/Position&gt;
+        ///		&lt;Position&gt;12&lt;/Position&gt;
         ///		&lt;Prix&gt;150&lt;/Prix&gt;
         ///	&lt;/Titre&gt;
         ///
         ///	&lt;Titre&gt;
+        ///    &lt;IndexDictionnaire&gt;INDEX_COMPAGNIE_EAUX&lt;/IndexDictionnaire&gt;
         ///		&lt;Nom&gt;Water Works&lt;/Nom&gt;
-        ///		&lt;Position&gt;2&lt;/Position&gt;
+        ///		&lt;Position&gt;28&lt;/Position&gt;
         ///		&lt;Prix&gt;150&lt;/Prix&gt;
         ///	&lt;/Titre&gt;
         ///&lt;/Service&gt;.

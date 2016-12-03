@@ -141,7 +141,8 @@ namespace WpfApplication1.sources
                         getCarreauActuel().execute();
                         Plateau.Instance.Rejouer = false;
                     }
-                    else {
+                    else
+                    {
                         Avancer(sommeDes);
 
                     }
@@ -158,16 +159,21 @@ namespace WpfApplication1.sources
 
         public void Avancer(int nbCases)
         {
-            MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-            int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
-            if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
-                Depot(Plateau.Instance.MontantCarreauDepart);
+            if (this.EstVivant)
+            {
+                MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
+                if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
+                    Depot(Plateau.Instance.MontantCarreauDepart);
 
-            this.PositionCarreau = nouvellePosition;
-            this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
-            Grid.SetRow(this.Image, this.Position.rangee + 1);
-            Grid.SetColumn(this.Image, this.Position.colonne + 1);
-            getCarreauActuel().execute();
+                this.PositionCarreau = nouvellePosition;
+                this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
+                Grid.SetRow(this.Image, this.Position.rangee + 1);
+                Grid.SetColumn(this.Image, this.Position.colonne + 1);
+                getCarreauActuel().execute();
+            }
+            else
+                MessageBox.Show("Joueur " + Nom + " ne peut plus avancer puisqu'il est en faillite.", "ADVERTISSEMENT", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
         }

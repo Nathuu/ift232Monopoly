@@ -100,6 +100,16 @@ namespace WpfApplication1
         private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
         {
             InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));
+            //À titre d'information : Tout le code en commentaire revient au meme qu'au lambda 
+            //InformationJoueur infoWindow = null;
+            //foreach (Joueur item in Plateau.Instance.Joueurs)
+            //{
+            //    if (item.Nom == "Rouge")
+            //    {
+            //        InformationJoueur infoWindow = new InformationJoueur(item);
+            //        break;
+            //    }
+            //}
             infoWindow.ShowDialog();
         }
 
@@ -170,5 +180,10 @@ namespace WpfApplication1
 
         }
 
+        private void menuTest_Click(object sender, RoutedEventArgs e)
+        {
+            TestApplication test = new TestApplication();
+            test.ShowDialog();
+        }
     }
 }
