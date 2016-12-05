@@ -87,6 +87,44 @@ namespace WpfApplication1
             menuRestaure.Header = "Restaurer";
             menuRestaure.Click += menuRestaure.execute;
             menuItemFichier.Items.Add(menuRestaure);
+
+
+     
+
+            MenuItemMonopoly menuItemJoueurRouge = new MenuItemMonopoly();
+            CommandStatistique cmdStatRouge = CommandFactory.Instance.CreateCommandStatistique("Rouge");
+            menuItemJoueurRouge.storeCommand(cmdStatRouge);
+            menuItemJoueurRouge.Name = "menuItemJoueurRouge";
+            menuItemJoueurRouge.Header = "Joueur Rouge";
+            menuItemJoueurRouge.Click += menuItemJoueurRouge.execute;
+            menuItemStatistique.Items.Add(menuItemJoueurRouge);
+
+
+            MenuItemMonopoly menuItemJoueurVert = new MenuItemMonopoly();
+            CommandStatistique cmdStatVert = CommandFactory.Instance.CreateCommandStatistique("Vert");
+            menuItemJoueurVert.storeCommand(cmdStatVert);
+            menuItemJoueurVert.Name = "menuItemJoueurVert";
+            menuItemJoueurVert.Header = "Joueur Vert";
+            menuItemJoueurVert.Click += menuItemJoueurVert.execute;
+            menuItemStatistique.Items.Add(menuItemJoueurVert);
+            
+            MenuItemMonopoly menuItemJoueurBleu = new MenuItemMonopoly();
+            CommandStatistique cmdStatbleu = CommandFactory.Instance.CreateCommandStatistique("Bleu");
+            menuItemJoueurBleu.storeCommand(cmdStatbleu);
+            menuItemJoueurBleu.Name = "menuItemJoueurBleu";
+            menuItemJoueurBleu.Header = "Joueur Bleu";
+            menuItemJoueurBleu.Click += menuItemJoueurBleu.execute;
+            menuItemStatistique.Items.Add(menuItemJoueurBleu);
+
+            MenuItemMonopoly menuItemJoueurJaune = new MenuItemMonopoly();
+            CommandStatistique cmdStatJaune = CommandFactory.Instance.CreateCommandStatistique("Jaune");
+            menuItemJoueurJaune.storeCommand(cmdStatJaune);
+            menuItemJoueurJaune.Name = "menuItemJoueurJaune";
+            menuItemJoueurJaune.Header = "Joueur Jaune";
+            menuItemJoueurJaune.Click += menuItemJoueurJaune.execute;
+            menuItemStatistique.Items.Add(menuItemJoueurJaune);
+            
+
         }
 
         private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)

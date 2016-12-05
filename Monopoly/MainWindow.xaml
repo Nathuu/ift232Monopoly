@@ -45,14 +45,8 @@
         <Menu Name="MainMenu"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12">
                 <!--Le menu item sauvegarde est initialise dans MainWindow.xaml.cs-->
                 <!--Faire la meme chose pour Restaurer-->
-                <MenuItem Name="menuItemFichier" Header="Fichier">               
-            </MenuItem>
-            <MenuItem Name="menuItemStatistique" Header="Statistique" >
-                <MenuItem Name="menuItemJoueurRouge" Header="Joueur Rouge"  Click="menuItemJoueurRouge_Click"/>
-                <MenuItem Name="menuItemJoueurVert" Header="Joueur Vert"   Click="menuItemJoueurVert_Click" />
-                <MenuItem Name="menuItemJoueurBleu" Header="Joueur Bleu"   Click="menuItemJoueurBleu_Click"  />
-                <MenuItem Name="menuItemJoueurJaune" Header="Joueur Jaune"  Click="menuItemJoueurJaune_Click"/>
-            </MenuItem>
+            <MenuItem Name="menuItemFichier" Header="Fichier"/>
+            <MenuItem Name="menuItemStatistique" Header="Statistique"/>
             <MenuItem Name="menuTest" Header="Test"  Click="menuTest_Click"/>
         </Menu>
         <Image Margin="0,0,0,10" Source="ressources/board.jpg" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11" Grid.RowSpan="11"/>
