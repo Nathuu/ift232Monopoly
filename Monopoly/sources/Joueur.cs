@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -94,8 +95,9 @@ namespace WpfApplication1.sources
             Position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
             Position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
             Argent = Int64.Parse(fichierSauvegarde.ReadLine());
-            EstVivant = Boolean.Parse(fichierSauvegarde.ReadLine());
             PositionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
+            EstVivant = Boolean.Parse(fichierSauvegarde.ReadLine());
+            
             while ((char)fichierSauvegarde.Peek() != 'p')
             {
                 int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
@@ -124,9 +126,11 @@ namespace WpfApplication1.sources
             fichierSauvegarde.ReadLine();
             if (Nom == nomJoueurCourant)
                 Plateau.Instance.JoueurCourant = this;
-            Avancer(0);
+
+            BougerLaPiece(PositionCarreau);
+
         }
-        public bool Dehypothequer(CarreauAchetable prop)
+    public bool Dehypothequer(CarreauAchetable prop)
         {
             if (prop != null)
             {
@@ -214,25 +218,33 @@ namespace WpfApplication1.sources
 
         public void Avancer(int nbCases)
         {
-            if (nbCases != 0)
+            Debug.Assert(nbCases>0, "Avancer ne devrait etre employer que pour des valeurs positives");
+            if (this.EstVivant)
             {
-                if (this.EstVivant)
-                {
-                    MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
-                    int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
-                    if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
-                        Depot(Plateau.Instance.MontantCarreauDepart);
+                MessageBox.Show("Joueur " + Nom + " avance de " + nbCases + " cases", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+                int nouvellePosition = (this.PositionCarreau + nbCases) % Plateau.Instance.NombreCarreauxMaximal;
 
-                    this.PositionCarreau = nouvellePosition;
-                    this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
-                    Grid.SetRow(this.Image, this.Position.rangee + 1);
-                    Grid.SetColumn(this.Image, this.Position.colonne + 1);
-                    getCarreauActuel().execute();
-                }
-                else
-                    MessageBox.Show("Joueur " + Nom + " ne peut plus avancer puisqu'il est en faillite.", "ADVERTISSEMENT", MessageBoxButton.OK, MessageBoxImage.Information);
+                BougerLaPiece(nouvellePosition);
+
+                if (nouvellePosition < this.PositionCarreau && PeutPasserGo)
+                    Depot(Plateau.Instance.MontantCarreauDepart);
+
+                getCarreauActuel().execute();
             }
+            else
+                    MessageBox.Show("Joueur " + Nom + " ne peut plus avancer puisqu'il est en faillite.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
+
+        private void BougerLaPiece(int nouvellePosition)
+        {
+            this.PositionCarreau = nouvellePosition;
+            this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
+            Grid.SetRow(this.Image, this.Position.rangee + 1);
+            Grid.SetColumn(this.Image, this.Position.colonne + 1);
+        }
+
+     
 
         /// <summary>
         /// Hypotheque les proprietes jusqu'a etre capable de payer
