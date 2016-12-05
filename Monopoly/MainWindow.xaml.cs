@@ -69,11 +69,6 @@ namespace WpfApplication1
 
             ButtonMonopoly buttonFinTour = new ButtonMonopoly();
             CommandFinTour cmdFinTour = commandFactory.CreateCommandFinTour();
-            //buttonFinTour.storeCommand(cmdFinTour);
-            //buttonFinTour.Name = "btnFinTour";
-            //buttonFinTour.Content = "Fin de tour";
-            //buttonFinTour.Click += buttonFinTour.execute;
-            //panelButtonFinTour.Children.Add(buttonFinTour);
 
             //  menuItemFichier
             MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();
@@ -83,12 +78,17 @@ namespace WpfApplication1
             menuSauvegarde.Header = "Sauvegarde";
             menuSauvegarde.Click += menuSauvegarde.execute;
             menuItemFichier.Items.Add(menuSauvegarde);
+
+            //  menuItemFichier
+            MenuItemMonopoly menuRestaure = new MenuItemMonopoly();
+            CommandRestaurer cmdRestaurer = CommandFactory.Instance.CreateCommandRestaurer();
+            menuRestaure.storeCommand(cmdRestaurer);
+            menuRestaure.Name = "menuRestaure";
+            menuRestaure.Header = "Restaurer";
+            menuRestaure.Click += menuRestaure.execute;
+            menuItemFichier.Items.Add(menuRestaure);
         }
 
-        private void Restaurer_Click(object sender, RoutedEventArgs e)
-        {
-            Plateau.Instance.restaurerPartie(); // il faudrait demander le nom du fichier le mettre en parametre !!!JN & SARA!!!
-        }
         private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
         {
             InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));

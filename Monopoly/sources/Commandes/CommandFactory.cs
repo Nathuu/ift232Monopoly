@@ -39,5 +39,10 @@ namespace WpfApplication1.sources
         {
             return new CommandSauvegarde();
         }
+
+        public CommandRestaurer CreateCommandRestaurer()
+        {
+            return new CommandRestaurer();
+        }
     }
 }
