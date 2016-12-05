@@ -70,7 +70,7 @@ namespace WpfApplication1.sources
             foreach (CarreauPropriete p in Proprietes)
             {
                 fichierSauvegarde.WriteLine(p.positionCarreau);
-                fichierSauvegarde.WriteLine(p.NombreMaisons);
+                fichierSauvegarde.WriteLine(p.NombreBatiement);
                 fichierSauvegarde.WriteLine(p.EstHypotheque);
             }
             fichierSauvegarde.WriteLine("p");
@@ -102,7 +102,7 @@ namespace WpfApplication1.sources
             {
                 int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
                 CarreauPropriete prop = (CarreauPropriete)Plateau.Instance.getCarreau(positionCarreau);
-                prop.NombreMaisons = Int32.Parse(fichierSauvegarde.ReadLine());
+                prop.NombreBatiement = Int32.Parse(fichierSauvegarde.ReadLine());
                 prop.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
                 this.Proprietes.Add(prop);
             }

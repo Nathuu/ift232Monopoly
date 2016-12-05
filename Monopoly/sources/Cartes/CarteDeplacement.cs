@@ -24,14 +24,7 @@ namespace WpfApplication1.sources.Cartes
                 if (Plateau.Instance.JoueurCourant.PositionCarreau < dest.positionCarreau)
                     return dest.positionCarreau;
             }
-            //Retourner la position Carreau minimale
-
-            //int min = Plateau.Instance.getNbCarreauxMax();
-            //foreach (Carreau dest in DestinationsPossibles)
-            //{
-            //    if (min > dest.positionCarreau)
-            //        min = dest.positionCarreau;
-            //}
+                      
             return DestinationsPossibles.Min<Carreau>().positionCarreau;
         }
 

@@ -18,7 +18,7 @@ namespace WpfApplication1.sources.Carreaux
 
         // Ancienne implementation du loyer
         //public int Loyer { get; private set; }
-        public int NombreMaisons { get; set; }
+        public int NombreBatiement { get; set; }
 
         public Couleurs Couleur { get; private set; }
 
@@ -26,7 +26,7 @@ namespace WpfApplication1.sources.Carreaux
         {
             this.Couleur = Couleur;
             this.DroitPassage = new long[5] { 25, 50, 75, 100, 125 };
-            this.NombreMaisons = 0; 
+            this.NombreBatiement = 0; 
         }
 
         public bool estLibre()
@@ -34,9 +34,20 @@ namespace WpfApplication1.sources.Carreaux
             return (Proprietaire == null);
         }
 
+        public void AchatBatiement()
+        {            
+            ++NombreBatiement;
+        }
+
+        public void VenteBatiement(int nombre)
+        {
+            NombreBatiement -= nombre;
+        }
+
+
         public override long getPrixPassage()
         {
-            if (NombreMaisons == 0)
+            if (NombreBatiement == 0)
             {
                 if (Proprietaire.estSeulProprietaireDeMemeCouleur(Couleur))
                     return 2 * DroitPassage[0];
@@ -45,7 +56,7 @@ namespace WpfApplication1.sources.Carreaux
             }
             else
             {
-                return DroitPassage[NombreMaisons];
+                return DroitPassage[NombreBatiement];
             }
         }
     }

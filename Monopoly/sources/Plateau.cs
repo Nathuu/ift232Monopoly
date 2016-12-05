@@ -23,21 +23,19 @@ namespace WpfApplication1.sources
         public PaquetDeCarte PaquetCarteCommunaute { get; set; }
         public PaquetDeCarte PaquetTest { get; set; }
         public Dictionary<String, Carreau> dictionnaireCarreaux { get; private set; } = new Dictionary<string, Carreau>();
+        public bool Rejouer { get; set; }
+        public int JoueurRestant { get; set; }
+
+        public int MaisonDisponible { get; set; }
+        public int HotelDisponible { get; set; }
+
+        private const Int16 MONTANT_CARREAU_DEPART = 200;
+        private const Int16 NB_CARREAUX_MAX = 40;
         protected List<int> Proprietes = new List<int>(); //{ INDEX_BELLEVILLE, 3, 6, 21, 23, 24, 26, 27, 29, 31, 32, 34, 37, 39 };
         private Canvas canvas = new Canvas();
         private Point decalage = new Point(30, 30);
         private Random random1 = new Random(DateTime.Now.Millisecond);
-        public bool Rejouer { get; set; }
-        public int JoueurRestant { get; set; }
-        public int LanceUnDes()// un dé est lancé
-        {
-            return random1.Next(1, 6);
-
-        }
-        private const Int16 NB_CARREAUX_MAX = 40;
-        public Int16 getNbCarreauxMax() { return NB_CARREAUX_MAX; }
-
-        private const Int16 MONTANT_CARREAU_DEPART = 200;
+       
 
         public Int16 NombreCarreauxMaximal
         {
@@ -56,8 +54,11 @@ namespace WpfApplication1.sources
             //initialisation de tous les carreaux
             initDictionnaire();
             Rejouer = false;
+            MaisonDisponible = 32;
+            HotelDisponible = 12; 
             JoueurRestant = Joueurs.Count();
         }
+
 
         public static Plateau Instance
         {
@@ -72,6 +73,11 @@ namespace WpfApplication1.sources
             private set { }
         }
 
+        public int LanceUnDes()// un dé est lancé
+        {
+            return random1.Next(1, 6);
+
+        }
 
         /// <summary>
         /// On va init tous les carreaux de chaque type
