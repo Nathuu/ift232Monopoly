@@ -9,7 +9,7 @@ using WpfApplication1.sources.Carreaux.CarreauConcret;
 
 namespace WpfApplication1.sources
 {
-    public static class GestionnaireSauvegardes
+    public static class UtilitaireSauvegardes
     {
 
         //Les methodes sauvegarder partie et restorer devrais etre dans Joueurs. Puisqu'on creer nos fichier a partir de nos joueurs

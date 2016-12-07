@@ -10,7 +10,7 @@ namespace WpfApplication1.sources.Commandes
     {
         public override void execute()
         {
-            GestionnaireSauvegardes.sauvegarderPartie();
+            UtilitaireSauvegardes.sauvegarderPartie();
         }
     }
 }

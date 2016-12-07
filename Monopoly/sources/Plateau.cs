@@ -203,26 +203,6 @@ namespace WpfApplication1.sources
             }
         }
 
-        //Redefini le joueur courant.
-        public void JouerTour()
-        {
-            JoueurCourant.JouerSonTour();
-            if (!Rejouer)
-            {
-                ChangementJoueur();
-            }
-        }
-
-        public void ChangementJoueur()
-        {
-            do
-            {
-                int i = Joueurs.FindIndex(x => x == JoueurCourant);
-                JoueurCourant = Joueurs[(i + 1) % Joueurs.Count];
-            } while (!JoueurCourant.EstVivant);           
-        }
-
-
         /// <summary>
         /// </summary>
         /// <param name="position"></param>

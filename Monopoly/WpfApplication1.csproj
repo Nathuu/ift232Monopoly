@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="sources\GestionnaireJeu.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,7 +79,7 @@
     <Compile Include="sources\Commandes\CommandStatistique.cs" />
     <Compile Include="sources\Commandes\CommandTest.cs" />
     <Compile Include="sources\Commandes\Prompt.cs" />
-    <Compile Include="sources\GestionnaireSauvegardes.cs" />
+    <Compile Include="sources\UtilitaireSauvegardes.cs" />
     <Compile Include="sources\Interface\ButtonMonopoly.cs" />
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
