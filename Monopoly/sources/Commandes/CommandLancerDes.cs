@@ -18,7 +18,7 @@ namespace WpfApplication1.sources
                 MessageBox.Show("Joueur " + Plateau.Instance.JoueurCourant.Nom + " GAAAAAAAGNNNNEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!! ", "FIN DE LA PARTIE :)", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 Environment.Exit(0);
             }
-            Plateau.Instance.JouerTour();
+            GestionnaireJeu.JouerTour();
         }
     }
 }

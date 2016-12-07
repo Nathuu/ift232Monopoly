@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1.sources.Commandes
 {
-    public class CommandRestaurer : Command
+    class CommandTest : Command
     {
         public override void execute()
         {
-            UtilitaireSauvegardes.restaurerPartie();
+            TestApplication test = new TestApplication();
+            test.ShowDialog();
         }
     }
 }

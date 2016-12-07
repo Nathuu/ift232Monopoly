@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using WpfApplication1.sources.Carreaux;
 using WpfApplication1.sources.Carreaux.CarreauConcret;
 
@@ -51,87 +45,12 @@ namespace WpfApplication1.sources
             this.mw = mw;
             EstVivant = true;
         }
-
-        public int LanceDeuxDes(Random random1)// un dé est lancé
-        {
-            return LanceUnDes() + LanceUnDes();
-        }
+                
         public int LanceUnDes()// un dé est lancé
         {
             return Plateau.Instance.LanceUnDes();
         }
 
-        public void Sauvegarder(StreamWriter fichierSauvegarde)
-        {
-            fichierSauvegarde.WriteLine(Nom);
-            fichierSauvegarde.WriteLine(Position.colonne);
-            fichierSauvegarde.WriteLine(Position.rangee);
-            fichierSauvegarde.WriteLine(Argent);
-            fichierSauvegarde.WriteLine(PositionCarreau);
-            fichierSauvegarde.WriteLine(EstVivant);
-            foreach (CarreauPropriete p in Proprietes)
-            {
-                fichierSauvegarde.WriteLine(p.positionCarreau);
-                fichierSauvegarde.WriteLine(p.NombreBatiement);
-                fichierSauvegarde.WriteLine(p.EstHypotheque);
-            }
-            fichierSauvegarde.WriteLine("p");
-
-            foreach (CarreauTrain t in Trains)
-            {
-                fichierSauvegarde.WriteLine(t.positionCarreau);
-                fichierSauvegarde.WriteLine(t.EstHypotheque);
-            }
-            fichierSauvegarde.WriteLine("t");
-            foreach (CarreauService s in Services)
-            {
-                fichierSauvegarde.WriteLine(s.positionCarreau);
-                fichierSauvegarde.WriteLine(s.EstHypotheque);
-            }
-            fichierSauvegarde.WriteLine("s");
-        }
-
-        public void Restaurer(StreamReader fichierSauvegarde, string nomJoueurCourant)
-        {
-            Nom = fichierSauvegarde.ReadLine();
-            Position.colonne = Int32.Parse(fichierSauvegarde.ReadLine());
-            Position.rangee = Int32.Parse(fichierSauvegarde.ReadLine());
-            Argent = Int64.Parse(fichierSauvegarde.ReadLine());
-            PositionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
-            EstVivant = Boolean.Parse(fichierSauvegarde.ReadLine());
-            
-            while ((char)fichierSauvegarde.Peek() != 'p')
-            {
-                int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
-                CarreauPropriete prop = (CarreauPropriete)Plateau.Instance.getCarreau(positionCarreau);
-                prop.NombreBatiement = Int32.Parse(fichierSauvegarde.ReadLine());
-                prop.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
-                this.Proprietes.Add(prop);
-            }
-            fichierSauvegarde.ReadLine();
-            while ((char)fichierSauvegarde.Peek() != 't')
-            {
-                int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
-                CarreauTrain train = (CarreauTrain)Plateau.Instance.getCarreau(positionCarreau);
-                train.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
-
-                this.Trains.Add(train);
-            }
-            fichierSauvegarde.ReadLine();
-            while ((char)fichierSauvegarde.Peek() != 's')
-            {
-                int positionCarreau = Int32.Parse(fichierSauvegarde.ReadLine());
-                CarreauService service = (CarreauService)Plateau.Instance.getCarreau(positionCarreau);
-                service.EstHypotheque = Boolean.Parse(fichierSauvegarde.ReadLine());
-                this.Services.Add(service);
-            }
-            fichierSauvegarde.ReadLine();
-            if (Nom == nomJoueurCourant)
-                Plateau.Instance.JoueurCourant = this;
-
-            BougerLaPiece(PositionCarreau);
-
-        }
     public bool Dehypothequer(CarreauAchetable prop)
         {
             if (prop != null)
@@ -239,7 +158,7 @@ namespace WpfApplication1.sources
 
         }
 
-        private void BougerLaPiece(int nouvellePosition)
+        public void BougerLaPiece(int nouvellePosition)
         {
             this.PositionCarreau = nouvellePosition;
             this.Position = Carreau.conversionInt2Position(this.PositionCarreau);
@@ -296,7 +215,7 @@ namespace WpfApplication1.sources
             EstVivant = false;
             Plateau.Instance.Rejouer = false;
             Plateau.Instance.JoueurRestant--;
-            Plateau.Instance.ChangementJoueur();
+            GestionnaireJeu.ChangementJoueur();
             return true;
         }
 

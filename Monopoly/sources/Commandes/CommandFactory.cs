@@ -49,5 +49,10 @@ namespace WpfApplication1.sources
         {
             return new CommandRestaurer();
         }
+        
+        internal CommandTest CreateCommandTest()
+        {
+            return new CommandTest();
+        }
     }
 }

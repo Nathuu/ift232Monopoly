@@ -27,9 +27,7 @@ namespace WpfApplication1
     {
 
         private CommandFactory commandFactory;
-
-
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -80,7 +78,7 @@ namespace WpfApplication1
             buttonEchangerProprietes.Click += buttonEchangerProprietes.execute;
             panelButtonFinTour.Children.Add(buttonEchangerProprietes);
 
-            //  menuItemFichier
+            //  SubMenu item sauve
             MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();
             CommandSauvegarde cmdSauver = CommandFactory.Instance.CreateCommandSauvegarde();
             menuSauvegarde.storeCommand(cmdSauver);
@@ -89,7 +87,7 @@ namespace WpfApplication1
             menuSauvegarde.Click += menuSauvegarde.execute;
             menuItemFichier.Items.Add(menuSauvegarde);
 
-            //  menuItemFichier
+            //  sub Menu item restaure
             MenuItemMonopoly menuRestaure = new MenuItemMonopoly();
             CommandRestaurer cmdRestaurer = CommandFactory.Instance.CreateCommandRestaurer();
             menuRestaure.storeCommand(cmdRestaurer);
@@ -98,57 +96,22 @@ namespace WpfApplication1
             menuRestaure.Click += menuRestaure.execute;
             menuItemFichier.Items.Add(menuRestaure);
 
+            //  sub menu item test
+            MenuItemMonopoly menuTest = new MenuItemMonopoly();
+            CommandTest cmdTest = CommandFactory.Instance.CreateCommandTest();
+            menuTest.storeCommand(cmdTest);
+            menuTest.Name = "menuTest";
+            menuTest.Header = "Panneau Test";
+            menuTest.Click += menuTest.execute;
+            menuItemTest.Items.Add(menuTest);
 
-
-
-            MenuItemMonopoly menuItemJoueurRouge = new MenuItemMonopoly();
-            menuItemJoueurRouge.Name = "menuItemJoueurRouge";
-            menuItemJoueurRouge.Header = "Joueur Rouge";
-            menuItemJoueurRouge.Click += menuItemJoueurRouge.execute;
-
-
-            MenuItemMonopoly menuItemJoueurVert = new MenuItemMonopoly();
-            menuItemJoueurVert.Name = "menuItemJoueurVert";
-            menuItemJoueurVert.Header = "Joueur Vert";
-            menuItemJoueurVert.Click += menuItemJoueurVert.execute;
-
-            MenuItemMonopoly menuItemJoueurBleu = new MenuItemMonopoly();
-            menuItemJoueurBleu.Name = "menuItemJoueurBleu";
-            menuItemJoueurBleu.Header = "Joueur Bleu";
-            menuItemJoueurBleu.Click += menuItemJoueurBleu.execute;
-
-            MenuItemMonopoly menuItemJoueurJaune = new MenuItemMonopoly();
-            menuItemJoueurJaune.Name = "menuItemJoueurJaune";
-            menuItemJoueurJaune.Header = "Joueur Jaune";
-            menuItemJoueurJaune.Click += menuItemJoueurJaune.execute;
-
-
+        
         }
 
-        //private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
-        //{
-        //    InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));
-        //    //À titre d'information : Tout le code en commentaire revient au meme qu'au lambda 
-        //    //InformationJoueur infoWindow = null;
-        //    //foreach (Joueur item in Plateau.Instance.Joueurs)
-        //    //{
-        //    //    if (item.Nom == "Rouge")
-        //    //    {
-        //    //        InformationJoueur infoWindow = new InformationJoueur(item);
-        //    //        break;
-        //    //    }
-        //    //}
-        //    infoWindow.ShowDialog();
-        //}
        
         private void Faillite_click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.JoueurCourant.FaitFaillite();
-        }
-        private void menuTest_Click(object sender, RoutedEventArgs e)
-        {
-            TestApplication test = new TestApplication();
-            test.ShowDialog();
         }
 
         public void MajInformationJoueurs(Joueur joueur)
