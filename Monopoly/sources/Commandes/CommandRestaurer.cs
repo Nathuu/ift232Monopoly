@@ -10,7 +10,7 @@ namespace WpfApplication1.sources.Commandes
     {
         public override void execute()
         {
-            GestionnaireJeu.restaurerPartie();
+            GestionnaireSauvegardes.restaurerPartie();
         }
     }
 }

@@ -58,11 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Properties\FichierTest.Designer.cs">
-      <DependentUpon>FichierTest.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,7 +78,7 @@
     <Compile Include="sources\Commandes\CommandStatistique.cs" />
     <Compile Include="sources\Commandes\CommandTest.cs" />
     <Compile Include="sources\Commandes\Prompt.cs" />
-    <Compile Include="sources\GestionnaireJeu.cs" />
+    <Compile Include="sources\GestionnaireSauvegardes.cs" />
     <Compile Include="sources\Interface\ButtonMonopoly.cs" />
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>
@@ -160,11 +155,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\FichierTest.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>FichierTest.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
