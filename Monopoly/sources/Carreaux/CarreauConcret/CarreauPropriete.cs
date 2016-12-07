@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace WpfApplication1.sources.Carreaux
 {
@@ -26,7 +27,7 @@ namespace WpfApplication1.sources.Carreaux
         {
             this.Couleur = Couleur;
             this.DroitPassage = new long[5] { 25, 50, 75, 100, 125 };
-            this.NombreBatiement = 0; 
+            this.NombreBatiement = 0;
         }
 
         public bool estLibre()

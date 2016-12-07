@@ -72,9 +72,11 @@
     <Compile Include="sources\Carreaux\CarreauConcret\CarreauTrain.cs" />
     <Compile Include="sources\Cartes\CarteDeplacement.cs" />
     <Compile Include="sources\Cartes\CarteMontant.cs" />
+    <Compile Include="sources\Commandes\CommandEchangerProprietes.cs" />
     <Compile Include="sources\Commandes\CommandLancerDes.cs" />
     <Compile Include="sources\Commandes\CommandRestaurer.cs" />
     <Compile Include="sources\Commandes\CommandStatistique.cs" />
+    <Compile Include="sources\Commandes\Prompt.cs" />
     <Compile Include="sources\Interface\ButtonMonopoly.cs" />
     <Compile Include="InformationJoueur.xaml.cs">
       <DependentUpon>InformationJoueur.xaml</DependentUpon>

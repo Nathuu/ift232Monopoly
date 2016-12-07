@@ -12,6 +12,8 @@ namespace WpfApplication1.sources.Carreaux
     /// </summary>  
     public abstract class CarreauAchetable : CarreauPayant
     {
+        private static List<CarreauAchetable> tousCarreauxAchetables = new List<CarreauAchetable>();
+
         public long PrixAchat { get; protected set; }
         public Joueur Proprietaire { get; set; }
         public bool EstHypotheque { get; set; }
@@ -21,7 +23,8 @@ namespace WpfApplication1.sources.Carreaux
         public CarreauAchetable(int position, long prixAchat) : base(position)
         {
             this.PrixAchat = prixAchat;
-            actions.Add(new AchatCarreauAchetable());           
+            actions.Add(new AchatCarreauAchetable());
+            tousCarreauxAchetables.Add(this);
         }
         public bool estPossede()
         {
@@ -32,6 +35,18 @@ namespace WpfApplication1.sources.Carreaux
         {
             return positionCarreau.ToString();
         }
-
+        public static List<CarreauAchetable> getTousLesCarreauxAchetables()
+        {
+            return tousCarreauxAchetables;
+        }
+        public static List<CarreauAchetable> getTousLesCarreauxAchetablesPossedes()
+        {
+            List<CarreauAchetable> achetes = new List<CarreauAchetable>();
+            foreach (CarreauAchetable c in getTousLesCarreauxAchetables())
+            {
+                if (c.estPossede()) achetes.Add(c);
+            }
+            return achetes;
+        }
     }
 }

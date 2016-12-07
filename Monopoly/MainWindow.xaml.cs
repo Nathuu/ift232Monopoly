@@ -67,8 +67,18 @@ namespace WpfApplication1
             buttonLancerDes.Click += buttonLancerDes.execute;
             panelButtonFinTour.Children.Add(buttonLancerDes);
 
+
             ButtonMonopoly buttonFinTour = new ButtonMonopoly();
             CommandFinTour cmdFinTour = commandFactory.CreateCommandFinTour();
+
+            // Possibilite d'implanter une factory de buttons pour simplifier le code ici
+            ButtonMonopoly buttonEchangerProprietes = new ButtonMonopoly();
+            CommandEchangerProprietes cmdEchangerProprietes = commandFactory.CreateCommandEchangerProprietes();
+            buttonEchangerProprietes.storeCommand(cmdEchangerProprietes);
+            buttonEchangerProprietes.Name = "btnEchangerProprietes";
+            buttonEchangerProprietes.Content = "Échanger les propriétés";
+            buttonEchangerProprietes.Click += buttonEchangerProprietes.execute;
+            panelButtonFinTour.Children.Add(buttonEchangerProprietes);
 
             //  menuItemFichier
             MenuItemMonopoly menuSauvegarde = new MenuItemMonopoly();

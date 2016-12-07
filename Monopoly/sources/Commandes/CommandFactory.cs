@@ -30,6 +30,11 @@ namespace WpfApplication1.sources
             return new CommandLancerDes();
         }
 
+        public CommandEchangerProprietes CreateCommandEchangerProprietes()
+        {
+            return new CommandEchangerProprietes();
+        }
+
         public CommandFinTour CreateCommandFinTour()
         {
             return new CommandFinTour();
