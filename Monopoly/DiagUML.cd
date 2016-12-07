@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Comment CommentText="Menu/Button Cmd pattern">
+    <Position X="10.686" Y="2.451" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Singleton">
+    <Position X="14.594" Y="4.081" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Command Pattern&#xD;&#xA;Dans son constructeur, les descendants de Carreau et carte init  une/des commandes">
+    <Position X="18.596" Y="3.586" Height="0.924" Width="1.68" />
+  </Comment>
+  <Comment CommentText="Factory">
+    <Position X="10.385" Y="4.188" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="WpfApplication1.sources.Joueur">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgAiAAAUAAAAAggQMAAgBAAGYSEBABAEEBgAARAAA=</HashCode>
+      <FileName>sources\Joueur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.PaquetDeCarte">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACIAAACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\PaquetDeCarte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Plateau">
+    <Position X="4.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAkAIACQBAEAIAAQAsAELSBDBABBIBQgAAgAAAAAI=</HashCode>
+      <FileName>sources\Plateau.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Position">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>sources\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Command" Collapsed="true">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Commandes\Command.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.CommandFactory">
+    <Position X="12.25" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAEAAAAAAAAAAgABAAAAAQAAACAEAAAA=</HashCode>
+      <FileName>sources\Commandes\CommandFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.CommandFinTour" Collapsed="true">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Commandes\CommandFinTour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.CommandLancerDes" Collapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Commandes\CommandLancerDes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.ButtonMonopoly">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>sources\Interface\ButtonMonopoly.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WpfApplication1.sources.Interface.MenuItemMonopoly">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>sources\Interface\MenuItemMonopoly.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WpfApplication1.sources.Carte">
+    <Position X="10.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Cartes\Carte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Cartes.CarteDeplacement">
+    <Position X="9.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAI=</HashCode>
+      <FileName>sources\Cartes\CarteDeplacement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Cartes.CarteMontant">
+    <Position X="12" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAgAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Cartes\CarteMontant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreau">
+    <Position X="17" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAEAAAAAAAAAAAEAIAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\Carreau.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.CarreauPayant">
+    <Position X="15.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\CarreauPayant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.CarreauAchetable">
+    <Position X="14.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEAAAAAAAAAQAEAAAAAAAAAAAAAAAAgAAAAAAAAAE=</HashCode>
+      <FileName>sources\Carreaux\CarreauAchetable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.CarreauCarte">
+    <Position X="18.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\CarreauConcret\CarreauCarte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.CarreauConcret.CarreauGo">
+    <Position X="20.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\CarreauConcret\CarreauGo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.CarreauConcret.CarreauTrain">
+    <Position X="14.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\CarreauConcret\CarreauTrain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.CarreauPropriete">
+    <Position X="16.25" Y="10.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="WpfApplication1.sources.Carreaux.CarreauPropriete.Couleurs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>sources\Carreaux\CarreauConcret\CarreauPropriete.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAICAAAAgBAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\CarreauConcret\CarreauPropriete.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.Action.DroitPassage" Collapsed="true">
+    <Position X="19.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIEAAACAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\Action\DroitPassage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.Action.RamasserMontant" Collapsed="true">
+    <Position X="21.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\Action\RamasserMontant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WpfApplication1.sources.Carreaux.Action.PigerCarte" Collapsed="true">
+    <Position X="11" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\Action\PigerCarte.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="WpfApplication1.sources.Carreaux.Action.ICommande" Collapsed="true">
+    <Position X="19.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sources\Carreaux\Action\ICommande.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
