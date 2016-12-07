@@ -98,8 +98,15 @@ namespace WpfApplication1
             menuRestaure.Click += menuRestaure.execute;
             menuItemFichier.Items.Add(menuRestaure);
 
+            //  menuItemFichier
+            MenuItemMonopoly menuTest = new MenuItemMonopoly();
+            CommandTest cmdTest = CommandFactory.Instance.CreateCommandTest();
+            menuTest.storeCommand(cmdTest);
+            menuTest.Name = "menuTest";
+            menuTest.Header = "Panneau Test";
+            menuTest.Click += menuTest.execute;
+            menuItemTest.Items.Add(menuTest);
 
-     
 
             MenuItemMonopoly menuItemJoueurRouge = new MenuItemMonopoly();
             CommandStatistique cmdStatRouge = CommandFactory.Instance.CreateCommandStatistique("Rouge");
@@ -177,8 +184,7 @@ namespace WpfApplication1
         }
         private void menuTest_Click(object sender, RoutedEventArgs e)
         {
-            TestApplication test = new TestApplication();
-            test.ShowDialog();
+          
         }
     }
 }

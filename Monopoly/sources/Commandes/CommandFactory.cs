@@ -56,5 +56,10 @@ namespace WpfApplication1.sources
             cmd.nom = nom;
             return cmd;
         }
+
+        internal CommandTest CreateCommandTest()
+        {
+            return new CommandTest();
+        }
     }
 }

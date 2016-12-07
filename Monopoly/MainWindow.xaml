@@ -47,7 +47,7 @@
                 <!--Faire la meme chose pour Restaurer-->
             <MenuItem Name="menuItemFichier" Header="Fichier"/>
             <MenuItem Name="menuItemStatistique" Header="Statistique"/>
-            <MenuItem Name="menuTest" Header="Test"  Click="menuTest_Click"/>
+            <MenuItem Name="menuItemTest" Header="Test"/>
         </Menu>
         <Image Margin="0,0,0,10" Source="ressources/board.jpg" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11" Grid.RowSpan="11"/>
         <Image Grid.Column="1" Grid.Row="1" Name="pionImageVert"  Source="ressources/vert.jpg" Width="30" Height="30"/>
