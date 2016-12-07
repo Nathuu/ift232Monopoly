@@ -39,10 +39,10 @@ namespace WpfApplication1
             InitButtons();
 
             // Création des joueurs 
-            Plateau.Instance.Joueurs.Add(new Joueur("Vert", pionImageVert));
-            Plateau.Instance.Joueurs.Add(new Joueur("Rouge", pionImageRouge));
-            Plateau.Instance.Joueurs.Add(new Joueur("Bleu", pionImageBleu));
-            Plateau.Instance.Joueurs.Add(new Joueur("Jaune", pionImageJaune));
+            Plateau.Instance.Joueurs.Add(new Joueur("Vert", pionImageVert, this));
+            Plateau.Instance.Joueurs.Add(new Joueur("Rouge", pionImageRouge, this));
+            Plateau.Instance.Joueurs.Add(new Joueur("Bleu", pionImageBleu, this));
+            Plateau.Instance.Joueurs.Add(new Joueur("Jaune", pionImageJaune, this));
             Plateau.Instance.JoueurRestant = Plateau.Instance.Joueurs.Count();
             Plateau.Instance.JoueurCourant = Plateau.Instance.Joueurs.First();
         }
@@ -99,78 +99,48 @@ namespace WpfApplication1
             menuItemFichier.Items.Add(menuRestaure);
 
 
-     
+
 
             MenuItemMonopoly menuItemJoueurRouge = new MenuItemMonopoly();
-            CommandStatistique cmdStatRouge = CommandFactory.Instance.CreateCommandStatistique("Rouge");
-            menuItemJoueurRouge.storeCommand(cmdStatRouge);
             menuItemJoueurRouge.Name = "menuItemJoueurRouge";
             menuItemJoueurRouge.Header = "Joueur Rouge";
             menuItemJoueurRouge.Click += menuItemJoueurRouge.execute;
-            menuItemStatistique.Items.Add(menuItemJoueurRouge);
 
 
             MenuItemMonopoly menuItemJoueurVert = new MenuItemMonopoly();
-            CommandStatistique cmdStatVert = CommandFactory.Instance.CreateCommandStatistique("Vert");
-            menuItemJoueurVert.storeCommand(cmdStatVert);
             menuItemJoueurVert.Name = "menuItemJoueurVert";
             menuItemJoueurVert.Header = "Joueur Vert";
             menuItemJoueurVert.Click += menuItemJoueurVert.execute;
-            menuItemStatistique.Items.Add(menuItemJoueurVert);
-            
+
             MenuItemMonopoly menuItemJoueurBleu = new MenuItemMonopoly();
-            CommandStatistique cmdStatbleu = CommandFactory.Instance.CreateCommandStatistique("Bleu");
-            menuItemJoueurBleu.storeCommand(cmdStatbleu);
             menuItemJoueurBleu.Name = "menuItemJoueurBleu";
             menuItemJoueurBleu.Header = "Joueur Bleu";
             menuItemJoueurBleu.Click += menuItemJoueurBleu.execute;
-            menuItemStatistique.Items.Add(menuItemJoueurBleu);
 
             MenuItemMonopoly menuItemJoueurJaune = new MenuItemMonopoly();
-            CommandStatistique cmdStatJaune = CommandFactory.Instance.CreateCommandStatistique("Jaune");
-            menuItemJoueurJaune.storeCommand(cmdStatJaune);
             menuItemJoueurJaune.Name = "menuItemJoueurJaune";
             menuItemJoueurJaune.Header = "Joueur Jaune";
             menuItemJoueurJaune.Click += menuItemJoueurJaune.execute;
-            menuItemStatistique.Items.Add(menuItemJoueurJaune);
-            
+
 
         }
 
-        private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
-        {
-            InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));
-            //À titre d'information : Tout le code en commentaire revient au meme qu'au lambda 
-            //InformationJoueur infoWindow = null;
-            //foreach (Joueur item in Plateau.Instance.Joueurs)
-            //{
-            //    if (item.Nom == "Rouge")
-            //    {
-            //        InformationJoueur infoWindow = new InformationJoueur(item);
-            //        break;
-            //    }
-            //}
-            infoWindow.ShowDialog();
-        }
-
-        private void menuItemJoueurVert_Click(object sender, RoutedEventArgs e)
-        {
-            InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Vert"));
-            infoWindow.ShowDialog();
-        }
-
-        private void menuItemJoueurBleu_Click(object sender, RoutedEventArgs e)
-        {
-            InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Bleu"));
-            infoWindow.ShowDialog();
-        }
-
-        private void menuItemJoueurJaune_Click(object sender, RoutedEventArgs e)
-        {
-            InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Jaune"));
-            infoWindow.ShowDialog();
-        }
-
+        //private void menuItemJoueurRouge_Click(object sender, RoutedEventArgs e)
+        //{
+        //    InformationJoueur infoWindow = new InformationJoueur(Plateau.Instance.Joueurs.FirstOrDefault(x => x.Nom == "Rouge"));
+        //    //À titre d'information : Tout le code en commentaire revient au meme qu'au lambda 
+        //    //InformationJoueur infoWindow = null;
+        //    //foreach (Joueur item in Plateau.Instance.Joueurs)
+        //    //{
+        //    //    if (item.Nom == "Rouge")
+        //    //    {
+        //    //        InformationJoueur infoWindow = new InformationJoueur(item);
+        //    //        break;
+        //    //    }
+        //    //}
+        //    infoWindow.ShowDialog();
+        //}
+       
         private void Faillite_click(object sender, RoutedEventArgs e)
         {
             Plateau.Instance.JoueurCourant.FaitFaillite();
@@ -179,6 +149,93 @@ namespace WpfApplication1
         {
             TestApplication test = new TestApplication();
             test.ShowDialog();
+        }
+
+        public void MajInformationJoueurs(Joueur joueur)
+        {
+            switch (joueur.Nom.ToUpper())
+            {
+                case "ROUGE":
+                    string affichageProp1 = "";
+                    string affichagePropHypothequer1 = "";
+                    string affichageTrain1 = "";
+                    string affichageService1 = "";
+
+                    joueur.Proprietes.ForEach(x => affichageProp1 += (x.ToString() + ", "));
+                    joueur.Proprietes.Where(x => x.EstHypotheque == true).ToList().ForEach(x => affichagePropHypothequer1 += x.ToString() + ", ");
+                    joueur.Trains.ForEach(x => affichageTrain1 += (x.ToString() + ", "));
+                    joueur.Services.ForEach(x => affichageService1 += (x.ToString() + ", "));
+                
+                    chkEstVivant1.IsChecked = joueur.EstVivant;
+                    txtArgent1.Text = joueur.Argent.ToString();
+                    lvPropriete1.Text = affichageProp1;
+                    lvProprieteHypotheque1.Text = affichagePropHypothequer1;
+                    chkAlaCartePrison1.IsChecked = joueur.ACarteSortirPrison;
+                    txtTrain1.Text = affichageTrain1;
+                    txtService1.Text = affichageService1;
+
+                    break;
+                case "JAUNE":
+                    string affichageProp2 = "";
+                    string affichagePropHypothequer2 = "";
+                    string affichageTrain2 = "";
+                    string affichageService2 = "";
+
+                    joueur.Proprietes.ForEach(x => affichageProp2 += (x.ToString() + ", "));
+                    joueur.Proprietes.Where(x => x.EstHypotheque == true).ToList().ForEach(x => affichagePropHypothequer2 += x.ToString() + ", ");
+                    joueur.Trains.ForEach(x => affichageTrain2 += (x.ToString() + ", "));
+                    joueur.Services.ForEach(x => affichageService2 += (x.ToString() + ", "));
+
+                    chkEstVivant2.IsChecked = joueur.EstVivant;
+                    txtArgent2.Text = joueur.Argent.ToString();
+                    lvPropriete2.Text = affichageProp2;
+                    lvProprieteHypotheque2.Text = affichagePropHypothequer2;
+                    chkAlaCartePrison2.IsChecked = joueur.ACarteSortirPrison;
+                    txtTrain2.Text = affichageTrain2;
+                    txtService2.Text = affichageService2;
+
+                    break;
+                case "BLEU":
+                    string affichageProp3 = "";
+                    string affichagePropHypothequer3 = "";
+                    string affichageTrain3 = "";
+                    string affichageService3 = "";
+
+                    joueur.Proprietes.ForEach(x => affichageProp3 += (x.ToString() + ", "));
+                    joueur.Proprietes.Where(x => x.EstHypotheque == true).ToList().ForEach(x => affichagePropHypothequer3 += x.ToString() + ", ");
+                    joueur.Trains.ForEach(x => affichageTrain3 += (x.ToString() + ", "));
+                    joueur.Services.ForEach(x => affichageService3 += (x.ToString() + ", "));
+
+                    chkEstVivant3.IsChecked = joueur.EstVivant;
+                    txtArgent3.Text = joueur.Argent.ToString();
+                    lvPropriete3.Text = affichageProp3;
+                    lvProprieteHypotheque3.Text = affichagePropHypothequer3;
+                    chkAlaCartePrison3.IsChecked = joueur.ACarteSortirPrison;
+                    txtTrain3.Text = affichageTrain3;
+                    txtService3.Text = affichageService3;
+
+                    break;
+                case "VERT":
+                    string affichageProp4 = "";
+                    string affichagePropHypothequer4 = "";
+                    string affichageTrain4 = "";
+                    string affichageService4 = "";
+
+                    joueur.Proprietes.ForEach(x => affichageProp4 += (x.ToString() + ", "));
+                    joueur.Proprietes.Where(x => x.EstHypotheque == true).ToList().ForEach(x => affichagePropHypothequer4 += x.ToString() + ", ");
+                    joueur.Trains.ForEach(x => affichageTrain4 += (x.ToString() + ", "));
+                    joueur.Services.ForEach(x => affichageService4 += (x.ToString() + ", "));
+
+                    chkEstVivant4.IsChecked = joueur.EstVivant;
+                    txtArgent4.Text = joueur.Argent.ToString();
+                    lvPropriete4.Text = affichageProp4;
+                    lvProprieteHypotheque4.Text = affichagePropHypothequer4;
+                    chkAlaCartePrison4.IsChecked = joueur.ACarteSortirPrison;
+                    txtTrain4.Text = affichageTrain4;
+                    txtService4.Text = affichageService4;
+
+                    break;
+            }
         }
     }
 }

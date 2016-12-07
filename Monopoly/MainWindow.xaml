@@ -22,7 +22,7 @@
             <RowDefinition Height="60" />
             <RowDefinition Height="59" />
             <RowDefinition Height="119" />
-            <RowDefinition Height="0" />
+            <RowDefinition Height="120" />
         </Grid.RowDefinitions>
         <!--Autant de colonne que de case-->
         <Grid.ColumnDefinitions>
@@ -43,10 +43,9 @@
         <!--Si vous voulez rajouter des object dans le visuel.-->
         <!--Veuillez les rajouter à la row 13 et + ex : (Grid.Row = "13") -->
         <Menu Name="MainMenu"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12">
-                <!--Le menu item sauvegarde est initialise dans MainWindow.xaml.cs-->
-                <!--Faire la meme chose pour Restaurer-->
+            <!--Le menu item sauvegarde est initialise dans MainWindow.xaml.cs-->
+            <!--Faire la meme chose pour Restaurer-->
             <MenuItem Name="menuItemFichier" Header="Fichier"/>
-            <MenuItem Name="menuItemStatistique" Header="Statistique"/>
             <MenuItem Name="menuTest" Header="Test"  Click="menuTest_Click"/>
         </Menu>
         <Image Margin="0,0,0,10" Source="ressources/board.jpg" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11" Grid.RowSpan="11"/>
@@ -54,5 +53,213 @@
         <Image Grid.Column="1" Grid.Row="1" Name="pionImageRouge" Source="ressources/rouge.jpg" Width="30" Height="30"/>
         <Image Grid.Column="1" Grid.Row="1"  Name="pionImageBleu" Source="ressources/bleu.jpg"  Width="30" Height="30"/>
         <Image Grid.Column="1" Grid.Row="1"  Name="pionImageJaune" Source="ressources/jaune.jpg" Width="30" Height="30"/>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="14" Grid.Column="0" Width="151" Grid.ColumnSpan="3" Margin="5,-20,5,5">
+            <Canvas>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontWeight="Bold" Text="Nom du joueur : " FontSize="10"/>
+                        <TextBlock Text="Rouge"  FontSize="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock FontWeight="Bold" Text="Vivant ? : "  FontSize="10"/>
+                        <CheckBox Name="chkEstVivant1"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock FontWeight="Bold" Text="Argent : " FontSize="10" />
+                        <TextBlock Name="txtArgent1"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <TextBlock FontWeight="Bold" Text="Possède carte prison : " FontSize="10"/>
+                        <CheckBox Name="chkAlaCartePrison1"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4">
+                        <TextBlock FontWeight="Bold" Text="Prop : " FontSize="10"/>
+                        <TextBlock Name="lvPropriete1"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5">
+                        <TextBlock FontWeight="Bold" Text="Prop hypothèqués : " FontSize="10"/>
+                        <TextBlock Name="lvProprieteHypotheque1"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6">
+                        <TextBlock FontWeight="Bold" Text="Trains : " FontSize="10"/>
+                        <TextBlock Name="txtTrain1"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="7">
+                        <TextBlock FontWeight="Bold" Text="Services : " FontSize="10"/>
+                        <TextBlock Name="txtService1"  FontSize="10"/>
+                    </StackPanel>
+                </Grid>
+            </Canvas>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="14" Grid.Column="3"  Width="152" Grid.ColumnSpan="3" Margin="5,-20,5,5">
+            <Canvas>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontWeight="Bold" Text="Nom du joueur : " FontSize="10"/>
+                        <TextBlock Text="Jaune"  FontSize="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock FontWeight="Bold" Text="Vivant ? : "  FontSize="10"/>
+                        <CheckBox Name="chkEstVivant2"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock FontWeight="Bold" Text="Argent : " FontSize="10" />
+                        <TextBlock Name="txtArgent2"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <TextBlock FontWeight="Bold" Text="Possède carte prison : " FontSize="10"/>
+                        <CheckBox Name="chkAlaCartePrison2"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4">
+                        <TextBlock FontWeight="Bold" Text="Prop : " FontSize="10"/>
+                        <TextBlock Name="lvPropriete2"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5">
+                        <TextBlock FontWeight="Bold" Text="Prop hypothèqués : " FontSize="10"/>
+                        <TextBlock Name="lvProprieteHypotheque2"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6">
+                        <TextBlock FontWeight="Bold" Text="Trains : " FontSize="10"/>
+                        <TextBlock Name="txtTrain2"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="7">
+                        <TextBlock FontWeight="Bold" Text="Services : " FontSize="10"/>
+                        <TextBlock Name="txtService2"  FontSize="10"/>
+                    </StackPanel>
+                </Grid>
+            </Canvas>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="14" Grid.Column="6" Width="152" Grid.ColumnSpan="3" Margin="5,-20,5,5">
+            <Canvas>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontWeight="Bold" Text="Nom du joueur : " FontSize="10"/>
+                        <TextBlock Text="Bleu"  FontSize="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock FontWeight="Bold" Text="Vivant ? : "  FontSize="10"/>
+                        <CheckBox Name="chkEstVivant3"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock FontWeight="Bold" Text="Argent : " FontSize="10" />
+                        <TextBlock Name="txtArgent3"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <TextBlock FontWeight="Bold" Text="Possède carte prison : " FontSize="10"/>
+                        <CheckBox Name="chkAlaCartePrison3"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4">
+                        <TextBlock FontWeight="Bold" Text="Prop : " FontSize="10"/>
+                        <TextBlock Name="lvPropriete3"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5">
+                        <TextBlock FontWeight="Bold" Text="Prop hypothèqués : " FontSize="10"/>
+                        <TextBlock Name="lvProprieteHypotheque3"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6">
+                        <TextBlock FontWeight="Bold" Text="Trains : " FontSize="10"/>
+                        <TextBlock Name="txtTrain3"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="7">
+                        <TextBlock FontWeight="Bold" Text="Services : " FontSize="10"/>
+                        <TextBlock Name="txtService3"  FontSize="10"/>
+                    </StackPanel>
+                </Grid>
+            </Canvas>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="14" Grid.Column="9" Width="152" Grid.ColumnSpan="3" Margin="5,-20,5,5">
+            <Canvas>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontWeight="Bold" Text="Nom du joueur : " FontSize="10"/>
+                        <TextBlock Text="Vert"  FontSize="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock FontWeight="Bold" Text="Vivant ? : "  FontSize="10"/>
+                        <CheckBox Name="chkEstVivant4"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock FontWeight="Bold" Text="Argent : " FontSize="10" />
+                        <TextBlock Name="txtArgent4"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <TextBlock FontWeight="Bold" Text="Possède carte prison : " FontSize="10"/>
+                        <CheckBox Name="chkAlaCartePrison4"  FontSize="10" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4">
+                        <TextBlock FontWeight="Bold" Text="Prop : " FontSize="10"/>
+                        <TextBlock Name="lvPropriete4" FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5">
+                        <TextBlock FontWeight="Bold" Text="Prop hypothèqués : " FontSize="10"/>
+                        <TextBlock Name="lvProprieteHypotheque4"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6">
+                        <TextBlock FontWeight="Bold" Text="Trains : " FontSize="10"/>
+                        <TextBlock Name="txtTrain4"  FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="7">
+                        <TextBlock FontWeight="Bold" Text="Services : " FontSize="10"/>
+                        <TextBlock Name="txtService4"  FontSize="10"/>
+                    </StackPanel>
+                </Grid>
+            </Canvas>
+        </Border>
     </Grid>
 </Window>

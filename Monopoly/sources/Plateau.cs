@@ -257,6 +257,7 @@ namespace WpfApplication1.sources
 
             RestaurationFichier restoreWindow = new RestaurationFichier(fichierRestaurationDisponible);
             restoreWindow.ShowDialog();
+            if (restoreWindow.FileName == null) return;
 
             StreamReader fichierSauvegarde = new StreamReader(restoreWindow.FileName);
             String nomJoueurCourant = fichierSauvegarde.ReadLine();

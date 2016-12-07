@@ -19,8 +19,8 @@ namespace WpfApplication1
     /// </summary>
     public partial class RestaurationFichier : Window
     {
-        public String FileName { get; private set; }
-        public RestaurationFichier(List<String> fichierDisponible)
+        public string FileName { get; private set; }
+        public RestaurationFichier(List<string> fichierDisponible)
         {
             InitializeComponent();
             cmbFiles.ItemsSource = fichierDisponible;

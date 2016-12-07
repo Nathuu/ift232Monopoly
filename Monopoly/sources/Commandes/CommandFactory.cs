@@ -49,12 +49,5 @@ namespace WpfApplication1.sources
         {
             return new CommandRestaurer();
         }
-
-        public CommandStatistique CreateCommandStatistique(String nom)
-        {
-            CommandStatistique cmd = new CommandStatistique();
-            cmd.nom = nom;
-            return cmd;
-        }
     }
 }

@@ -29,9 +29,10 @@ namespace WpfApplication1.sources
         public int PositionCarreau { get; set; }
         public int CompteurDeDouble { get; set; }
         public bool EstVivant { get; set; }
+        private MainWindow mw;
 
         //Joueur n'a pas de propriétés? Oui il a une liste de proprietes
-        public Joueur(String nom, Image image)//une piece construite va toujours avoir la meme argent et meme position de depart
+        public Joueur(String nom, Image image, MainWindow mw)//une piece construite va toujours avoir la meme argent et meme position de depart
         {
             this.Nom = nom;
             this.Image = image;
@@ -47,6 +48,7 @@ namespace WpfApplication1.sources
             this.Trains = new List<CarreauAchetable>();
             this.Services = new List<CarreauAchetable>();
             this.CompteurDeDouble = 0;
+            this.mw = mw;
             EstVivant = true;
         }
 
@@ -230,6 +232,7 @@ namespace WpfApplication1.sources
                     Depot(Plateau.Instance.MontantCarreauDepart);
 
                 getCarreauActuel().execute();
+                mw.MajInformationJoueurs(Plateau.Instance.JoueurCourant);
             }
             else
                     MessageBox.Show("Joueur " + Nom + " ne peut plus avancer puisqu'il est en faillite.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Information);
