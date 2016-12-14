@@ -56,7 +56,7 @@ namespace WpfApplication1.sources.Commandes
             prompt.Controls.Add(confirmation);
             prompt.AcceptButton = confirmation;
 
-            return prompt.ShowDialog() == DialogResult.OK ? listePropJoueur.SelectedIndex+" vs "+listePropTous.SelectedIndex : "";
+            return prompt.ShowDialog() == DialogResult.OK ? listePropJoueurStr[listePropJoueur.SelectedIndex] + " contre "+ listePropTousStr[listePropTous.SelectedIndex] : "";
         }
     }
 }

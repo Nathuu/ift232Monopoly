@@ -26,7 +26,7 @@ namespace WpfApplication1.sources.Carreaux
         public CarreauPropriete(int positionCarreau, Couleurs Couleur, long prixAchat, long[] droitPassage) : base(positionCarreau, prixAchat)
         {
             this.Couleur = Couleur;
-            this.DroitPassage = new long[5] { 25, 50, 75, 100, 125 };
+            this.DroitPassage = droitPassage;
             this.NombreBatiement = 0;
         }
 
