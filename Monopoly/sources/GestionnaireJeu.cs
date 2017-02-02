@@ -12,6 +12,7 @@ namespace WpfApplication1.sources
             {
                 ChangementJoueur();
             }
+			//test push push
         }
 
         public static void ChangementJoueur()
